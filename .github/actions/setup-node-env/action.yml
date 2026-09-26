@@ -1,0 +1,21 @@
+name: Set up Node
+description: >-
+  Installs the Node version pinned in .mise.toml, enables Corepack so the Yarn
+  version pinned in package.json is used, and installs the dependencies from
+  the lockfile.
+
+runs:
+  using: composite
+  steps:
+    - name: Install Node from .mise.toml
+      uses: jdx/mise-action@v4
+      with:
+        install_args: node
+
+    - name: Enable Corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --immutable

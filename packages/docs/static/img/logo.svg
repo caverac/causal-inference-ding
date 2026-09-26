@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#4b5563" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5" />
+
+  <!-- Edges of the causal graph: X confounds the effect of Z on Y -->
+  <line x1="88" y1="72" x2="62" y2="118" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)" />
+  <line x1="112" y1="72" x2="138" y2="118" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)" />
+  <line x1="72" y1="140" x2="124" y2="140" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)" />
+
+  <!-- Nodes: covariate X, treatment Z, outcome Y -->
+  <circle cx="100" cy="55" r="20" fill="#9ca3af" filter="url(#shadow)" />
+  <circle cx="52" cy="140" r="20" fill="#4a5568" filter="url(#shadow)" />
+  <circle cx="148" cy="140" r="20" fill="#6b7280" filter="url(#shadow)" />
+
+  <text x="100" y="62" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#f9fafb">X</text>
+  <text x="52" y="147" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#f9fafb">Z</text>
+  <text x="148" y="147" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="20" fill="#f9fafb">Y</text>
+</svg>

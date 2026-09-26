@@ -1,0 +1,51 @@
+# === Node / Yarn ===
+node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+**/.yarn/.cache/
+**/.yarn/cache/
+**/.yarn/install-state.gz
+
+# === Docusaurus ===
+.docusaurus/
+build/
+*.tsbuildinfo
+
+# === R ===
+# The renv project library lives under renv/, which carries its own .gitignore.
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rcheck/
+causalding_*.tar.gz
+packages/causalding/tests/testthat/_snaps/**/*.new.md
+
+# === Coverage ===
+coverage/
+
+# === IDE ===
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Environment ===
+.env
+.env.*
+!.env.example

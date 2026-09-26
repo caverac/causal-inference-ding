@@ -1,0 +1,88 @@
+{
+  "aggregated": {
+    "applicants_male": 2691,
+    "applicants_female": 1835,
+    "rate_male": 0.445187662578967,
+    "rate_female": 0.303542234332425,
+    "risk_difference": 0.141645428246542
+  },
+  "standardized": {
+    "rate_female": 0.516156838337139,
+    "risk_difference": -0.0709691757581725,
+    "sign_change_at": 0.666207426858604
+  },
+  "departments": [
+    {
+      "department": "A",
+      "applicants_male": 825,
+      "admitted_male": 512,
+      "applicants_female": 108,
+      "admitted_female": 89,
+      "share_male": 0.306577480490524,
+      "share_female": 0.0588555858310627,
+      "rate_male": 0.620606060606061,
+      "rate_female": 0.824074074074074,
+      "risk_difference": -0.203468013468013
+    },
+    {
+      "department": "B",
+      "applicants_male": 560,
+      "admitted_male": 353,
+      "applicants_female": 25,
+      "admitted_female": 17,
+      "share_male": 0.208101077666295,
+      "share_female": 0.0136239782016349,
+      "rate_male": 0.630357142857143,
+      "rate_female": 0.68,
+      "risk_difference": -0.0496428571428572
+    },
+    {
+      "department": "C",
+      "applicants_male": 325,
+      "admitted_male": 120,
+      "applicants_female": 593,
+      "admitted_female": 202,
+      "share_male": 0.120772946859903,
+      "share_female": 0.323160762942779,
+      "rate_male": 0.369230769230769,
+      "rate_female": 0.340640809443508,
+      "risk_difference": 0.0285899597872616
+    },
+    {
+      "department": "D",
+      "applicants_male": 417,
+      "admitted_male": 138,
+      "applicants_female": 375,
+      "admitted_female": 131,
+      "share_male": 0.154960981047938,
+      "share_female": 0.204359673024523,
+      "rate_male": 0.330935251798561,
+      "rate_female": 0.349333333333333,
+      "risk_difference": -0.0183980815347722
+    },
+    {
+      "department": "E",
+      "applicants_male": 191,
+      "admitted_male": 53,
+      "applicants_female": 393,
+      "admitted_female": 94,
+      "share_male": 0.0709773318468971,
+      "share_female": 0.2141689373297,
+      "rate_male": 0.277486910994764,
+      "rate_female": 0.239185750636132,
+      "risk_difference": 0.0383011603586321
+    },
+    {
+      "department": "F",
+      "applicants_male": 373,
+      "admitted_male": 22,
+      "applicants_female": 341,
+      "admitted_female": 24,
+      "share_male": 0.138610182088443,
+      "share_female": 0.1858310626703,
+      "rate_male": 0.0589812332439678,
+      "rate_female": 0.0703812316715543,
+      "risk_difference": -0.0113999984275864
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Formatter for the R code in the repository, see https://posit-dev.github.io/air/.
+# The line width matches the `line_length_linter` in packages/causalding/.lintr
+# and the Prettier `printWidth` used for the TypeScript sources.
+[format]
+line-width = 100
+indent-width = 2
+indent-style = "space"
+line-ending = "lf"
+persistent-line-breaks = true

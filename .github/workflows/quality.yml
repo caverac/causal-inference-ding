@@ -1,0 +1,142 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ===========================================================================
+  # R package (packages/causalding)
+  # ===========================================================================
+
+  format-r:
+    name: Format (R)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install air from .mise.toml
+        uses: jdx/mise-action@v4
+        with:
+          install_args: github:posit-dev/air
+
+      - name: Check formatting (air)
+        run: air format --check packages/causalding
+
+  lint-r:
+    name: Lint (R)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-r-env
+
+      - name: Lint with every lintr linter
+        run: Rscript packages/causalding/scripts/lint.R
+
+  check-r:
+    name: Check (R CMD check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-r-env
+
+      # Undefined globals, undeclared dependencies and documentation that
+      # disagrees with the code are NOTEs, so any NOTE fails this job.
+      - name: R CMD check --as-cran, failing on any NOTE
+        run: Rscript packages/causalding/scripts/check.R
+
+  test-r:
+    name: Test (R)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-r-env
+
+      - name: Run the tests (testthat)
+        run: Rscript packages/causalding/scripts/test.R
+
+      - name: Require full line coverage (covr)
+        run: Rscript packages/causalding/scripts/coverage.R
+
+  generated-r:
+    name: Generated Files (R)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-r-env
+
+      - name: Regenerate NAMESPACE and the help pages (roxygen2)
+        run: Rscript packages/causalding/scripts/document.R
+
+      - name: Regenerate the data drawn by the docs
+        run: Rscript packages/causalding/scripts/export-docs-data.R
+
+      - name: Fail when a committed file differs from its regenerated copy
+        run: |
+          stale=$(git status --porcelain -- \
+            packages/causalding/DESCRIPTION \
+            packages/causalding/NAMESPACE \
+            packages/causalding/man \
+            packages/docs/src/data/generated)
+          if [ -n "$stale" ]; then
+            echo "$stale"
+            git diff
+            echo "::error::Generated files are stale. Run 'yarn r:document' and 'yarn r:export', then commit the result."
+            exit 1
+          fi
+
+  # ===========================================================================
+  # Documentation site (packages/docs)
+  # ===========================================================================
+
+  lint-ts:
+    name: Lint (TS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-node-env
+
+      - name: ESLint
+        run: yarn lint
+
+      - name: Prettier
+        run: yarn format
+
+  typecheck-ts:
+    name: Typecheck (TS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-node-env
+
+      - name: TypeScript
+        run: yarn typecheck
+
+  test-ts:
+    name: Test (TS)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-node-env
+
+      - name: Run the tests (Vitest)
+        run: yarn test
+
+  build-docs:
+    name: Build Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/setup-node-env
+
+      # Compiles every MDX page and fails on broken links and anchors.
+      - name: Build the site
+        run: yarn docs:build

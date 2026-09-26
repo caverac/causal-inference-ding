@@ -1,0 +1,9 @@
+# Read by R when it starts from the repository root.
+#
+# The R that mise installs from .mise.toml is a conda-forge build. Such a build
+# compiles packages with the toolchain shipped in its own prefix (for example
+# x86_64-apple-darwin13.4.0-clang) and relies on conda activation to put that
+# prefix on PATH. mise does not activate the prefix, so it is added here. The
+# prefix is two levels above R_HOME. Under any other build of R, such as the
+# one CI installs, the directory holds nothing but R itself and this is inert.
+PATH="${R_HOME}/../../bin:${PATH}"

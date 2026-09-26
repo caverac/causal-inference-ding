@@ -1,0 +1,59 @@
+{
+  "name": "@causal-inference-ding/docs",
+  "version": "0.0.0",
+  "private": true,
+  "imports": {
+    "#data/problemCounts": "./src/data/problemCounts.ts",
+    "#remark/tocMath": "./src/remark/tocMath.ts"
+  },
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start --no-open",
+    "build": "docusaurus build",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "typecheck": "tsc --noEmit",
+    "check-mdx": "tsx scripts/check-mdx.mts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.10.2",
+    "@docusaurus/plugin-content-docs": "^3.10.2",
+    "@docusaurus/preset-classic": "^3.10.2",
+    "@docusaurus/theme-common": "^3.10.2",
+    "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@mdx-js/react": "^3.1.1",
+    "d3": "^7.9.0",
+    "katex": "^0.16.47",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^3.10.2",
+    "@docusaurus/theme-classic": "^3.10.2",
+    "@docusaurus/types": "^3.10.2",
+    "@mdx-js/mdx": "^3.1.1",
+    "@types/d3": "^7.4.3",
+    "@types/node": "^24.13.6",
+    "@types/react": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+---
+sidebar_position: 1
+slug: /
+---
+
+import ProgressBar from '@site/src/components/ProgressBar'
+import YuleSimpsonExplorer from '@site/src/components/yuleSimpson/YuleSimpsonExplorer'
+
+# A First Course in Causal Inference - Solutions
+
+Solutions to the homework problems in Peng Ding, **"A First Course in Causal Inference"** (Chapman and
+Hall/CRC, 2024).
+
+## Progress
+
+<ProgressBar />
+
+## About This Project
+
+Every chapter and appendix of the book closes with homework problems, and each has a page here. Proofs are
+written out in full; numerical problems are solved in R, in the `causalding` package that lives alongside this
+site, and their results are drawn with D3.js.
+
+## Structure
+
+The book is organized into seven parts:
+
+- **[Part I](./parts/part1/index.mdx)**: Introduction
+- **[Part II](./parts/part2/index.mdx)**: Randomized experiments
+- **[Part III](./parts/part3/index.mdx)**: Observational studies
+- **[Part IV](./parts/part4/index.mdx)**: Difficulties and challenges of observational studies
+- **[Part V](./parts/part5/index.mdx)**: Instrumental variables
+- **[Part VI](./parts/part6/index.mdx)**: Causal Mechanisms with Post-Treatment Variables
+- **[Part VII](./parts/part7/index.mdx)**: Appendices
+
+## How the Figures Are Made
+
+Numbers behind the solutions are done in R, in the `causalding` package, and most figures are exported
+directly from R. When interacting with a figure adds a layer of understanding, for example by varying a
+parameter and watching the result respond, the figure is drawn with D3.js instead, from data computed in R.
+
+The figure below takes the example of Section 1.4 of the book, the admissions to the six largest departments
+of the graduate school at Berkeley (Bickel et al., 1975) with gender as the treatment and admission as the
+outcome, and draws it in the geometry of Section 1.3.3.
+
+<figure className="doc-figure">
+
+<YuleSimpsonExplorer />
+
+<figcaption>
+
+Each department is a vector whose run is its rejected applicants and whose rise is its admitted ones, so its
+slope is the odds of admission and a steeper vector means a higher admission rate. The vectors of a group are
+laid tip to tail: solid for male applicants ($Z = 1$), dashed for female applicants ($Z = 0$). The straight
+line from the origin to the end of a path has the slope $n_{z1}/n_{z0}$ of the aggregated table. Point at a
+department, or tab to it, to lay its two vectors side by side at the origin: in four of the six departments
+the dashed one is the steeper, yet the dashed chord is the flatter.
+
+**Aggregated** gives every department the aggregated rate of its group. Each path straightens onto its chord
+and its end does not move, because the aggregated rate is the average of the department rates weighted by
+$\mathrm{pr}(D = d \mid Z = z)$. The slider moves these weights for women a fraction $t$ of the way to the
+men's while keeping each department's rates, and the lower panel, which can also be dragged, follows
+$\mathrm{rd}$ as it changes sign at $t^*$. At $t = 1$ it is an average of the differences within departments,
+$\mathrm{rd} = \sum_d \mathrm{pr}(D = d \mid Z = 1)\{\mathrm{pr}(Y = 1 \mid Z = 1, D = d) - \mathrm{pr}(Y = 1 \mid Z = 0, D = d)\}$.
+The reweighting is arithmetic on the observed rates, not an effect of gender: applicants choose a department
+after their gender is fixed, a situation Part VI of the book returns to.
+
+</figcaption>
+
+</figure>
+
+## References
+
+- Ding, P. (2024). _A First Course in Causal Inference_. Chapman and Hall/CRC, Boca Raton.
+  - ISBN: 9781032758626
+  - DOI: [10.1201/9781003484080](https://doi.org/10.1201/9781003484080)
+- Ding, P. (2023). _Replication Data for: A First Course in Causal Inference_. Harvard Dataverse, version 4.0.
+  - DOI: [10.7910/DVN/ZX3VEV](https://doi.org/10.7910/DVN/ZX3VEV)
+- Bickel, P. J., Hammel, E. A., and O'Connell, J. W. (1975). Sex Bias in Graduate Admissions: Data from
+  Berkeley. _Science_, 187(4175), 398-404.
+  - DOI: [10.1126/science.187.4175.398](https://doi.org/10.1126/science.187.4175.398)

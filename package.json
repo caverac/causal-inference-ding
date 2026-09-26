@@ -1,0 +1,49 @@
+{
+  "name": "causal-inference-ding",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "yarn@4.18.1",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "workspaces": [
+    "packages/docs"
+  ],
+  "scripts": {
+    "lint": "eslint --max-warnings 0",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "typecheck": "yarn workspace @causal-inference-ding/docs typecheck",
+    "test": "yarn workspace @causal-inference-ding/docs test",
+    "docs:start": "yarn workspace @causal-inference-ding/docs start",
+    "docs:build": "yarn workspace @causal-inference-ding/docs build",
+    "r:format": "air format packages/causalding",
+    "r:format:check": "air format --check packages/causalding",
+    "r:lint": "Rscript packages/causalding/scripts/lint.R",
+    "r:check": "Rscript packages/causalding/scripts/check.R",
+    "r:test": "Rscript packages/causalding/scripts/test.R",
+    "r:coverage": "Rscript packages/causalding/scripts/coverage.R",
+    "r:document": "Rscript packages/causalding/scripts/document.R",
+    "r:export": "Rscript packages/causalding/scripts/export-docs-data.R",
+    "postinstall": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@eslint/js": "^10.0.1",
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^11.0.1",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import-x": "^4.17.1",
+    "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1",
+    "prettier": "^3.9.9",
+    "semantic-release": "^25.0.9",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.70.1"
+  }
+}

@@ -1,0 +1,14 @@
+# Toolchain for the repository. Every tool is pinned here and nowhere else is
+# assumed to be installed: run `mise install` once after cloning.
+#
+# - node: runtime for the Docusaurus site and the TypeScript tooling. Yarn is
+#   not listed because Corepack provides the exact version pinned by the
+#   `packageManager` field of package.json.
+# - R: conda-forge build, installed by mise into its own prefix. R packages are
+#   restored into the project-local renv library, see renv.lock.
+# - air: the R formatter from Posit. It is spelled out with the github backend
+#   because the short name `air` in the mise registry is an unrelated Go tool.
+[tools]
+node = "24"
+"conda:r-base" = "4.6.1"
+"github:posit-dev/air" = "0.11.0"

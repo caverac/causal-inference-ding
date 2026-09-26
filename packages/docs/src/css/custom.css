@@ -1,0 +1,206 @@
+:root {
+  --ifm-color-primary: #4a5568;
+  --ifm-color-primary-dark: #3d4656;
+  --ifm-color-primary-darker: #363e4d;
+  --ifm-color-primary-darkest: #2d3340;
+  --ifm-color-primary-light: #5a6778;
+  --ifm-color-primary-lighter: #6b7a8c;
+  --ifm-color-primary-lightest: #7d8da0;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Georgia', 'Times New Roman', serif;
+  --ifm-heading-font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #a0aec0;
+  --ifm-color-primary-dark: #8a9bb0;
+  --ifm-color-primary-darker: #7e91a8;
+  --ifm-color-primary-darkest: #667a91;
+  --ifm-color-primary-light: #b6c2d0;
+  --ifm-color-primary-lighter: #c2ccd8;
+  --ifm-color-primary-lightest: #d8dee6;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* D3 visualization container styles */
+.d3-container {
+  width: 100%;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.d3-container svg {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+[data-theme='dark'] .d3-container svg {
+  border-color: #4a5568;
+  background: #2d3748;
+}
+
+/* A figure and the narrative that belongs to it. The caption is set apart from
+   the surrounding text so that commentary about a picture is not read as a step
+   of the proof it sits inside. */
+.doc-figure {
+  margin: 2rem 0;
+}
+
+.doc-figure .d3-container {
+  margin: 0;
+}
+
+.doc-figure figcaption {
+  margin-top: 0.85rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.doc-figure figcaption p:last-child {
+  margin-bottom: 0;
+}
+
+/* Project version badge, shown in the navbar on every page. */
+.navbar-version-badge {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.navbar-version-badge:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.navbar-version-badge img {
+  display: block;
+  height: 20px;
+}
+
+/* Chapter and appendix listing on a part index; the book's own numbering
+   carries the ordering, so no list marker is drawn. */
+.unit-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.unit-list li {
+  margin-bottom: 0.4rem;
+}
+
+/* Math display styles */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* More conservative link styling */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Interactive Yule-Simpson figure. Font family and size are set inline from
+   src/components/chartStyle.ts, so the controls, the chart and the readout
+   share one typeface at one size. */
+.yule-simpson {
+  margin: 1.5rem 0 0;
+}
+
+.yule-simpson__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.yule-simpson__toggle {
+  display: inline-flex;
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.yule-simpson__toggle button {
+  padding: 0.3rem 0.85rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.yule-simpson__toggle button + button {
+  border-left: 1px solid var(--ifm-color-emphasis-400);
+}
+
+.yule-simpson__toggle button[aria-pressed='true'] {
+  background: var(--ifm-color-emphasis-800);
+  color: var(--ifm-color-emphasis-0);
+}
+
+.yule-simpson__slider {
+  display: inline-flex;
+  flex: 1 1 14rem;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.yule-simpson__slider input {
+  flex: 1;
+  accent-color: var(--ifm-color-emphasis-800);
+}
+
+.yule-simpson__slider output {
+  min-width: 2.5em;
+  font-variant-numeric: tabular-nums;
+}
+
+.yule-simpson__frame svg {
+  display: block;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background: #fafafa;
+  touch-action: pan-y;
+}
+
+[data-theme='dark'] .yule-simpson__frame svg {
+  border-color: #4a5568;
+  background: #2d3748;
+}
+
+.yule-simpson__hit {
+  cursor: pointer;
+  outline: none;
+}
+
+.yule-simpson__drag {
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.yule-simpson__readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  min-height: 1.6em;
+  margin: 0.6rem 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subscripts keep the size of the formula around them. */
+.math-text sub {
+  font-size: inherit;
+}
