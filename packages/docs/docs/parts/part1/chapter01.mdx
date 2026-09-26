@@ -6,4 +6,38 @@ title: 'Chapter 1: Correlation, Association, and the Yule-Simpson Paradox'
 
 # Chapter 1: Correlation, Association, and the Yule-Simpson Paradox
 
-_Solutions coming soon._
+## Problem 1.1: Independence in two-by-two tables
+
+Let $p_z = \mathrm{pr}(Y = 1 \mid Z = z) = p_{z1}/(p_{z1} + p_{z0})$, so $\mathrm{rd} = p_1 - p_0$ and
+$\mathrm{rr} = p_1/p_0$. Part (1) assumes rd, rr and or are defined (no zero denominators); in part (2) this
+holds since every $p_{zy} > 0$.
+
+**Step 1: the measures share a sign.** Let $\Delta = p_{11} p_{00} - p_{10} p_{01}$. Then
+
+$$
+\mathrm{rd} = \frac{\Delta}{(p_{11} + p_{10})(p_{01} + p_{00})}, \qquad \mathrm{rr} - 1 = \frac{\mathrm{rd}}{p_0}, \qquad \mathrm{or} - 1 = \frac{\Delta}{p_{10} p_{01}}.
+$$
+
+The denominators are positive, so $\mathrm{rd}$, $\mathrm{rr} - 1$ and $\mathrm{or} - 1$ all have the sign of
+$\Delta$.
+
+**Step 2: independence means $p_1 = p_0$.** If $Z \perp\!\!\!\perp Y$, then $p_z = \mathrm{pr}(Y = 1)$ for
+both $z$. Conversely, if $p_1 = p_0$, then
+
+$$
+\mathrm{pr}(Y = 1) = \mathrm{pr}(Z = 1)\, p_1 + \mathrm{pr}(Z = 0)\, p_0 = p_1,
+$$
+
+so $\mathrm{pr}(Y = y \mid Z = z) = \mathrm{pr}(Y = y)$ for every $z$ and $y$, which is independence.
+
+**Part (1).** By Steps 2 and 1,
+
+$$
+Z \perp\!\!\!\perp Y \Leftrightarrow \mathrm{rd} = 0 \Leftrightarrow \Delta = 0 \Leftrightarrow \mathrm{rr} = 1 \Leftrightarrow \mathrm{or} = 1. \qquad \blacksquare
+$$
+
+**Part (2).** Every $p_{zy} > 0$, so the measures are defined, and by Step 1,
+
+$$
+\mathrm{rd} > 0 \Leftrightarrow \Delta > 0 \Leftrightarrow \mathrm{rr} > 1 \Leftrightarrow \mathrm{or} > 1. \qquad \blacksquare
+$$

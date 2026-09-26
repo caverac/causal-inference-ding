@@ -26,6 +26,9 @@ build/
 causalding_*.tar.gz
 packages/causalding/tests/testthat/_snaps/**/*.new.md
 
+# === Notes ===
+notebooks/notes/*
+
 # === Coverage ===
 coverage/
 
