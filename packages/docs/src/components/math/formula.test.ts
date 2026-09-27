@@ -1,4 +1,4 @@
-import { tokenizeMath, type MathToken } from '@site/src/components/yuleSimpson/formula'
+import { tokenizeMath, type MathToken } from '@site/src/components/math/formula'
 import { describe, expect, it } from 'vitest'
 
 const upright = (text: string, subscript = false): MathToken => ({
@@ -29,7 +29,7 @@ describe('tokenizeMath', () => {
   })
 
   it('keeps every character of a formula without markup', () => {
-    const formula = 'pr(Y = 1 | Z = 1, D) = 512/825 = −0.203'
+    const formula = 'pr(Y = 1 | Z = 1, D) = 512/825 = \u22120.203'
 
     expect(
       tokenizeMath(formula)

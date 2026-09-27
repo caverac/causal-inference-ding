@@ -10,7 +10,8 @@
 #' @noRd
 docs_datasets <- function() {
   list(
-    `berkeley-admissions` = berkeley_admissions
+    `berkeley-admissions` = berkeley_admissions,
+    `resume-callbacks` = resume_callbacks
   )
 }
 

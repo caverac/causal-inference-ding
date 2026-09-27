@@ -6,6 +6,8 @@ title: 'Chapter 1: Correlation, Association, and the Yule-Simpson Paradox'
 
 # Chapter 1: Correlation, Association, and the Yule-Simpson Paradox
 
+{/* PROBLEM 1.1 */}
+
 ## Problem 1.1: Independence in two-by-two tables
 
 Let $p_z = \mathrm{pr}(Y = 1 \mid Z = z) = p_{z1}/(p_{z1} + p_{z0})$, so $\mathrm{rd} = p_1 - p_0$ and
@@ -30,14 +32,70 @@ $$
 
 so $\mathrm{pr}(Y = y \mid Z = z) = \mathrm{pr}(Y = y)$ for every $z$ and $y$, which is independence.
 
-**Part (1).** By Steps 2 and 1,
+### Part (1)
+
+By Steps 2 and 1,
 
 $$
 Z \perp\!\!\!\perp Y \Leftrightarrow \mathrm{rd} = 0 \Leftrightarrow \Delta = 0 \Leftrightarrow \mathrm{rr} = 1 \Leftrightarrow \mathrm{or} = 1. \qquad \blacksquare
 $$
 
-**Part (2).** Every $p_{zy} > 0$, so the measures are defined, and by Step 1,
+### Part (2)
+
+Every $p_{zy} > 0$, so the measures are defined, and by Step 1,
 
 $$
 \mathrm{rd} > 0 \Leftrightarrow \Delta > 0 \Leftrightarrow \mathrm{rr} > 1 \Leftrightarrow \mathrm{or} > 1. \qquad \blacksquare
 $$
+
+{/* PROBLEM 1.2 */}
+
+## Problem 1.2: More examples of the Yule-Simpson Paradox
+
+### A numeric example
+
+A postcard ($Z = 1$) is mailed to 110 customers and withheld from 110 others ($Z = 0$); $Y = 1$ if the
+customer buys, and $X$ is the customer's segment from a purchase propensity model.
+
+| $X$  | $Z$ | Customers | Buyers | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
+| :--- | --: | --------: | -----: | -----------------------------: |
+| high |   1 |       100 |     50 |                          0.500 |
+| high |   0 |        10 |      6 |                          0.600 |
+| low  |   1 |        10 |      1 |                          0.100 |
+| low  |   0 |       100 |     20 |                          0.200 |
+
+Within each segment $\mathrm{rd} = -0.100$, yet pooled
+
+$$
+\mathrm{rd} = \frac{51}{110} - \frac{26}{110} = 0.227.
+$$
+
+The postcard lowers buying in both segments but seems to raise it overall: 100 of the 110 mailed customers are
+in the high segment, against 10 of the 110 held out.
+
+### A real-life example
+
+Online A/B tests often start with a small share of visitors in the treatment and raise it later. Crook et al.
+(2009) report that occurrences of Simpson's paradox in such tests "are not uncommon, and we have seen them
+happen multiple times in real life", and illustrate it with conversion rates over two days, the treatment
+($Z = 1$) receiving 1% of visitors on Friday and 50% on Saturday ($X$ is the day, $Y = 1$ a conversion):
+
+| $X$      | $Z$ | Visitors | Conversions | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
+| :------- | --: | -------: | ----------: | -----------------------------: |
+| Friday   |   1 |   10,000 |         230 |                         0.0230 |
+| Friday   |   0 |  990,000 |      20,000 |                         0.0202 |
+| Saturday |   1 |  500,000 |       6,000 |                         0.0120 |
+| Saturday |   0 |  500,000 |       5,000 |                         0.0100 |
+
+Within each day $\mathrm{rd} > 0$ (0.0028 on Friday, 0.0020 on Saturday), yet pooled
+
+$$
+\mathrm{rd} = \frac{6230}{510000} - \frac{25000}{1490000} = -0.0046.
+$$
+
+The treatment converts better on each day and worse overall: 98% of its visitors came on Saturday, the day
+with the lower conversion rate. (The paper prints 1.20% for 6,230/510,000, which is 1.22%.)
+
+Crook, T., Frasca, B., Kohavi, R., and Longbotham, R. (2009). Seven pitfalls to avoid when running controlled
+experiments on the web. _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery
+and Data Mining_, 1105-1114. [doi:10.1145/1557019.1557139](https://doi.org/10.1145/1557019.1557139)

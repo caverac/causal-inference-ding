@@ -27,14 +27,7 @@
 #' # male applicants in the first row, admitted applicants in the first column.
 #' risk_difference(matrix(c(1198, 557, 1493, 1278), nrow = 2L))
 risk_difference <- function(counts) {
-  checkmate::assert_matrix(
-    counts,
-    mode = "numeric",
-    any.missing = FALSE,
-    nrows = 2L,
-    ncols = 2L
-  )
-  checkmate::assert_integerish(counts, lower = 0L)
+  assert_two_by_two(counts)
 
   row_totals <- rowSums(counts)
   if (any(row_totals == 0.0)) {

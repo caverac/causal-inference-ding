@@ -1,11 +1,12 @@
 import { CHART_FONT_FAMILY, CHART_FONT_SIZE } from '@site/src/components/chartStyle'
+import { useContainerWidth } from '@site/src/components/hooks/useContainerWidth'
+import MathText from '@site/src/components/math/MathText'
 import {
   createChart,
   type Chart,
   type ChartHandlers,
   type ChartState
 } from '@site/src/components/yuleSimpson/chart'
-import MathText from '@site/src/components/yuleSimpson/MathText'
 import {
   aggregated,
   departments,
@@ -72,7 +73,7 @@ export default function YuleSimpsonExplorer(): ReactNode {
   const svgRef = useRef<SVGSVGElement>(null)
   const chartRef = useRef<Chart | null>(null)
   const revealedRef = useRef(false)
-  const [width, setWidth] = useState(0)
+  const width = useContainerWidth(frameRef)
   const [visible, setVisible] = useState(false)
   const [state, setState] = useState<ChartState>({ mode: 'departments', t: 0, focus: null })
   const stateRef = useRef(state)
@@ -81,24 +82,6 @@ export default function YuleSimpsonExplorer(): ReactNode {
     stateRef.current = state
     chartRef.current?.update(state)
   }, [state])
-
-  // The chart is drawn at the width of its column rather than scaled to it,
-  // so its text keeps one size on every screen.
-  useEffect(() => {
-    const frame = frameRef.current
-    if (frame === null) return
-
-    const observer = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        setWidth(Math.round(entry.contentRect.width))
-      }
-    })
-    observer.observe(frame)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
 
   useEffect(() => {
     const frame = frameRef.current
@@ -154,12 +137,9 @@ export default function YuleSimpsonExplorer(): ReactNode {
   }, [visible, width])
 
   return (
-    <div
-      className="yule-simpson"
-      style={{ fontFamily: CHART_FONT_FAMILY, fontSize: CHART_FONT_SIZE }}
-    >
-      <div className="yule-simpson__controls">
-        <div className="yule-simpson__toggle" role="group" aria-label="Admission rates">
+    <div className="explorer" style={{ fontFamily: CHART_FONT_FAMILY, fontSize: CHART_FONT_SIZE }}>
+      <div className="explorer__controls">
+        <div className="explorer__toggle" role="group" aria-label="Admission rates">
           {MODES.map(({ mode, label }) => (
             <button
               key={mode}
@@ -173,7 +153,7 @@ export default function YuleSimpsonExplorer(): ReactNode {
             </button>
           ))}
         </div>
-        <label className="yule-simpson__slider">
+        <label className="explorer__slider">
           <MathText formula="t" />
           <input
             type="range"
@@ -189,14 +169,14 @@ export default function YuleSimpsonExplorer(): ReactNode {
           <output>{formatWeight(state.t)}</output>
         </label>
       </div>
-      <div ref={frameRef} className="yule-simpson__frame">
+      <div ref={frameRef} className="explorer__frame">
         <svg
           ref={svgRef}
           role="img"
           aria-label="Admitted against rejected applicants, department by department, for male and female applicants"
         />
       </div>
-      <p className="yule-simpson__readout" aria-live="polite">
+      <p className="explorer__readout" aria-live="polite">
         {readout(state).map(line => (
           <MathText key={line.key} formula={line.formula} />
         ))}

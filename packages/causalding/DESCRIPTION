@@ -16,7 +16,8 @@ Depends:
 Imports:
     checkmate,
     datasets,
-    jsonlite
+    jsonlite,
+    stats
 Suggests:
     testthat (>= 3.0.0),
     withr

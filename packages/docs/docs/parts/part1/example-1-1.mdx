@@ -1,0 +1,149 @@
+---
+sidebar_position: 0.5
+sidebar_label: "Example 1.1: Fisher's Exact Test"
+title: "Fisher's test and the p-value"
+---
+
+import Figure from '@site/src/components/Figure'
+import DealExplorer from '@site/src/components/fisherExact/DealExplorer'
+import NullDistributionExplorer from '@site/src/components/fisherExact/NullDistributionExplorer'
+
+# Fisher's test and the p-value
+
+I have been burnt by p-values so many times, that I think it is worth dropping some visuals here, maybe it
+will help somebody. Example 1.1 of the book ends with `fisher.test` reporting `p-value = 4.759e-05`. This page
+means to explain what that number means, specifically in the context of this experiment.
+
+## The experiment
+
+Bertrand and Mullainathan (2004) sent 4,870 fictitious resumes to job ads in Boston and Chicago. Each resume
+carried a name chosen at random to sound White ($Z = 1$) or Black ($Z = 0$), and the outcome is whether the
+employer called back ($Y = 1$).
+
+|         | $Y = 1$ | $Y = 0$ |
+| :------ | ------: | ------: |
+| $Z = 1$ |     235 |   2,200 |
+| $Z = 0$ |     157 |   2,278 |
+
+Let's also define $X$ to be the number of callbacks among the resumes with White-sounding names ($Z = 1$). The
+table above can be rewritten as
+
+|         |   $Y = 1$ |             $Y = 0$ |
+| :------ | --------: | ------------------: |
+| $Z = 1$ |       $X$ |         2,435 - $X$ |
+| $Z = 0$ | 392 - $X$ | 2,435 - (392 - $X$) |
+
+## The question the p-value answers
+
+Some resumes are more attractive to employers than others, so even if employers ignored names, the two groups
+would not get the same number of callbacks: _chance_ decides which resumes carry which names. The p-value asks
+whether _chance of this kind_ can account for a gap as large as 235 against 157.
+
+To make the statement "_chance of this kind_" more precise, suppose that the name made no difference to any
+resume: each resume would have been called back, or not, whatever name it carried. Then the 392 callbacks did
+not depend on the names at all, and the random assignment only decided which pile each resume went into, 2,435
+with White-sounding names and 2,435 with Black-sounding names. Under this hypothesis, $X$ is the number of
+called-back resumes that happen to land in the first pile when the names are dealt at random.
+
+## Dealing the names again
+
+<Figure id="figure-1">
+
+<DealExplorer />
+
+<figcaption>
+
+**Figure 1.** Each dot is a resume, filled if the employer called back: the top pile has White-sounding names
+($Z = 1$), the bottom pile Black-sounding names ($Z = 0$). **Deal once** keeps the same 392 called-back
+resumes and deals the names again at random; the histogram collects the value of $X$ from each deal. **Deal
+1,000 times** repeats this quickly. **Show the experiment** returns the piles to the actual outcome, 235 and
+157, keeping the histogram; **Clear** also empties it. Solid line: the experiment, $X = 235$. Dashed line:
+$X = 157$, as far below the center. Dotted curve: the number of deals expected at each value of $X$ (see
+[Figure 2](#figure-2)).
+
+</figcaption>
+
+</Figure>
+
+The deals cluster around 196, half of the 392 callbacks, with a standard deviation of 9.5, and 99.3% of them
+land between 171 and 221. The experiment's 235 is 39 above the center, or 4.1 standard deviations. On average,
+only 0.48 deals in 10,000 are as extreme as the experiment.
+
+## The exact probability
+
+Counting deals only approximates the probabilities. Every deal is equally likely, so the probability that
+$X = x$ is the share of deals that put $x$ of the 392 called-back resumes, and $2435 - x$ of the 4,478 others,
+into the first pile:
+
+$$
+\mathrm{pr}(X = x) = \binom{392}{x} \binom{4478}{2435 - x} \bigg/ \binom{4870}{2435},
+$$
+
+the hypergeometric distribution!
+
+<Figure id="figure-2">
+
+<NullDistributionExplorer />
+
+<figcaption>
+
+**Figure 2.** How the p-value is computed. The bars (top) are the exact probabilities $\mathrm{pr}(X = x)$ of
+each count if names make no difference; the points (bottom) are the same probabilities on a log scale, where
+the tails become visible. The vertical line marks a count $x$, at first the observed 235. The p-value adds the
+probabilities of every count at least as unlikely as $x$: those on or below the dashed line, drawn filled. At
+235 these are the two tails, $x \ge 235$ and $x \le 157$, which add up to 0.0000476. Move the slider, or drag
+across the chart, to see the p-value other outcomes would have had: at $x = 215$, for example, it is 0.0512.
+
+</figcaption>
+
+</Figure>
+
+At the experiment's $x = 235$, the probability of a count at least as large is
+$\mathrm{pr}(X \ge 235) = 0.0000238$. Counts as far off in the other direction are just as unlikely: the piles
+have the same size, so the distribution is symmetric about 196, and $\mathrm{pr}(X \le 157) = 0.0000238$ too.
+The two-sided p-value adds both,
+
+$$
+p = \mathrm{pr}(X \ge 235) + \mathrm{pr}(X \le 157) = 0.0000476,
+$$
+
+which is the `4.759e-05` printed by `fisher.test`. In general, R adds up the probabilities of all the counts
+no more likely than the observed one, which here are the two tails.
+
+Dealing the names at random and asking how often the result is as extreme is the Fisher randomization test of
+[Chapter 3](../part2/chapter03.mdx); Problem 3.4 shows that for a two-by-two table it coincides with Fisher's
+exact test.
+
+## Reading the number
+
+- **What it says.** If the names made no difference to any resume, a random assignment of the names would
+  produce a gap at least as large as the observed one, in either direction, with probability 0.0000476: about
+  5 times in 100,000.
+- **What it does not say.** It is not the probability that the names make no difference, nor the probability
+  that the gap is due to chance, since the calculation assumes that the names make no difference. In the words
+  of the ASA statement, "P-values do not measure the probability that the studied hypothesis is true, or the
+  probability that the data were produced by random chance alone" (Wasserstein and Lazar, 2016).
+- **It is not an effect size.** The same p-value could come from a small effect measured on many resumes. The
+  size of the effect here is the difference in callback rates, 3.2 percentage points. As the ASA statement
+  puts it, "A p-value, or statistical significance, does not measure the size of an effect or the importance
+  of a result."
+- **Random assignment is what makes it exact.** Because the names were assigned at random, the deals are
+  exactly the outcomes the experiment could have produced if names made no difference. Without random
+  assignment, the same arithmetic would lose this justification.
+
+## The design, more precisely
+
+The deals above treat the 4,870 resumes as one deck, as `fisher.test` does with the two-by-two table. The
+experiment was randomized more finely: each ad typically received two higher-quality and two lower-quality
+resumes, and one of each pair was drawn at random to receive an African-American name (Bertrand and
+Mullainathan, 2004). A test that follows this design deals the names within each pair, as in the matched-pairs
+experiment of [Chapter 7](../part2/chapter07.mdx).
+
+## References
+
+- Bertrand, M. and Mullainathan, S. (2004). Are Emily and Greg more employable than Lakisha and Jamal? A field
+  experiment on labor market discrimination. _American Economic Review_, 94(4), 991-1013.
+  [doi:10.1257/0002828042002561](https://doi.org/10.1257/0002828042002561)
+- Wasserstein, R. L. and Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose.
+  _The American Statistician_, 70(2), 129-133.
+  [doi:10.1080/00031305.2016.1154108](https://doi.org/10.1080/00031305.2016.1154108)
