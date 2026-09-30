@@ -1,0 +1,98 @@
+{
+  "postcard": {
+    "treated": {
+      "subgroups": {
+        "1": {
+          "failures": 50,
+          "successes": 50,
+          "rate": 0.5
+        },
+        "0": {
+          "failures": 9,
+          "successes": 1,
+          "rate": 0.1
+        }
+      },
+      "aggregated": {
+        "failures": 59,
+        "successes": 51,
+        "rate": 0.463636363636364
+      },
+      "share": 0.909090909090909
+    },
+    "control": {
+      "subgroups": {
+        "1": {
+          "failures": 4,
+          "successes": 6,
+          "rate": 0.6
+        },
+        "0": {
+          "failures": 80,
+          "successes": 20,
+          "rate": 0.2
+        }
+      },
+      "aggregated": {
+        "failures": 84,
+        "successes": 26,
+        "rate": 0.236363636363636
+      },
+      "share": 0.0909090909090909
+    },
+    "risk_difference": {
+      "1": -0.1,
+      "0": -0.1,
+      "aggregated": 0.227272727272727
+    },
+    "sign_change_at": 0.340909090909091
+  },
+  "ramp_up": {
+    "treated": {
+      "subgroups": {
+        "1": {
+          "failures": 9770,
+          "successes": 230,
+          "rate": 0.023
+        },
+        "0": {
+          "failures": 494000,
+          "successes": 6000,
+          "rate": 0.012
+        }
+      },
+      "aggregated": {
+        "failures": 503770,
+        "successes": 6230,
+        "rate": 0.0122156862745098
+      },
+      "share": 0.0196078431372549
+    },
+    "control": {
+      "subgroups": {
+        "1": {
+          "failures": 970000,
+          "successes": 20000,
+          "rate": 0.0202020202020202
+        },
+        "0": {
+          "failures": 495000,
+          "successes": 5000,
+          "rate": 0.01
+        }
+      },
+      "aggregated": {
+        "failures": 1465000,
+        "successes": 25000,
+        "rate": 0.0167785234899329
+      },
+      "share": 0.664429530201342
+    },
+    "risk_difference": {
+      "1": 0.0027979797979798,
+      "0": 0.002,
+      "aggregated": -0.00456283721542308
+    },
+    "sign_change_at": 0.434411226357535
+  }
+}

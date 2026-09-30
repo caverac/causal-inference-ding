@@ -4,6 +4,9 @@ sidebar_label: '1. Correlation, Association, and the Yule-Simpson Paradox'
 title: 'Chapter 1: Correlation, Association, and the Yule-Simpson Paradox'
 ---
 
+import Figure from '@site/src/components/Figure'
+import SimpsonGeometryExplorer from '@site/src/components/simpsonGeometry/SimpsonGeometryExplorer'
+
 # Chapter 1: Correlation, Association, and the Yule-Simpson Paradox
 
 {/* PROBLEM 1.1 */}
@@ -52,49 +55,121 @@ $$
 
 ## Problem 1.2: More examples of the Yule-Simpson Paradox
 
+### The geometry of Section 1.3.3
+
+In the subgroup $X = x$, draw the treated arm as the vector $A_x = (n_{10|x}, n_{11|x})$ of its failures and
+successes, and the control arm as $B_x = (n_{00|x}, n_{01|x})$. The aggregated arms are the sums
+$A = A_1 + A_0$ and $B = B_1 + B_0$, the diagonals of two parallelograms. Let $\mathrm{rd}_x$ be the risk
+difference within $X = x$.
+
+**A steeper vector has a higher success rate.** The slope of $A_x$ is the odds $n_{11|x}/n_{10|x}$, which
+increases with $\mathrm{pr}(Y = 1 \mid Z = 1, X = x)$. So $\mathrm{rd}_x > 0$ exactly when $A_x$ is steeper
+than $B_x$, and $\mathrm{rd} > 0$ exactly when $A$ is steeper than $B$.
+
+**A sum points between its terms, toward the one with more units.** By the law of total probability,
+
+$$
+\mathrm{pr}(Y = 1 \mid Z = 1) = \sum_x \mathrm{pr}(X = x \mid Z = 1)\, \mathrm{pr}(Y = 1 \mid Z = 1, X = x),
+$$
+
+so the direction of $A$ lies between those of $A_1$ and $A_0$, and moving treated units from $X = 0$ to
+$X = 1$ turns $A$ toward $A_1$. The same holds for $B$.
+
+The paradox is then a matter of lengths. Take one subgroup whose vectors are steep and one whose vectors are
+flat, with $B_x$ steeper than $A_x$ in both. Put most treated units in the steep subgroup and most control
+units in the flat one: $A$ then points close to the steep direction, $B$ close to the flat one, and $A$ is
+steeper than $B$.
+
+It takes different mixes. If $\mathrm{pr}(X = 1 \mid Z = 1) = \mathrm{pr}(X = 1 \mid Z = 0)$, then
+
+$$
+\mathrm{rd} = \mathrm{pr}(X = 1)\, \mathrm{rd}_1 + \mathrm{pr}(X = 0)\, \mathrm{rd}_0,
+$$
+
+which has the sign that $\mathrm{rd}_1$ and $\mathrm{rd}_0$ share.
+
 ### A numeric example
 
 A postcard ($Z = 1$) is mailed to 110 customers and withheld from 110 others ($Z = 0$); $Y = 1$ if the
-customer buys, and $X$ is the customer's segment from a purchase propensity model.
+customer buys, and $X$ is the customer's segment from a purchase propensity model, $X = 1$ for high and
+$X = 0$ for low.
 
-| $X$  | $Z$ | Customers | Buyers | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
-| :--- | --: | --------: | -----: | -----------------------------: |
-| high |   1 |       100 |     50 |                          0.500 |
-| high |   0 |        10 |      6 |                          0.600 |
-| low  |   1 |        10 |      1 |                          0.100 |
-| low  |   0 |       100 |     20 |                          0.200 |
+| $X$      | $Z$ | Customers | Buyers | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
+| :------- | --: | --------: | -----: | -----------------------------: |
+| 1 (high) |   1 |       100 |     50 |                          0.500 |
+| 1 (high) |   0 |        10 |      6 |                          0.600 |
+| 0 (low)  |   1 |        10 |      1 |                          0.100 |
+| 0 (low)  |   0 |       100 |     20 |                          0.200 |
 
-Within each segment $\mathrm{rd} = -0.100$, yet pooled
+<Figure id="figure-1">
+
+<SimpsonGeometryExplorer name="postcard" />
+
+<figcaption>
+
+**Figure 1.** The postcard example in the plane of Figure 1.2 of the book: customers who did not buy across,
+buyers up. Solid: $A_1$, $A_0$ and their sum $A$, the mailed customers. Dashed: $B_1$, $B_0$ and $B$, the
+customers held out. The slider moves mailed customers between the segments, keeping each segment's purchase
+rate, and the tip of $A$ slides along the dotted line; dragging the tip of $A$ does the same. **Same mix**
+gives the mailed customers the mix of those held out, and **Observed** returns to the data. The circle is
+where $A$ crosses the dotted ray of $B$, and $\mathrm{rd}$ changes sign.
+
+</figcaption>
+
+</Figure>
+
+Within each segment $B_x$ is the steeper vector, $\mathrm{rd}_1 = \mathrm{rd}_0 = -0.100$: the postcard lowers
+buying. But 100 of the 110 mailed customers are in the high segment and 100 of the 110 held out are in the low
+one, so $A$ is nearly $A_1$, $B$ is nearly $B_0$, and
 
 $$
 \mathrm{rd} = \frac{51}{110} - \frac{26}{110} = 0.227.
 $$
 
-The postcard lowers buying in both segments but seems to raise it overall: 100 of the 110 mailed customers are
-in the high segment, against 10 of the 110 held out.
+The reversal holds while $\mathrm{pr}(X = 1 \mid Z = 1) > 0.341$, against $10/110 = 0.091$ for the customers
+held out. With the same mix, $\mathrm{rd} = -0.100$.
 
 ### A real-life example
 
 Online A/B tests often start with a small share of visitors in the treatment and raise it later. Crook et al.
 (2009) report that occurrences of Simpson's paradox in such tests "are not uncommon, and we have seen them
 happen multiple times in real life", and illustrate it with conversion rates over two days, the treatment
-($Z = 1$) receiving 1% of visitors on Friday and 50% on Saturday ($X$ is the day, $Y = 1$ a conversion):
+($Z = 1$) receiving 1% of visitors on Friday ($X = 1$) and 50% on Saturday ($X = 0$), with $Y = 1$ a
+conversion:
 
-| $X$      | $Z$ | Visitors | Conversions | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
-| :------- | --: | -------: | ----------: | -----------------------------: |
-| Friday   |   1 |   10,000 |         230 |                         0.0230 |
-| Friday   |   0 |  990,000 |      20,000 |                         0.0202 |
-| Saturday |   1 |  500,000 |       6,000 |                         0.0120 |
-| Saturday |   0 |  500,000 |       5,000 |                         0.0100 |
+| $X$          | $Z$ | Visitors | Conversions | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
+| :----------- | --: | -------: | ----------: | -----------------------------: |
+| 1 (Friday)   |   1 |   10,000 |         230 |                         0.0230 |
+| 1 (Friday)   |   0 |  990,000 |      20,000 |                         0.0202 |
+| 0 (Saturday) |   1 |  500,000 |       6,000 |                         0.0120 |
+| 0 (Saturday) |   0 |  500,000 |       5,000 |                         0.0100 |
 
-Within each day $\mathrm{rd} > 0$ (0.0028 on Friday, 0.0020 on Saturday), yet pooled
+<Figure id="figure-2">
+
+<SimpsonGeometryExplorer name="ramp_up" />
+
+<figcaption>
+
+**Figure 2.** The ramp-up in the plane of [Figure 1](#figure-1): visitors without a conversion across,
+conversions up. Conversion rates are near 1%, so every vector is nearly flat and the vertical axis is
+stretched; scaling an axis keeps sums of vectors and the order of slopes. The controls work as in Figure 1.
+
+</figcaption>
+
+</Figure>
+
+On each day $A_x$ is the steeper vector, $\mathrm{rd}_1 = 0.0028$ and $\mathrm{rd}_0 = 0.0020$: the treatment
+converts better. But it received 10,000 of its 510,000 visitors on Friday, so $A_1$ is a stub at the origin
+and $A$ is nearly $A_0$, the flatter Saturday direction, while the control received 990,000 of its 1,490,000
+on Friday and $B$ leans toward the steeper $B_1$. So
 
 $$
 \mathrm{rd} = \frac{6230}{510000} - \frac{25000}{1490000} = -0.0046.
 $$
 
-The treatment converts better on each day and worse overall: 98% of its visitors came on Saturday, the day
-with the lower conversion rate. (The paper prints 1.20% for 6,230/510,000, which is 1.22%.)
+The treatment converts better on each day and worse overall. The reversal holds while
+$\mathrm{pr}(X = 1 \mid Z = 1) < 0.434$; a treatment share of traffic that stays the same on both days would
+give both arms the same mix. (The paper prints 1.20% for 6,230/510,000, which is 1.22%.)
 
 Crook, T., Frasca, B., Kohavi, R., and Longbotham, R. (2009). Seven pitfalls to avoid when running controlled
 experiments on the web. _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery

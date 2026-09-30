@@ -3,7 +3,10 @@ test_that("it writes one JSON file per registered dataset", {
 
   paths <- write_docs_data(dir)
 
-  expect_identical(basename(paths), c("berkeley-admissions.json", "resume-callbacks.json"))
+  expect_identical(
+    basename(paths),
+    c("berkeley-admissions.json", "resume-callbacks.json", "yule-simpson-examples.json")
+  )
   expect_true(all(file.exists(paths)))
 })
 
@@ -22,6 +25,9 @@ test_that("the written files round-trip to the computed values", {
 
   resume <- jsonlite::read_json(paths[[2L]], simplifyVector = TRUE)
   expect_equal(resume, resume_callbacks(), tolerance = 1e-14)
+
+  examples <- jsonlite::read_json(paths[[3L]], simplifyVector = TRUE)
+  expect_equal(examples, yule_simpson_examples(), tolerance = 1e-14)
 })
 
 test_that("it returns the paths invisibly", {

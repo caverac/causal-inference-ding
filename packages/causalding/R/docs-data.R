@@ -11,7 +11,8 @@
 docs_datasets <- function() {
   list(
     `berkeley-admissions` = berkeley_admissions,
-    `resume-callbacks` = resume_callbacks
+    `resume-callbacks` = resume_callbacks,
+    `yule-simpson-examples` = yule_simpson_examples
   )
 }
 
