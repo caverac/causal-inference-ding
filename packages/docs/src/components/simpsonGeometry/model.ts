@@ -30,6 +30,19 @@ export interface ArmVectors {
   readonly aggregated: Point
 }
 
+/** The treated arm (Z = 1), whose vectors the book names A, and the control arm (Z = 0), named B. */
+export const ARMS = ['treated', 'control'] as const
+export type Arm = (typeof ARMS)[number]
+
+/** A subgroup vector, or the aggregated one. */
+export type Piece = Subgroup | 'aggregated'
+
+/** One of the six vectors of the plane, and one row of the tables. */
+export interface VectorId {
+  readonly arm: Arm
+  readonly piece: Piece
+}
+
 export function example(name: ExampleName): Example {
   return examples[name]
 }
@@ -75,6 +88,36 @@ export function controlVectors(data: Example): ArmVectors {
     },
     aggregated: point(data.control.aggregated)
   }
+}
+
+/** The vectors of both arms, with a share `share` of the treated arm's units in X = 1. */
+export function vectorsAt(data: Example, share: number): Readonly<Record<Arm, ArmVectors>> {
+  return { treated: treatedVectors(data, share), control: controlVectors(data) }
+}
+
+/** The vector of an arm for a subgroup, or its aggregated vector. */
+export function pieceOf(vectors: ArmVectors, piece: Piece): Point {
+  return piece === 'aggregated' ? vectors.aggregated : vectors.subgroups[piece]
+}
+
+/** The book's name of a vector: A for the treated arm, B for the control arm, subscripted by X. */
+export function vectorName({ arm, piece }: VectorId): string {
+  const letter = arm === 'treated' ? 'A' : 'B'
+  return piece === 'aggregated' ? letter : `${letter}_{${piece}}`
+}
+
+export function sameVector(first: VectorId | null, second: VectorId): boolean {
+  return first !== null && first.arm === second.arm && first.piece === second.piece
+}
+
+/**
+ * The focus once the pointer or the keyboard leaves a vector: cleared if that
+ * vector held it, and kept otherwise. Leaving one element and entering the
+ * next can arrive in either order, so a late leave must not clear the focus
+ * the next element has just taken.
+ */
+export function focusAfterLeaving(focus: VectorId | null, left: VectorId): VectorId | null {
+  return sameVector(focus, left) ? null : focus
 }
 
 /**

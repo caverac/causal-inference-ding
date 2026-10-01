@@ -6,18 +6,28 @@ import {
   type Side
 } from '@site/src/components/simpsonGeometry/labels'
 import {
+  ARMS,
   controlVectors,
+  pieceOf,
   planeExtent,
+  sameVector,
   treatedVectors,
-  type ArmVectors,
+  vectorName,
+  vectorsAt,
+  type Arm,
   type Example,
-  type Point
+  type Piece,
+  type Point,
+  type VectorId
 } from '@site/src/components/simpsonGeometry/model'
 import * as d3 from 'd3'
 
 export interface PlaneChart {
-  /** Redraws the treated arm with a share of its units in the subgroup X = 1. */
-  readonly update: (share: number) => void
+  /**
+   * Redraws the treated arm with a share of its units in the subgroup X = 1,
+   * and brings forward the focused vector, if any.
+   */
+  readonly update: (share: number, focus: VectorId | null) => void
   readonly destroy: () => void
 }
 
@@ -26,6 +36,9 @@ export interface PlaneChartOptions {
   readonly markerId: string
   /** Called with the share under the pointer while the tip of A is dragged. */
   readonly onShare: (share: number) => void
+  /** Called with a vector when the pointer enters it, and when the pointer leaves it. */
+  readonly onEnter: (vector: VectorId) => void
+  readonly onLeave: (vector: VectorId) => void
 }
 
 const MARGIN = { top: 20, right: 32, bottom: 48, left: 64 } as const
@@ -48,32 +61,28 @@ const LABEL_LAYOUT: Omit<LabelLayout, 'bounds'> = {
 const MIN_ARROW_LENGTH = 14
 /** Radius of the handle that drags the tip of A. */
 const HANDLE_RADIUS = 14
-
-type Arm = 'treated' | 'control'
-type Piece = '1' | '0' | 'aggregated'
+/** Width of the invisible strokes that catch the pointer over a vector. */
+const HIT_WIDTH = 14
+/** Opacity of what is not focused while a vector is. */
+const FADED = 0.2
 
 /** Solid for the treated arm (Z = 1), dashed for the control arm (Z = 0), as in the Berkeley figure. */
 const DASH: Readonly<Record<Arm, string>> = { treated: 'none', control: '6 4' }
-/** The book's names: A for the treated arm and B for the control arm, subscripted by X. */
-const NAME: Readonly<Record<Arm, string>> = { treated: 'A', control: 'B' }
 /** In the order in which their labels claim space: the sums first. */
 const PIECES: readonly Piece[] = ['aggregated', '1', '0']
 
-interface Drawn {
-  readonly arm: Arm
-  readonly piece: Piece
-}
+const DRAWN: readonly VectorId[] = PIECES.flatMap(piece => ARMS.map(arm => ({ arm, piece })))
 
-const DRAWN: readonly Drawn[] = PIECES.flatMap(piece =>
-  (['treated', 'control'] as const).map(arm => ({ arm, piece }))
-)
-
-function labelOf({ arm, piece }: Drawn): string {
-  return piece === 'aggregated' ? NAME[arm] : `${NAME[arm]}_{${piece}}`
-}
-
-function tipOf(vectors: ArmVectors, piece: Piece): Point {
-  return piece === 'aggregated' ? vectors.aggregated : vectors.subgroups[piece]
+/**
+ * Whether a vector stays in full ink while another is focused: the focused
+ * one, and with a sum its two terms, which span its parallelogram.
+ */
+function inFocus(focus: VectorId | null, drawn: VectorId): boolean {
+  return (
+    focus === null ||
+    sameVector(focus, drawn) ||
+    (focus.piece === 'aggregated' && focus.arm === drawn.arm)
+  )
 }
 
 /**
@@ -83,7 +92,7 @@ function tipOf(vectors: ArmVectors, piece: Piece): Point {
  * the tip of a subgroup vector in the direction of the other one, so the
  * label keeps clear of it.
  */
-function sideOf(data: Example, { arm, piece }: Drawn): Side {
+function sideOf(data: Example, { arm, piece }: VectorId): Side {
   if (piece === 'aggregated') {
     return 0
   }
@@ -216,7 +225,7 @@ export function createPlaneChart(
     .append('g')
     .attr('stroke', 'currentColor')
     .attr('stroke-opacity', 0.35)
-    .selectAll<SVGLineElement, Drawn>('line')
+    .selectAll<SVGLineElement, VectorId>('line')
     .data(DRAWN.filter(drawn => drawn.piece !== 'aggregated'))
     .join('line')
     .attr('stroke-dasharray', drawn => DASH[drawn.arm])
@@ -224,7 +233,7 @@ export function createPlaneChart(
   const vectors = root
     .append('g')
     .attr('stroke', 'currentColor')
-    .selectAll<SVGLineElement, Drawn>('line')
+    .selectAll<SVGLineElement, VectorId>('line')
     .data(DRAWN)
     .join('line')
     .attr('x1', x(0))
@@ -236,15 +245,35 @@ export function createPlaneChart(
     .append('g')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'central')
-    .selectAll<SVGTextElement, Drawn>('text')
+    .selectAll<SVGTextElement, VectorId>('text')
     .data(DRAWN)
     .join('text')
   labels.each((drawn, index, nodes) => {
     const node = nodes[index]
     if (node !== undefined) {
-      appendMathText(d3.select(node), labelOf(drawn))
+      appendMathText(d3.select(node), vectorName(drawn))
     }
   })
+
+  // Invisible strokes over the vectors, which pair each with its row of the
+  // tables while the pointer is on it.
+  const hits = root
+    .append('g')
+    .attr('stroke', 'transparent')
+    .attr('stroke-width', HIT_WIDTH)
+    .attr('stroke-linecap', 'round')
+    .selectAll<SVGLineElement, VectorId>('line')
+    .data(DRAWN)
+    .join('line')
+    .attr('class', 'explorer__hit')
+    .attr('x1', x(0))
+    .attr('y1', y(0))
+    .on('pointerenter', (_event: PointerEvent, drawn) => {
+      options.onEnter(drawn)
+    })
+    .on('pointerleave', (_event: PointerEvent, drawn) => {
+      options.onLeave(drawn)
+    })
 
   // ---------------------------------------------------------------------------
   // Dragging the tip of A along its line
@@ -280,13 +309,10 @@ export function createPlaneChart(
   // Updates
   // ---------------------------------------------------------------------------
 
-  const update = (share: number): void => {
-    const arms: Readonly<Record<Arm, ArmVectors>> = {
-      treated: treatedVectors(data, share),
-      control
-    }
-    const tip = (drawn: Drawn): [number, number] => screen(tipOf(arms[drawn.arm], drawn.piece))
-    const length = (drawn: Drawn): number => {
+  const update = (share: number, focus: VectorId | null): void => {
+    const arms = vectorsAt(data, share)
+    const tip = (drawn: VectorId): [number, number] => screen(pieceOf(arms[drawn.arm], drawn.piece))
+    const length = (drawn: VectorId): number => {
       const [tx, ty] = tip(drawn)
       return Math.hypot(tx - origin[0], ty - origin[1])
     }
@@ -297,22 +323,35 @@ export function createPlaneChart(
       .attr('marker-end', drawn =>
         length(drawn) >= MIN_ARROW_LENGTH ? `url(#${options.markerId})` : null
       )
+      .attr('opacity', drawn => (inFocus(focus, drawn) ? 1 : FADED))
+    hits.attr('x2', drawn => tip(drawn)[0]).attr('y2', drawn => tip(drawn)[1])
     sides
       .attr('x1', drawn => tip(drawn)[0])
       .attr('y1', drawn => tip(drawn)[1])
       .attr('x2', drawn => x(arms[drawn.arm].aggregated.x))
       .attr('y2', drawn => y(arms[drawn.arm].aggregated.y))
+      .attr('opacity', drawn =>
+        inFocus(focus, { arm: drawn.arm, piece: 'aggregated' }) ? 1 : FADED
+      )
 
     // Placements keep the order of DRAWN, the order the labels were joined in.
     const placements = placeLabels(
-      DRAWN.map(drawn => ({ from: origin, to: tip(drawn), side: sideOf(data, drawn) })),
+      DRAWN.map(drawn => ({
+        vector: drawn,
+        from: origin,
+        to: tip(drawn),
+        side: sideOf(data, drawn)
+      })),
       { ...LABEL_LAYOUT, bounds: [plotWidth, planeHeight] }
     )
     labels
       .data(placements)
       .attr('x', ({ position }) => (position === null ? null : position[0]))
       .attr('y', ({ position }) => (position === null ? null : position[1]))
-      .attr('opacity', ({ position }) => (position === null ? 0 : 1))
+      .attr('opacity', ({ request, position }) => {
+        if (position === null) return 0
+        return inFocus(focus, request.vector) ? 1 : FADED
+      })
 
     const [ax, ay] = screen(arms.treated.aggregated)
     handle.attr('cx', ax).attr('cy', ay)

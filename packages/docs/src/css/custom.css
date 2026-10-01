@@ -219,6 +219,54 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+/* Count tables of an explorer, laid out as in the book: plain rows and
+   columns, without the borders and stripes of the tables in the text. */
+.explorer__tables {
+  margin-bottom: 0.75rem;
+}
+
+.explorer__subtables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.explorer__tables table {
+  --ifm-table-border-width: 0;
+  --ifm-table-background: transparent;
+  --ifm-table-stripe-background: transparent;
+  --ifm-table-head-background: transparent;
+  --ifm-table-head-font-weight: normal;
+  --ifm-table-cell-padding: 0.15rem 0.6rem;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.explorer__tables thead tr {
+  border-bottom: 1px solid var(--ifm-color-emphasis-400);
+}
+
+.explorer__tables td {
+  text-align: right;
+}
+
+.explorer__tables th {
+  text-align: left;
+}
+
+.explorer__tables tbody tr {
+  outline: none;
+}
+
+.explorer__tables tbody tr:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ifm-color-emphasis-600);
+}
+
+.explorer__tables tbody tr.explorer__row--focused {
+  background: var(--ifm-color-emphasis-200);
+}
+
 /* Subscripts keep the size of the formula around them. */
 .math-text sub {
   font-size: inherit;

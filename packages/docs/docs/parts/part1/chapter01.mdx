@@ -92,14 +92,8 @@ which has the sign that $\mathrm{rd}_1$ and $\mathrm{rd}_0$ share.
 
 A postcard ($Z = 1$) is mailed to 110 customers and withheld from 110 others ($Z = 0$); $Y = 1$ if the
 customer buys, and $X$ is the customer's segment from a purchase propensity model, $X = 1$ for high and
-$X = 0$ for low.
-
-| $X$      | $Z$ | Customers | Buyers | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
-| :------- | --: | --------: | -----: | -----------------------------: |
-| 1 (high) |   1 |       100 |     50 |                          0.500 |
-| 1 (high) |   0 |        10 |      6 |                          0.600 |
-| 0 (low)  |   1 |        10 |      1 |                          0.100 |
-| 0 (low)  |   0 |       100 |     20 |                          0.200 |
+$X = 0$ for low. The counts are the tables of Figure 1: in the high segment, 50 of the 100 mailed customers
+buy and 6 of the 10 held out; in the low segment, 1 of the 10 mailed and 20 of the 100 held out.
 
 <Figure id="figure-1">
 
@@ -107,12 +101,15 @@ $X = 0$ for low.
 
 <figcaption>
 
-**Figure 1.** The postcard example in the plane of Figure 1.2 of the book: customers who did not buy across,
-buyers up. Solid: $A_1$, $A_0$ and their sum $A$, the mailed customers. Dashed: $B_1$, $B_0$ and $B$, the
-customers held out. The slider moves mailed customers between the segments, keeping each segment's purchase
-rate, and the tip of $A$ slides along the dotted line; dragging the tip of $A$ does the same. **Same mix**
-gives the mailed customers the mix of those held out, and **Observed** returns to the data. The circle is
-where $A$ crosses the dotted ray of $B$, and $\mathrm{rd}$ changes sign.
+**Figure 1.** The postcard example. Top: the counts, laid out as in Section 1.3.3 of the book. Each row is one
+vector of the plane below: row $Z = 1$ of subpopulation $X = 1$ is $A_1$. Point at a row, or at a vector, to
+pair them. Bottom: the plane of Figure 1.2 of the book, customers who did not buy across, buyers up. Solid:
+$A_1$, $A_0$ and their sum $A$, the mailed customers. Dashed: $B_1$, $B_0$ and $B$, the customers held out.
+The slider moves mailed customers between the segments, keeping each segment's purchase rate, and the tip of
+$A$ slides along the dotted line; dragging the tip of $A$ does the same. Away from the data, the rows of the
+mailed customers hold the counts their segment rates would give. **Same mix** gives the mailed customers the
+mix of those held out, and **Observed** returns to the data. The circle is where $A$ crosses the dotted ray of
+$B$, and $\mathrm{rd}$ changes sign.
 
 </figcaption>
 
@@ -135,14 +132,8 @@ Online A/B tests often start with a small share of visitors in the treatment and
 (2009) report that occurrences of Simpson's paradox in such tests "are not uncommon, and we have seen them
 happen multiple times in real life", and illustrate it with conversion rates over two days, the treatment
 ($Z = 1$) receiving 1% of visitors on Friday ($X = 1$) and 50% on Saturday ($X = 0$), with $Y = 1$ a
-conversion:
-
-| $X$          | $Z$ | Visitors | Conversions | $\mathrm{pr}(Y = 1 \mid Z, X)$ |
-| :----------- | --: | -------: | ----------: | -----------------------------: |
-| 1 (Friday)   |   1 |   10,000 |         230 |                         0.0230 |
-| 1 (Friday)   |   0 |  990,000 |      20,000 |                         0.0202 |
-| 0 (Saturday) |   1 |  500,000 |       6,000 |                         0.0120 |
-| 0 (Saturday) |   0 |  500,000 |       5,000 |                         0.0100 |
+conversion. The counts are the tables of Figure 2: on Friday, 230 conversions among the 10,000 visitors in the
+treatment and 20,000 among the 990,000 in the control; on Saturday, 6,000 and 5,000 among 500,000 each.
 
 <Figure id="figure-2">
 
@@ -150,9 +141,10 @@ conversion:
 
 <figcaption>
 
-**Figure 2.** The ramp-up in the plane of [Figure 1](#figure-1): visitors without a conversion across,
-conversions up. Conversion rates are near 1%, so every vector is nearly flat and the vertical axis is
-stretched; scaling an axis keeps sums of vectors and the order of slopes. The controls work as in Figure 1.
+**Figure 2.** The ramp-up, laid out as [Figure 1](#figure-1): the counts on top, and below them the plane,
+visitors without a conversion across, conversions up. Conversion rates are near 1%, so every vector is nearly
+flat and the vertical axis is stretched; scaling an axis keeps sums of vectors and the order of slopes. The
+controls work as in Figure 1.
 
 </figcaption>
 

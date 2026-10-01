@@ -2,13 +2,17 @@ import { CHART_FONT_FAMILY, CHART_FONT_SIZE } from '@site/src/components/chartSt
 import { useContainerWidth } from '@site/src/components/hooks/useContainerWidth'
 import MathText from '@site/src/components/math/MathText'
 import { createPlaneChart, type PlaneChart } from '@site/src/components/simpsonGeometry/chart'
+import CountTables from '@site/src/components/simpsonGeometry/CountTables'
 import {
   example,
+  focusAfterLeaving,
   riskDifference,
-  type ExampleName
+  vectorsAt,
+  type ExampleName,
+  type VectorId
 } from '@site/src/components/simpsonGeometry/model'
 import * as d3 from 'd3'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 
 /** Shares with three decimals, e.g. 0.909. */
 const formatShare = d3.format('.3f')
@@ -21,9 +25,10 @@ interface SimpsonGeometryExplorerProps {
 }
 
 /**
- * A two-by-two-by-two table in the geometry of Figure 1.2 of the book, with a
- * slider that moves the treated arm's units between the two subgroups while
- * every subgroup keeps its success rate.
+ * A two-by-two-by-two table in the geometry of Figure 1.2 of the book, under
+ * its counts laid out as in Section 1.3.3, with a slider that moves the
+ * treated arm's units between the two subgroups while every subgroup keeps its
+ * success rate. A row of the tables and its vector are focused together.
  */
 export default function SimpsonGeometryExplorer({ name }: SimpsonGeometryExplorerProps): ReactNode {
   const data = example(name)
@@ -32,12 +37,16 @@ export default function SimpsonGeometryExplorer({ name }: SimpsonGeometryExplore
   const chartRef = useRef<PlaneChart | null>(null)
   const width = useContainerWidth(frameRef)
   const [share, setShare] = useState<number>(data.treated.share)
-  const shareRef = useRef(share)
+  const [focus, setFocus] = useState<VectorId | null>(null)
+  const stateRef = useRef({ share, focus })
+  const leave = useCallback((vector: VectorId) => {
+    setFocus(previous => focusAfterLeaving(previous, vector))
+  }, [])
 
   useEffect(() => {
-    shareRef.current = share
-    chartRef.current?.update(share)
-  }, [share])
+    stateRef.current = { share, focus }
+    chartRef.current?.update(share, focus)
+  }, [share, focus])
 
   useEffect(() => {
     const svg = svgRef.current
@@ -45,16 +54,18 @@ export default function SimpsonGeometryExplorer({ name }: SimpsonGeometryExplore
 
     const chart = createPlaneChart(svg, width, data, {
       markerId: `simpson-arrow-${name}`,
-      onShare: setShare
+      onShare: setShare,
+      onEnter: setFocus,
+      onLeave: leave
     })
     chartRef.current = chart
-    chart.update(shareRef.current)
+    chart.update(stateRef.current.share, stateRef.current.focus)
 
     return () => {
       chart.destroy()
       chartRef.current = null
     }
-  }, [width, data, name])
+  }, [width, data, name, leave])
 
   return (
     <div className="explorer" style={{ fontFamily: CHART_FONT_FAMILY, fontSize: CHART_FONT_SIZE }}>
@@ -93,6 +104,12 @@ export default function SimpsonGeometryExplorer({ name }: SimpsonGeometryExplore
           <output>{formatShare(share)}</output>
         </label>
       </div>
+      <CountTables
+        vectors={vectorsAt(data, share)}
+        focus={focus}
+        onEnter={setFocus}
+        onLeave={leave}
+      />
       <div ref={frameRef} className="explorer__frame">
         <svg
           ref={svgRef}

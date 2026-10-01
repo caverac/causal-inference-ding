@@ -2,11 +2,16 @@ import {
   SUBGROUPS,
   controlVectors,
   example,
+  focusAfterLeaving,
+  pieceOf,
   planeExtent,
   riskDifference,
+  sameVector,
   treatedRate,
   treatedUnits,
   treatedVectors,
+  vectorName,
+  vectorsAt,
   type Example,
   type ExampleName,
   type Point
@@ -127,5 +132,63 @@ describe.each(NAMES)('the %s example', name => {
         expect(point.y).toBeLessThanOrEqual(extent.y + 1e-6)
       }
     }
+  })
+})
+
+describe('vectorsAt', () => {
+  it.each(NAMES)('pairs the treated vectors at a share with the control vectors (%s)', name => {
+    const data = example(name)
+    const vectors = vectorsAt(data, 0.3)
+
+    expect(vectors.treated).toEqual(treatedVectors(data, 0.3))
+    expect(vectors.control).toEqual(controlVectors(data))
+  })
+})
+
+describe('pieceOf', () => {
+  it('picks a subgroup vector or the aggregated one', () => {
+    const vectors = controlVectors(example('postcard'))
+
+    expect(pieceOf(vectors, '1')).toBe(vectors.subgroups['1'])
+    expect(pieceOf(vectors, '0')).toBe(vectors.subgroups['0'])
+    expect(pieceOf(vectors, 'aggregated')).toBe(vectors.aggregated)
+  })
+})
+
+describe('sameVector', () => {
+  it('matches the arm and the piece', () => {
+    expect(sameVector({ arm: 'treated', piece: '1' }, { arm: 'treated', piece: '1' })).toBe(true)
+    expect(sameVector({ arm: 'treated', piece: '1' }, { arm: 'control', piece: '1' })).toBe(false)
+    expect(sameVector({ arm: 'treated', piece: '1' }, { arm: 'treated', piece: '0' })).toBe(false)
+  })
+
+  it('matches nothing when no vector is focused', () => {
+    expect(sameVector(null, { arm: 'control', piece: 'aggregated' })).toBe(false)
+  })
+})
+
+describe('vectorName', () => {
+  it('names the vectors as Figure 1.2 of the book does', () => {
+    expect(vectorName({ arm: 'treated', piece: '1' })).toBe('A_{1}')
+    expect(vectorName({ arm: 'treated', piece: 'aggregated' })).toBe('A')
+    expect(vectorName({ arm: 'control', piece: '0' })).toBe('B_{0}')
+    expect(vectorName({ arm: 'control', piece: 'aggregated' })).toBe('B')
+  })
+})
+
+describe('focusAfterLeaving', () => {
+  const left = { arm: 'treated', piece: '1' } as const
+  const other = { arm: 'control', piece: '0' } as const
+
+  it('clears the focus of the vector being left', () => {
+    expect(focusAfterLeaving({ ...left }, left)).toBeNull()
+  })
+
+  it('keeps a focus another vector has taken', () => {
+    expect(focusAfterLeaving(other, left)).toBe(other)
+  })
+
+  it('keeps no focus as none', () => {
+    expect(focusAfterLeaving(null, left)).toBeNull()
   })
 })
