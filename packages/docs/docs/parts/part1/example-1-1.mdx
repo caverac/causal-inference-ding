@@ -7,6 +7,8 @@ title: "Fisher's test and the p-value"
 import Figure from '@site/src/components/Figure'
 import DealExplorer from '@site/src/components/fisherExact/DealExplorer'
 import NullDistributionExplorer from '@site/src/components/fisherExact/NullDistributionExplorer'
+import Reference from '@site/src/components/Reference'
+import References from '@site/src/components/References'
 
 # Fisher's test and the p-value
 
@@ -16,9 +18,9 @@ aims to explain what that number means, specifically in the context of this expe
 
 ## The experiment
 
-Bertrand and Mullainathan (2004) sent 4,870 fictitious resumes to job ads in Boston and Chicago. Each resume
-carried a name chosen at random to sound White ($Z = 1$) or Black ($Z = 0$), and the outcome is whether the
-employer called back ($Y = 1$).
+[Bertrand and Mullainathan (2004)](#ref-bertrand-2004) sent 4,870 fictitious resumes to job ads in Boston and
+Chicago. Each resume carried a name chosen at random to sound White ($Z = 1$) or Black ($Z = 0$), and the
+outcome is whether the employer called back ($Y = 1$).
 
 |         | $Y = 1$ | $Y = 0$ |
 | :------ | ------: | ------: |
@@ -122,11 +124,12 @@ exact test.
 - **What it does not say.** It is not the probability that the names make no difference, nor the probability
   that the gap is due to chance, since the calculation assumes that the names make no difference. In the words
   of the ASA statement, "P-values do not measure the probability that the studied hypothesis is true, or the
-  probability that the data were produced by random chance alone" (Wasserstein and Lazar, 2016).
+  probability that the data were produced by random chance alone"
+  ([Wasserstein and Lazar, 2016](#ref-wasserstein-2016)).
 - **It is not an effect size.** The same p-value could come from a small effect measured on many resumes. The
-  size of the effect here is the difference in callback rates, 3.2 percentage points. As the ASA statement
-  puts it, "A p-value, or statistical significance, does not measure the size of an effect or the importance
-  of a result."
+  size of the effect here is the difference in callback rates, 3.2 percentage points. As the
+  [ASA statement](#ref-wasserstein-2016) puts it, "A p-value, or statistical significance, does not measure
+  the size of an effect or the importance of a result."
 - **Random assignment is what makes it exact.** Because the names were assigned at random, the deals are
   exactly the outcomes the experiment could have produced if names made no difference. Without random
   assignment, the same arithmetic would lose this justification.
@@ -135,15 +138,28 @@ exact test.
 
 The deals above treat the 4,870 resumes as one deck, as `fisher.test` does with the two-by-two table. The
 experiment was randomized more finely: each ad typically received two higher-quality and two lower-quality
-resumes, and one of each pair was drawn at random to receive an African-American name (Bertrand and
-Mullainathan, 2004). A test that follows this design deals the names within each pair, as in the matched-pairs
-experiment of [Chapter 7](../part2/chapter07.mdx).
+resumes, and one of each pair was drawn at random to receive an African-American name
+([Bertrand and Mullainathan, 2004](#ref-bertrand-2004)). A test that follows this design deals the names
+within each pair, as in the matched-pairs experiment of [Chapter 7](../part2/chapter07.mdx).
 
 ## References
 
-- Bertrand, M. and Mullainathan, S. (2004). Are Emily and Greg more employable than Lakisha and Jamal? A field
-  experiment on labor market discrimination. _American Economic Review_, 94(4), 991-1013.
-  [doi:10.1257/0002828042002561](https://doi.org/10.1257/0002828042002561)
-- Wasserstein, R. L. and Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose.
-  _The American Statistician_, 70(2), 129-133.
-  [doi:10.1080/00031305.2016.1154108](https://doi.org/10.1080/00031305.2016.1154108)
+<References>
+
+<Reference id="ref-bertrand-2004">
+
+Bertrand, M. and Mullainathan, S. (2004). Are Emily and Greg more employable than Lakisha and Jamal? A field
+experiment on labor market discrimination. _American Economic Review_, 94(4), 991-1013.
+[doi:10.1257/0002828042002561](https://doi.org/10.1257/0002828042002561)
+
+</Reference>
+
+<Reference id="ref-wasserstein-2016">
+
+Wasserstein, R. L. and Lazar, N. A. (2016). The ASA statement on p-values: context, process, and purpose. _The
+American Statistician_, 70(2), 129-133.
+[doi:10.1080/00031305.2016.1154108](https://doi.org/10.1080/00031305.2016.1154108)
+
+</Reference>
+
+</References>

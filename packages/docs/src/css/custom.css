@@ -70,6 +70,29 @@
   margin-bottom: 0;
 }
 
+/* The reference list at the end of a page. Entries hang from the margin so
+   that their authors are easy to scan, and the entry a citation leads to is
+   highlighted and kept clear of the sticky navbar. */
+.doc-references {
+  list-style: none;
+  padding-left: 0;
+}
+
+.doc-reference {
+  padding: 0.35rem 0.4rem 0.35rem 1.9rem;
+  text-indent: -1.5rem;
+  border-radius: 4px;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
+}
+
+.doc-reference p {
+  margin-bottom: 0;
+}
+
+.doc-reference:target {
+  background: var(--ifm-color-emphasis-200);
+}
+
 /* Project version badge, shown in the navbar on every page. */
 .navbar-version-badge {
   display: flex;
