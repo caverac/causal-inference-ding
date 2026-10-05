@@ -17,39 +17,37 @@ import SpecificationCurve from '@site/src/components/specificationCurve/Specific
 
 ## Problem 1.1: Independence in two-by-two tables
 
-Let $p_z = \mathrm{pr}(Y = 1 \mid Z = z) = p_{z1}/(p_{z1} + p_{z0})$, so $\mathrm{rd} = p_1 - p_0$ and
-$\mathrm{rr} = p_1/p_0$. Part (1) assumes rd, rr and or are defined (no zero denominators); in part (2) this
-holds since every $p_{zy} > 0$.
+We write $p_z = \mathrm{pr}(Y = 1 \mid Z = z) = p_{z1}/(p_{z1} + p_{z0})$, so that $\mathrm{rd} = p_1 - p_0$
+and $\mathrm{rr} = p_1/p_0$. In part (1) we assume that rd, rr and or are defined, that is, that none of their
+denominators vanishes, whereas in part (2) this follows from $p_{zy} > 0$ for every $z$ and $y$. The proof
+rests on two facts, which we establish first.
 
-**Step 1: the measures share a sign.** Let $\Delta = p_{11} p_{00} - p_{10} p_{01}$. Then
+We first show that the three measures share a sign. With $\Delta = p_{11} p_{00} - p_{10} p_{01}$, we have
 
 $$
-\mathrm{rd} = \frac{\Delta}{(p_{11} + p_{10})(p_{01} + p_{00})}, \qquad \mathrm{rr} - 1 = \frac{\mathrm{rd}}{p_0}, \qquad \mathrm{or} - 1 = \frac{\Delta}{p_{10} p_{01}}.
+\mathrm{rd} = \frac{\Delta}{(p_{11} + p_{10})(p_{01} + p_{00})}, \qquad \mathrm{rr} - 1 = \frac{\mathrm{rd}}{p_0}, \qquad \mathrm{or} - 1 = \frac{\Delta}{p_{10} p_{01}},
 $$
 
-The denominators are positive, so $\mathrm{rd}$, $\mathrm{rr} - 1$ and $\mathrm{or} - 1$ all have the sign of
-$\Delta$.
+and since every denominator is positive, $\mathrm{rd}$, $\mathrm{rr} - 1$ and $\mathrm{or} - 1$ all have the
+sign of $\Delta$.
 
-**Step 2: independence means $p_1 = p_0$.** If $Z \perp\!\!\!\perp Y$, then $p_z = \mathrm{pr}(Y = 1)$ for
-both $z$. Conversely, if $p_1 = p_0$, then
+We next show that independence is equivalent to $p_1 = p_0$. If $Z \perp\!\!\!\perp Y$, then
+$p_z = \mathrm{pr}(Y = 1)$ for both values of $z$. Conversely, if $p_1 = p_0$, the law of total probability
+gives
 
 $$
 \mathrm{pr}(Y = 1) = \mathrm{pr}(Z = 1)\, p_1 + \mathrm{pr}(Z = 0)\, p_0 = p_1,
 $$
 
-so $\mathrm{pr}(Y = y \mid Z = z) = \mathrm{pr}(Y = y)$ for every $z$ and $y$, which is independence.
+so that $\mathrm{pr}(Y = y \mid Z = z) = \mathrm{pr}(Y = y)$ for every $z$ and $y$, which is independence.
 
-### Part (1)
-
-By Steps 2 and 1,
+Combining the two facts proves part (1),
 
 $$
 Z \perp\!\!\!\perp Y \Leftrightarrow \mathrm{rd} = 0 \Leftrightarrow \Delta = 0 \Leftrightarrow \mathrm{rr} = 1 \Leftrightarrow \mathrm{or} = 1. \qquad \blacksquare
 $$
 
-### Part (2)
-
-Every $p_{zy} > 0$, so the measures are defined, and by Step 1,
+For part (2), every $p_{zy} > 0$ makes the three measures defined, and the first fact alone gives
 
 $$
 \mathrm{rd} > 0 \Leftrightarrow \Delta > 0 \Leftrightarrow \mathrm{rr} > 1 \Leftrightarrow \mathrm{or} > 1. \qquad \blacksquare
@@ -59,44 +57,43 @@ $$
 
 ## Problem 1.2: More examples of the Yule-Simpson Paradox
 
-Although not necessary, I tried to use the same geometric interpreation of Section 1.3.3 for this problem, I
-found it useful! In the subgroup $X = x$, draw the treated arm as the vector $A_x = (n_{10|x}, n_{11|x})$, and
-the control arm as $B_x = (n_{00|x}, n_{01|x})$ (in both cases, we are plotting (failures, successes)). The
-aggregated arms are the sums $A = A_1 + A_0$ and $B = B_1 + B_0$, the diagonals of two parallelograms. Let
-$\mathrm{rd}_x$ be the risk difference within $X = x$.
+We use the geometry of Section 1.3.3 of the book, which makes the reversal visible and also shows how to
+construct one. Within the subgroup $X = x$, we draw the treated arm as the vector $A_x = (n_{10|x}, n_{11|x})$
+of its failures and successes, and the control arm as $B_x = (n_{00|x}, n_{01|x})$, so that the aggregated
+arms are the sums $A = A_1 + A_0$ and $B = B_1 + B_0$, the diagonals of two parallelograms. The slope of $A_x$
+is the odds $n_{11|x}/n_{10|x}$, which increases with the success rate. The risk difference $\mathrm{rd}_x$
+within $X = x$ is therefore positive exactly when $A_x$ is steeper than $B_x$, and the aggregated
+$\mathrm{rd}$ is positive exactly when $A$ is steeper than $B$.
 
-The slope of $A_x$ is the odds $n_{11|x}/n_{10|x}$: a steepter slope has a higher success rate. So
-$\mathrm{rd}_x > 0$ exactly when $A_x$ is steeper than $B_x$, and $\mathrm{rd} > 0$ exactly when $A$ is
-steeper than $B$.
-
-Since
+The direction of a sum lies between the directions of its terms. By the law of total probability,
 
 $$
 \mathrm{pr}(Y = 1 \mid Z = 1) = \sum_x \mathrm{pr}(X = x \mid Z = 1)\, \mathrm{pr}(Y = 1 \mid Z = 1, X = x),
 $$
 
-the direction of $A$ lies between those of $A_1$ and $A_0$, and moving treated units from $X = 0$ to $X = 1$
-turns $A$ toward $A_1$. The same holds for $B$.
+so the aggregated success rate of the treated arm is an average of its subgroup rates, weighted by how its
+units divide between the subgroups, and moving treated units from $X = 0$ to $X = 1$ turns $A$ toward $A_1$,
+as moving control units turns $B$ toward $B_1$.
 
-The paradox is then a matter of lengths. Take one subgroup whose vectors are steep and one whose vectors are
-flat, with $B_x$ steeper than $A_x$ in both. Put most treated units in the steep subgroup and most control
-units in the flat one: $A$ then points close to the steep direction, $B$ close to the flat one, and $A$ is
-steeper than $B$.
-
-It takes different mixes. If $\mathrm{pr}(X = 1 \mid Z = 1) = \mathrm{pr}(X = 1 \mid Z = 0)$, then
+A reversal is thus a matter of lengths. Suppose that one subgroup has steep vectors and the other flat ones,
+with $B_x$ steeper than $A_x$ in both, and that most treated units sit in the steep subgroup while most
+control units sit in the flat one. Then $A$ points close to the steep direction and $B$ close to the flat one,
+so that $A$ ends up steeper than $B$. The two arms must divide differently between the subgroups, since with
+$\mathrm{pr}(X = 1 \mid Z = 1) = \mathrm{pr}(X = 1 \mid Z = 0)$ the aggregated difference,
 
 $$
 \mathrm{rd} = \mathrm{pr}(X = 1)\, \mathrm{rd}_1 + \mathrm{pr}(X = 0)\, \mathrm{rd}_0,
 $$
 
-which has the sign that $\mathrm{rd}_1$ and $\mathrm{rd}_0$ share.
+has the sign that $\mathrm{rd}_1$ and $\mathrm{rd}_0$ share.
 
 ### A numeric example
 
-A postcard ($Z = 1$) is mailed to 110 customers and withheld from 110 others ($Z = 0$); $Y = 1$ if the
-customer buys, and $X$ is the customer's segment from a purchase propensity model, $X = 1$ for high and
-$X = 0$ for low. The counts are the tables of Figure 1: in the high segment, 50 of the 100 mailed customers
-buy and 6 of the 10 held out; in the low segment, 1 of the 10 mailed and 20 of the 100 held out.
+We consider a postcard ($Z = 1$) mailed to 110 customers and withheld from 110 others ($Z = 0$), with $Y = 1$
+if the customer buys and $X$ the customer's segment in a purchase propensity model, $X = 1$ for high and
+$X = 0$ for low. In the high segment, 50 of the 100 mailed customers buy and 6 of the 10 held out, whereas in
+the low segment 1 of the 10 mailed customers buys and 20 of the 100 held out. Figure 1 lays out these counts
+as in Section 1.3.3 of the book and draws them in its plane.
 
 <Figure id="figure-1">
 
@@ -104,40 +101,43 @@ buy and 6 of the 10 held out; in the low segment, 1 of the 10 mailed and 20 of t
 
 <figcaption>
 
-**Figure 1.** The postcard example. Top: the counts, laid out as in Section 1.3.3 of the book. Each row is one
-vector of the plane below: row $Z = 1$ of subpopulation $X = 1$ is $A_1$. Point at a row, or at a vector, to
-pair them. Bottom: the plane of Figure 1.2 of the book, customers who did not buy across, buyers up. Solid:
-$A_1$, $A_0$ and their sum $A$, the mailed customers. Dashed: $B_1$, $B_0$ and $B$, the customers held out.
-The slider moves mailed customers between the segments, keeping each segment's purchase rate, and the tip of
-$A$ slides along the dotted line; dragging the tip of $A$ does the same. Away from the data, the rows of the
-mailed customers hold the counts their segment rates would give. **Same mix** gives the mailed customers the
-mix of those held out, and **Observed** returns to the data. The circle is where $A$ crosses the dotted ray of
-$B$, and $\mathrm{rd}$ changes sign.
+**Figure 1.** The postcard example. The tables (top) give the counts as in Section 1.3.3 of the book, and each
+row is one vector of the plane below; row $Z = 1$ of subpopulation $X = 1$, for instance, is $A_1$, and
+pointing at a row or at a vector pairs them. The plane (bottom) is that of Figure 1.2 of the book, with
+customers who did not buy across and buyers up, the mailed customers solid ($A_1$, $A_0$ and their sum $A$)
+and those held out dashed ($B_1$, $B_0$ and $B$). The slider moves mailed customers between the segments while
+keeping each segment's purchase rate, so that the tip of $A$ slides along the dotted line, as it also does
+when dragged; away from the data, the rows of the mailed customers hold the counts that their segment rates
+would give. The "Same mix" button gives the mailed customers the mix of those held out, and "Observed" returns
+to the data. The circle marks where $A$ crosses the dotted ray of $B$ and $\mathrm{rd}$ changes sign.
 
 </figcaption>
 
 </Figure>
 
-Within each segment $B_x$ is the steeper vector, $\mathrm{rd}_1 = \mathrm{rd}_0 = -0.100$: the postcard lowers
-buying. But 100 of the 110 mailed customers are in the high segment and 100 of the 110 held out are in the low
-one, so $A$ is nearly $A_1$, $B$ is nearly $B_0$, and
+Within each segment $B_x$ is the steeper vector, with $\mathrm{rd}_1 = \mathrm{rd}_0 = -0.100$, so the
+postcard lowers buying in both segments. However, 100 of the 110 mailed customers are in the high segment and
+100 of the 110 held out are in the low one, so that $A$ is nearly $A_1$ and $B$ nearly $B_0$, and
 
 $$
 \mathrm{rd} = \frac{51}{110} - \frac{26}{110} = 0.227.
 $$
 
-The reversal holds while $\mathrm{pr}(X = 1 \mid Z = 1) > 0.341$, against $10/110 = 0.091$ for the customers
-held out. With the same mix, $\mathrm{rd} = -0.100$.
+The reversal is unsurprising in hindsight, for customers in the high segment buy at rates of 0.5 to 0.6,
+against 0.1 to 0.2 in the low segment, and the arm that holds more of them buys more, an effect of the mix
+that outweighs the effect of the postcard, $-0.100$ within each segment. The reversal persists while
+$\mathrm{pr}(X = 1 \mid Z = 1) > 0.341$, against $10/110 = 0.091$ for the customers held out, and with the
+same mix in both arms the aggregated difference returns to $-0.100$.
 
 ### A real-life example
 
-Online A/B tests often start with a small share of visitors in the treatment and raise it later.
+Online A/B tests often start with a small share of visitors in the treatment and raise it later, and
 [Crook et al. (2009)](#ref-crook-2009) report that occurrences of Simpson's paradox in such tests "are not
-uncommon, and we have seen them happen multiple times in real life", and illustrate it with conversion rates
-over two days, the treatment ($Z = 1$) receiving 1% of visitors on Friday ($X = 1$) and 50% on Saturday
-($X = 0$), with $Y = 1$ a conversion. The counts are the tables of Figure 2: on Friday, 230 conversions among
-the 10,000 visitors in the treatment and 20,000 among the 990,000 in the control; on Saturday, 6,000 and 5,000
-among 500,000 each.
+uncommon, and we have seen them happen multiple times in real life". They illustrate the pattern with a simple
+example of a website with one million visitors on each of two days, the treatment ($Z = 1$) receiving 1% of
+the visitors on Friday ($X = 1$) and 50% on Saturday ($X = 0$), with $Y = 1$ a conversion. On Friday the
+treatment converts 230 of its 10,000 visitors and the control 20,000 of its 990,000, whereas on Saturday they
+convert 6,000 and 5,000 of 500,000 each (Figure 2).
 
 <Figure id="figure-2">
 
@@ -145,37 +145,37 @@ among 500,000 each.
 
 <figcaption>
 
-**Figure 2.** The ramp-up, laid out as [Figure 1](#figure-1): the counts on top, and below them the plane,
-visitors without a conversion across, conversions up. Conversion rates are near 1%, so every vector is nearly
-flat and the vertical axis is stretched; scaling an axis keeps sums of vectors and the order of slopes. The
-controls work as in Figure 1.
+**Figure 2.** The ramp-up, laid out as in [Figure 1](#figure-1), with visitors without a conversion across and
+conversions up. Conversion rates are near 1%, so every vector is nearly flat and the vertical axis is
+stretched, which keeps sums of vectors and the order of slopes. The controls work as in Figure 1.
 
 </figcaption>
 
 </Figure>
 
-On each day $A_x$ is the steeper vector, $\mathrm{rd}_1 = 0.0028$ and $\mathrm{rd}_0 = 0.0020$: the treatment
-converts better. But it received 10,000 of its 510,000 visitors on Friday, so $A_1$ is a stub at the origin
-and $A$ is nearly $A_0$, the flatter Saturday direction, while the control received 990,000 of its 1,490,000
-on Friday and $B$ leans toward the steeper $B_1$. So
+On each day $A_x$ is the steeper vector, with $\mathrm{rd}_1 = 0.0028$ and $\mathrm{rd}_0 = 0.0020$, so the
+treatment converts better on both days. The treatment received only 10,000 of its 510,000 visitors on Friday,
+however, so that $A_1$ is a stub at the origin and $A$ nearly coincides with $A_0$, the flatter Saturday
+direction, whereas the control received 990,000 of its 1,490,000 visitors on Friday and $B$ leans toward the
+steeper $B_1$. The aggregated difference is therefore negative,
 
 $$
-\mathrm{rd} = \frac{6230}{510000} - \frac{25000}{1490000} = -0.0046.
+\mathrm{rd} = \frac{6230}{510000} - \frac{25000}{1490000} = -0.0046,
 $$
 
-The treatment converts better on each day and worse overall. The reversal holds while
-$\mathrm{pr}(X = 1 \mid Z = 1) < 0.434$; a treatment share of traffic that stays the same on both days would
-give both arms the same mix. (The paper prints 1.20% for 6,230/510,000, which is 1.22%.)
+because Saturday, the day with the lower conversion rates, carries 98% of the visitors of the treatment but
+only 34% of those of the control. The reversal persists while $\mathrm{pr}(X = 1 \mid Z = 1) < 0.434$, and a
+treatment share of traffic held fixed across both days would give both arms the same mix and remove it. The
+paper prints 1.20% for the overall conversion rate of the treatment, whereas $6230/510000 = 1.22\%$, a
+discrepancy that does not affect the reversal.
 
 {/* PROBLEM 1.3 */}
 
 ## Problem 1.3: Correlation and partial correlation
 
-Assume $|\rho_{XY}| < 1$ and $|\rho_{XZ}| < 1$, so that $Y$ and $Z$ keep a positive variance given $X$.
-
-**Step 1: the conditional covariance.** Apply Appendix A.1.2 with $Y_1 = (Y, Z)$ and $Y_2 = X$, so that
-$\Sigma_{22} = 1$ and $\Sigma_{12} = (\rho_{XY}, \rho_{XZ})^\top$. Given $X = x$, the covariance matrix of
-$(Y, Z)$ is
+We assume $|\rho_{XY}| < 1$ and $|\rho_{XZ}| < 1$, so that $Y$ and $Z$ keep a positive variance given $X$, and
+apply Appendix A.1.2 of the book with $Y_1 = (Y, Z)$ and $Y_2 = X$, for which $\Sigma_{22} = 1$ and
+$\Sigma_{12} = (\rho_{XY}, \rho_{XZ})^\top$. Given $X = x$, the covariance matrix of $(Y, Z)$ is then
 
 $$
 \begin{aligned}
@@ -186,41 +186,46 @@ $$
 \end{aligned}
 $$
 
-which does not involve $x$; only the conditional mean, $(\rho_{XY} x, \rho_{XZ} x)$, does.
-
-**Step 2: the correlation.** Divide the covariance by the product of the standard deviations, and write
-$\rho_{YX} = \rho_{XY}$, $\rho_{ZX} = \rho_{XZ}$:
+which does not involve $x$; only the conditional mean, $(\rho_{XY} x, \rho_{XZ} x)$, does. Dividing the
+conditional covariance by the product of the conditional standard deviations, and writing
+$\rho_{YX} = \rho_{XY}$ and $\rho_{ZX} = \rho_{XZ}$, we obtain
 
 $$
 \rho_{YZ|X} = \frac{\rho_{YZ} - \rho_{YX} \rho_{ZX}}{\sqrt{1 - \rho_{YX}^2} \sqrt{1 - \rho_{ZX}^2}}. \qquad \blacksquare
 $$
 
-**Numerical example.** The denominator is positive, so $\rho_{YZ} > 0 > \rho_{YZ|X}$ exactly when
-$0 < \rho_{YZ} < \rho_{YX} \rho_{ZX}$. Take $\rho_{XY} = \rho_{XZ} = 0.6$ and $\rho_{YZ} = 0.2 < 0.36$:
+Since the denominator is positive, $\rho_{YZ} > 0 > \rho_{YZ|X}$ exactly when
+$0 < \rho_{YZ} < \rho_{YX} \rho_{ZX}$. We take $\rho_{XY} = \rho_{XZ} = 0.6$ and $\rho_{YZ} = 0.2 < 0.36$, for
+which
 
 $$
 \rho_{YZ|X} = \frac{0.2 - 0.36}{1 - 0.36} = -0.25.
 $$
 
 The covariance matrix is positive definite, with leading principal minors $1$, $1 - 0.36 = 0.64$ and
-$1 + 2 (0.6)(0.6)(0.2) - 0.36 - 0.36 - 0.04 = 0.384$, so this Normal vector exists. $Y$ and $Z$ are positively
-correlated, yet negatively correlated given $X = x$, whatever the value of $x$.
+$1 + 2 (0.6)(0.6)(0.2) - 0.36 - 0.36 - 0.04 = 0.384$, so this Normal vector exists, and in it $Y$ and $Z$ are
+positively correlated although they are negatively correlated given $X = x$, whatever the value of $x$. The
+result is unsurprising in hindsight, since the covariance of $Y$ and $Z$ splits into a part
+$\rho_{YX} \rho_{ZX} = 0.36$ carried by $X$ and the conditional covariance $-0.16$, and the part carried by
+$X$ exceeds the observed $0.2$.
 
 {/* PROBLEM 1.4 */}
 
 ## Problem 1.4: Specification searches
 
-The ten covariates are `age`, `educ`, `black`, `hispan`, `married`, `nodegree`, `re74`, `re75`, `u74` and
-`u75`. Each regression keeps `treat` and adds a subset $\{X_1, \dots, X_k\}$ of them,
+We call each choice of covariates a specification. The ten covariates are `age`, `educ`, `black`, `hispan`,
+`married`, `nodegree`, `re74`, `re75`, `u74` and `u75`, and each regression keeps `treat` and adds a subset
+$\{X_1, \dots, X_k\}$ of them,
 
 $$
 \texttt{re78} = \alpha + \beta \, \texttt{treat} + \gamma_1 X_1 + \dots + \gamma_k X_k + \varepsilon,
 $$
 
-fitted by least squares. Each covariate is either in or out, so there are $2^{10} = 1024$ regressions, from
-none of the covariates, `lm(re78 ~ treat)`, to all ten, `lm(re78 ~ .)`: the two regressions of Section 1.2.1.
-The coefficient $\beta$ of `treat` is significant when the two-sided p-value that `summary(lm(...))` reports
-for it is below 0.05. The function `specification_search()` of the `causalding` package runs them.
+fitted by least squares. Since each covariate is either in or out, there are $2^{10} = 1024$ specifications,
+from none of the covariates, `lm(re78 ~ treat)`, to all ten, `lm(re78 ~ .)`, which are the two regressions of
+Section 1.2.1. We call the coefficient $\beta$ of `treat` significant when the two-sided p-value that
+`summary(lm(...))` reports for it is below 0.05, and we run the search with `specification_search()` of the
+`causalding` package.
 
 | Coefficient of `treat` | Regressions |
 | :--------------------- | ----------: |
@@ -234,36 +239,40 @@ for it is below 0.05. The function `specification_search()` of the `causalding` 
 
 <figcaption>
 
-**Figure 3.** The 1024 regressions as a specification curve ([Simonsohn et al., 2020](#ref-simonsohn-2020)).
-Top: the coefficient of `treat` in each regression with its 95% confidence interval, by increasing value;
-rings mark the two regressions of Section 1.2.1. Bottom: the regressions whose coefficient is significant at
-5%, then the covariates each regression includes, one row per covariate. A toggle brings forward the
-regressions that include its covariate, and the readout counts them with and without it; pointing at a
-regression reads its coefficient.
+**Figure 3.** The 1024 specifications as a specification curve
+([Simonsohn et al., 2020](#ref-simonsohn-2020)). The top panel shows the coefficient of `treat` in each
+regression with its 95% confidence interval, in increasing order, with rings around the two regressions of
+Section 1.2.1; the bottom panel marks the regressions whose coefficient is significant at the 5% level and,
+one row per covariate, the covariates that each regression includes. A toggle brings forward the regressions
+that include its covariate, with the readout counting them with and without it, and pointing at a regression
+reads its coefficient.
 
 </figcaption>
 
 </Figure>
 
-Things to notice:
+The earnings history decides the sign of the coefficient. All 64 specifications without `re74`, `re75`, `u74`
+and `u75` give a negatively significant coefficient, between $-8{,}526$ and $-2{,}882$, whereas 809 of the 960
+specifications that include at least one of them give a positive coefficient, with estimates between
+$-2{,}682$ and $2{,}954$. Including `re75` by itself rules out a negatively significant result, since none of
+the 512 specifications with it gives one, against 80 of the 512 without it.
 
-**The earnings history decides the sign.** All 64 regressions without `re74`, `re75`, `u74` and `u75` give a
-negatively significant coefficient, from $-8{,}526$ to $-2{,}882$. Of the 960 with at least one of them, 809
-give a positive coefficient, and their estimates run from $-2{,}682$ to $2{,}954$.
-
-**Why the earnings history matters.** Write $Y$ for `re78`, $Z$ for `treat` and $X$ for one covariate. Adding
-$X$ alone to the regression of $Y$ on $Z$ changes the coefficient of $Z$ by
+The omitted variable formula accounts for this pattern. Writing $Y$ for `re78`, $Z$ for `treat` and $X$ for
+one covariate, adding $X$ alone to the regression of $Y$ on $Z$ changes the coefficient of $Z$ by
 
 $$
 \Delta\beta = -K \frac{\rho_{ZX} \rho_{YX|Z}}{\sqrt{1 - \rho_{ZX}^2}}, \qquad
 K = \frac{\mathrm{sd}(Y)}{\mathrm{sd}(Z)} \sqrt{1 - \rho_{YZ}^2},
 $$
 
-the omitted variable formula written with sample correlations, $\rho_{YX|Z}$ being the partial correlation of
-Problem 1.3. $K$ is the same for every covariate, so the plane of $\rho_{ZX}$ and $\rho_{YX|Z}$ is a map of
-$\Delta\beta$ (Figure 4b): a covariate raises the coefficient exactly when the two correlations have opposite
-signs. The treated units earned less before the program and their earlier earnings predict `re78`, so the
-earnings history lies farthest out on this map; `re75` alone moves the coefficient from $-8{,}506$ to $-72$.
+where all correlations are sample correlations and $\rho_{YX|Z}$ is the partial correlation of Problem 1.3.
+Since $K$ is the same for every covariate, the plane of $\rho_{ZX}$ and $\rho_{YX|Z}$ is a map of
+$\Delta\beta$ (Figure 4b), and a covariate raises the coefficient exactly when its two correlations have
+opposite signs. The treated units earned less before the program, with $\rho_{ZX} = -0.13$ for `re74` and
+$-0.14$ for `re75`, and their earlier earnings predict `re78` strongly, with $\rho_{YX|Z} = 0.64$ and $0.67$,
+so the earnings history lies farthest out on this map and `re75` alone moves the coefficient from $-8{,}506$
+to $-72$. Without the earnings history, the coefficient of `treat` absorbs the earnings gap that the treated
+units already had before the program.
 
 <Figure id="figure-4">
 
@@ -271,34 +280,41 @@ earnings history lies farthest out on this map; `re75` alone moves the coefficie
 
 <figcaption>
 
-**Figure 4.** The correlations behind Figure 3. **a**, the sample correlations of the twelve variables,
-grouped as outcome and treatment, earnings history and demographics: the area of a circle is the absolute
-correlation, filled when positive and open when negative. **b**, each covariate at its correlation with
-`treat`, $\rho_{ZX}$, and its partial correlation with `re78` given `treat`, $\rho_{YX|Z}$, filled for the
-earnings history; the dotted lines are contours of $\Delta\beta$, in 1978 US dollars, and the quadrants where
-$\Delta\beta > 0$ are tinted. Point at a circle or a covariate to bring it forward in both panels and read its
-values.
+**Figure 4.** The correlations behind Figure 3. Panel (a) shows the sample correlations of the twelve
+variables, grouped as outcome and treatment, earnings history and demographics, with the area of each circle
+proportional to the absolute correlation, filled when positive and open when negative. Panel (b) places each
+covariate at its correlation with `treat`, $\rho_{ZX}$, and its partial correlation with `re78` given `treat`,
+$\rho_{YX|Z}$, filled for the earnings history; the dotted lines are contours of $\Delta\beta$, in 1978 US
+dollars, and the quadrants where $\Delta\beta > 0$ are tinted. Pointing at a circle or a covariate brings it
+forward in both panels and reads its values.
 
 </figcaption>
 
 </Figure>
 
-**The regressions of Section 1.2.1 disagree.** Without covariates the coefficient is $-8{,}506$, negatively
-significant; with all ten it is $1{,}068$ with $p = 0.054$, not significant at 5%.
+The two regressions of Section 1.2.1 sit far apart in Figure 3. Without covariates the coefficient is
+$-8{,}506$ and negatively significant, whereas with all ten covariates it is $1{,}068$ with $p = 0.054$, not
+significant at the 5% level. Choosing among the 1024 specifications after seeing them could therefore support
+a significant loss, a significant gain or no effect, a practice that Section 10.4.2 of the book, following the
+criticism of [Leamer (1978)](#ref-leamer-1978), calls "a major source of p-hacking in causal inference" when
+the estimates are reported "after searching over a wide set of candidate models, without confessing this model
+searching process". For comparison, the experiment of Section 4.5.3, which pairs the same 185 treated units
+with randomized controls, estimates $1{,}794$.
 
-**The search can support any conclusion.** Choosing among the 1024 after seeing them can report a significant
-loss, a significant gain or no effect. Section 10.4.2 of the book calls reporting a favorable estimate "after
-searching over a wide set of candidate models, without confessing this model searching process" "a major
-source of p-hacking in causal inference", following [Leamer (1978)](#ref-leamer-1978). For comparison, the
-experiment of Section 4.5.3, with the same 185 treated units and randomized controls, estimates $1{,}794$.
+The p-values behind these counts rest on the homoskedastic standard errors that `summary(lm(...))` reports,
+whereas later chapters of the book use heteroskedasticity-robust standard errors, under which coefficients
+near the 5% threshold, such as the one with all ten covariates, could change category. The search also covers
+only additive linear specifications in the ten covariates, without interactions or transformations, so the
+spread in Figure 3 is a lower bound on the spread that a wider search could produce.
 
 {/* PROBLEM 1.5 */}
 
 ## Problem 1.5: More on racial discrimination
 
-Split the resumes of [Example 1.1](./example-1-1.mdx) by the sex of the name and repeat its analysis in each
-part, with $Z = 1$ for a White-sounding name and $Y = 1$ for a callback. The risk differences are in
-percentage points, with their standard errors in parentheses, and the p-values are those of `fisher.test`.
+We split the resumes of [Example 1.1](./example-1-1.mdx) by the sex of the name and repeat its analysis within
+each part, with $Z = 1$ for a White-sounding name and $Y = 1$ for a callback. The table gives the callback
+rates of each part, the risk differences in percentage points with their standard errors in parentheses, and
+the p-values of `fisher.test`.
 
 | Names  |           $Z = 1$ |           $Z = 0$ | $\widehat{\mathrm{rd}}$ |  p-value |
 | :----- | ----------------: | ----------------: | ----------------------: | -------: |
@@ -306,21 +322,29 @@ percentage points, with their standard errors in parentheses, and the p-values a
 | male   |    51/575 = 8.87% |    32/549 = 5.83% |             3.04 (1.55) |    0.053 |
 | all    | 235/2,435 = 9.65% | 157/2,435 = 6.45% |             3.20 (0.78) | 0.000048 |
 
-1. The gap is the same for both sexes. White-sounding names are called back about 3 percentage points more
-   often, or about 1.5 times as often, among female and male names alike.
+1. The racial gap is the same for both sexes. White-sounding names are called back about 3 percentage points
+   more often than Black-sounding ones, or about 1.5 times as often, among female names (3.26 points) and male
+   names (3.04 points) alike.
 
-2. Only the gap for female names is significant. Male names are less than a quarter of the resumes, so the
-   same gap has a standard error almost twice as large and $p = 0.053$. This is a loss of precision, not a
-   smaller effect: the two gaps differ by 0.22 points with a standard error of 1.79, $p = 0.90$. "Significant
-   for female names, not for male names" does not show that the names matter more for women, since the
-   difference between a significant and an insignificant result is not itself significant
-   ([Gelman and Stern, 2006](#ref-gelman-2006)).
+2. Only the gap for female names is significant at the 5% level, because the male names are fewer. They make
+   up less than a quarter of the resumes, 1,124 of 4,870, and since a standard error scales roughly as the
+   inverse square root of the sample size, the male gap has a standard error of 1.55 points against 0.90,
+   which leaves $p = 0.053$. The two gaps differ by only 0.22 points, with a standard error of 1.79 and
+   $p = 0.90$, so the data give no evidence that the names matter more for one sex than for the other; as
+   [Gelman and Stern (2006)](#ref-gelman-2006) point out, the difference between a significant and an
+   insignificant result is not itself significant.
 
-3. Within each sex the comparison is an experiment; between the sexes it is not. The race of the name was
-   assigned at random within each sex, so each row of the table is a randomized comparison. The sex was not:
-   male names were used almost only for sales jobs, and female names for both sales and administrative jobs
+3. Within each sex the comparison is a randomized experiment, whereas between the sexes it is not. The race of
+   the name was assigned at random within each sex, but the sex was not, since male names were used almost
+   only for sales jobs and female names for both sales and administrative jobs
    ([Bertrand and Mullainathan, 2003](#ref-bertrand-2003)), so the callback rates of male and female names
    compare different jobs.
+
+The p-values of the table treat the resumes as independent, whereas the names were randomized within pairs of
+resumes sent to the same ad. [Bertrand and Mullainathan (2003)](#ref-bertrand-2003) report that their results
+stay significant when callbacks are allowed to be correlated within an employer or a first name, but a test of
+each subgroup that follows the finer design could move the male p-value, which sits close to 0.05, to either
+side of the threshold; we have not computed it.
 
 ## References
 
