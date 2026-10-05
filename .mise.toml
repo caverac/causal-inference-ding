@@ -12,3 +12,11 @@
 node = "24"
 "conda:r-base" = "4.6.1"
 "github:posit-dev/air" = "0.11.0"
+
+[env]
+# The conda R above links an OpenMP build of OpenBLAS, which starts a team of
+# threads for every small matrix operation: the 1024 least squares fits of
+# Problem 1.4 then burn ten times the CPU and finish later than on one thread.
+# The OpenMP runtime reads this when R loads it, before R reads .Renviron, so
+# it has to be set here. Under R's reference BLAS it is inert.
+OMP_NUM_THREADS = "1"

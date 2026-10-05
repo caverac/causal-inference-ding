@@ -17,7 +17,8 @@ Imports:
     checkmate,
     datasets,
     jsonlite,
-    stats
+    stats,
+    utils
 Suggests:
     testthat (>= 3.0.0),
     withr

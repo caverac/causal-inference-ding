@@ -5,7 +5,9 @@ title: 'Chapter 1: Correlation, Association, and the Yule-Simpson Paradox'
 ---
 
 import Figure from '@site/src/components/Figure'
+import CorrelationMap from '@site/src/components/correlationMap/CorrelationMap'
 import SimpsonGeometryExplorer from '@site/src/components/simpsonGeometry/SimpsonGeometryExplorer'
+import SpecificationCurve from '@site/src/components/specificationCurve/SpecificationCurve'
 
 # Chapter 1: Correlation, Association, and the Yule-Simpson Paradox
 
@@ -204,3 +206,94 @@ $$
 The covariance matrix is positive definite, with leading principal minors $1$, $1 - 0.36 = 0.64$ and
 $1 + 2 (0.6)(0.6)(0.2) - 0.36 - 0.36 - 0.04 = 0.384$, so this Normal vector exists. $Y$ and $Z$ are positively
 correlated, yet negatively correlated given $X = x$, whatever the value of $x$.
+
+{/* PROBLEM 1.4 */}
+
+## Problem 1.4: Specification searches
+
+The ten covariates are `age`, `educ`, `black`, `hispan`, `married`, `nodegree`, `re74`, `re75`, `u74` and
+`u75`. Each regression keeps `treat` and adds a subset $\{X_1, \dots, X_k\}$ of them,
+
+$$
+\texttt{re78} = \alpha + \beta \, \texttt{treat} + \gamma_1 X_1 + \dots + \gamma_k X_k + \varepsilon,
+$$
+
+fitted by least squares. Each covariate is either in or out, so there are $2^{10} = 1024$ regressions, from
+none of the covariates, `lm(re78 ~ treat)`, to all ten, `lm(re78 ~ .)`: the two regressions of Section 1.2.1.
+The coefficient $\beta$ of `treat` is significant when the two-sided p-value that `summary(lm(...))` reports
+for it is below 0.05. The function `specification_search()` of the `causalding` package runs them.
+
+| Coefficient of `treat` | Regressions |
+| :--------------------- | ----------: |
+| positively significant |         260 |
+| negatively significant |          80 |
+| not significant        |         684 |
+
+<Figure id="figure-3">
+
+<SpecificationCurve />
+
+<figcaption>
+
+**Figure 3.** The 1024 regressions as a specification curve (Simonsohn et al., 2020). Top: the coefficient of
+`treat` in each regression with its 95% confidence interval, by increasing value; rings mark the two
+regressions of Section 1.2.1. Bottom: the regressions whose coefficient is significant at 5%, then the
+covariates each regression includes, one row per covariate. A toggle brings forward the regressions that
+include its covariate, and the readout counts them with and without it; pointing at a regression reads its
+coefficient.
+
+</figcaption>
+
+</Figure>
+
+Things to notice:
+
+**The earnings history decides the sign.** All 64 regressions without `re74`, `re75`, `u74` and `u75` give a
+negatively significant coefficient, from $-8{,}526$ to $-2{,}882$. Of the 960 with at least one of them, 809
+give a positive coefficient, and their estimates run from $-2{,}682$ to $2{,}954$.
+
+**Why the earnings history matters.** Write $Y$ for `re78`, $Z$ for `treat` and $X$ for one covariate. Adding
+$X$ alone to the regression of $Y$ on $Z$ changes the coefficient of $Z$ by
+
+$$
+\Delta\beta = -K \frac{\rho_{ZX} \rho_{YX|Z}}{\sqrt{1 - \rho_{ZX}^2}}, \qquad
+K = \frac{\mathrm{sd}(Y)}{\mathrm{sd}(Z)} \sqrt{1 - \rho_{YZ}^2},
+$$
+
+the omitted variable formula written with sample correlations, $\rho_{YX|Z}$ being the partial correlation of
+Problem 1.3. $K$ is the same for every covariate, so the plane of $\rho_{ZX}$ and $\rho_{YX|Z}$ is a map of
+$\Delta\beta$ (Figure 4b): a covariate raises the coefficient exactly when the two correlations have opposite
+signs. The treated units earned less before the program and their earlier earnings predict `re78`, so the
+earnings history lies farthest out on this map; `re75` alone moves the coefficient from $-8{,}506$ to $-72$.
+
+<Figure id="figure-4">
+
+<CorrelationMap />
+
+<figcaption>
+
+**Figure 4.** The correlations behind Figure 3. **a**, the sample correlations of the twelve variables,
+grouped as outcome and treatment, earnings history and demographics: the area of a circle is the absolute
+correlation, filled when positive and open when negative. **b**, each covariate at its correlation with
+`treat`, $\rho_{ZX}$, and its partial correlation with `re78` given `treat`, $\rho_{YX|Z}$, filled for the
+earnings history; the dotted lines are contours of $\Delta\beta$, in 1978 US dollars, and the quadrants where
+$\Delta\beta > 0$ are tinted. Point at a circle or a covariate to bring it forward in both panels and read its
+values.
+
+</figcaption>
+
+</Figure>
+
+**The regressions of Section 1.2.1 disagree.** Without covariates the coefficient is $-8{,}506$, negatively
+significant; with all ten it is $1{,}068$ with $p = 0.054$, not significant at 5%.
+
+**The search can support any conclusion.** Choosing among the 1024 after seeing them can report a significant
+loss, a significant gain or no effect. Section 10.4.2 of the book calls reporting a favorable estimate "after
+searching over a wide set of candidate models, without confessing this model searching process" "a major
+source of p-hacking in causal inference", following Leamer (1978). For comparison, the experiment of Section
+4.5.3, with the same 185 treated units and randomized controls, estimates $1{,}794$.
+
+Leamer, E. E. (1978). _Specification Searches: Ad Hoc Inference with Nonexperimental Data_. Wiley.
+
+Simonsohn, U., Simmons, J. P., and Nelson, L. D. (2020). Specification curve analysis. _Nature Human
+Behaviour_, 4(11), 1208-1214. [doi:10.1038/s41562-020-0912-z](https://doi.org/10.1038/s41562-020-0912-z)

@@ -267,6 +267,19 @@ a:hover {
   background: var(--ifm-color-emphasis-200);
 }
 
+/* Text drawn over lines, such as the labels of contours, gets a rim of the
+   background of the chart so that it stays legible where a line crosses it. */
+.explorer__halo {
+  paint-order: stroke;
+  stroke: #fafafa;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+[data-theme='dark'] .explorer__halo {
+  stroke: #2d3748;
+}
+
 /* Subscripts keep the size of the formula around them. */
 .math-text sub {
   font-size: inherit;

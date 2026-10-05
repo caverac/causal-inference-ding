@@ -11,6 +11,8 @@
 docs_datasets <- function() {
   list(
     `berkeley-admissions` = berkeley_admissions,
+    `lalonde-correlations` = lalonde_correlations,
+    `lalonde-specifications` = lalonde_specifications,
     `resume-callbacks` = resume_callbacks,
     `yule-simpson-examples` = yule_simpson_examples
   )
@@ -27,9 +29,11 @@ docs_datasets <- function() {
 #' @return (`character`) Paths of the files written, invisibly.
 #' @export
 #' @examples
+#' \donttest{
 #' dir <- tempfile()
 #' dir.create(dir)
 #' write_docs_data(dir)
+#' }
 write_docs_data <- function(dir) {
   checkmate::assert_directory_exists(dir, access = "w")
 
