@@ -55,25 +55,24 @@ $$
 
 ## Problem 1.2: More examples of the Yule-Simpson Paradox
 
-### The geometry of Section 1.3.3
+Although not necessary, I tried to use the same geometric interpreation of Section 1.3.3 for this problem, I
+found it useful! In the subgroup $X = x$, draw the treated arm as the vector $A_x = (n_{10|x}, n_{11|x})$, and
+the control arm as $B_x = (n_{00|x}, n_{01|x})$ (in both cases, we are plotting (failures, successes)). The
+aggregated arms are the sums $A = A_1 + A_0$ and $B = B_1 + B_0$, the diagonals of two parallelograms. Let
+$\mathrm{rd}_x$ be the risk difference within $X = x$.
 
-In the subgroup $X = x$, draw the treated arm as the vector $A_x = (n_{10|x}, n_{11|x})$ of its failures and
-successes, and the control arm as $B_x = (n_{00|x}, n_{01|x})$. The aggregated arms are the sums
-$A = A_1 + A_0$ and $B = B_1 + B_0$, the diagonals of two parallelograms. Let $\mathrm{rd}_x$ be the risk
-difference within $X = x$.
+The slope of $A_x$ is the odds $n_{11|x}/n_{10|x}$: a steepter slope has a higher success rate. So
+$\mathrm{rd}_x > 0$ exactly when $A_x$ is steeper than $B_x$, and $\mathrm{rd} > 0$ exactly when $A$ is
+steeper than $B$.
 
-**A steeper vector has a higher success rate.** The slope of $A_x$ is the odds $n_{11|x}/n_{10|x}$, which
-increases with $\mathrm{pr}(Y = 1 \mid Z = 1, X = x)$. So $\mathrm{rd}_x > 0$ exactly when $A_x$ is steeper
-than $B_x$, and $\mathrm{rd} > 0$ exactly when $A$ is steeper than $B$.
-
-**A sum points between its terms, toward the one with more units.** By the law of total probability,
+Since
 
 $$
 \mathrm{pr}(Y = 1 \mid Z = 1) = \sum_x \mathrm{pr}(X = x \mid Z = 1)\, \mathrm{pr}(Y = 1 \mid Z = 1, X = x),
 $$
 
-so the direction of $A$ lies between those of $A_1$ and $A_0$, and moving treated units from $X = 0$ to
-$X = 1$ turns $A$ toward $A_1$. The same holds for $B$.
+the direction of $A$ lies between those of $A_1$ and $A_0$, and moving treated units from $X = 0$ to $X = 1$
+turns $A$ toward $A_1$. The same holds for $B$.
 
 The paradox is then a matter of lengths. Take one subgroup whose vectors are steep and one whose vectors are
 flat, with $B_x$ steeper than $A_x$ in both. Put most treated units in the steep subgroup and most control
