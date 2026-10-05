@@ -297,3 +297,40 @@ Leamer, E. E. (1978). _Specification Searches: Ad Hoc Inference with Nonexperime
 
 Simonsohn, U., Simmons, J. P., and Nelson, L. D. (2020). Specification curve analysis. _Nature Human
 Behaviour_, 4(11), 1208-1214. [doi:10.1038/s41562-020-0912-z](https://doi.org/10.1038/s41562-020-0912-z)
+
+{/* PROBLEM 1.5 */}
+
+## Problem 1.5: More on racial discrimination
+
+Split the resumes of [Example 1.1](./example-1-1.mdx) by the sex of the name and repeat its analysis in each
+part, with $Z = 1$ for a White-sounding name and $Y = 1$ for a callback. The risk differences are in
+percentage points, with their standard errors in parentheses, and the p-values are those of `fisher.test`.
+
+| Names  |           $Z = 1$ |           $Z = 0$ | $\widehat{\mathrm{rd}}$ |  p-value |
+| :----- | ----------------: | ----------------: | ----------------------: | -------: |
+| female | 184/1,860 = 9.89% | 125/1,886 = 6.63% |             3.26 (0.90) |  0.00029 |
+| male   |    51/575 = 8.87% |    32/549 = 5.83% |             3.04 (1.55) |    0.053 |
+| all    | 235/2,435 = 9.65% | 157/2,435 = 6.45% |             3.20 (0.78) | 0.000048 |
+
+1. The gap is the same for both sexes. White-sounding names are called back about 3 percentage points more
+   often, or about 1.5 times as often, among female and male names alike.
+
+2. Only the gap for female names is significant. Male names are less than a quarter of the resumes, so the
+   same gap has a standard error almost twice as large and $p = 0.053$. This is a loss of precision, not a
+   smaller effect: the two gaps differ by 0.22 points with a standard error of 1.79, $p = 0.90$. "Significant
+   for female names, not for male names" does not show that the names matter more for women, since the
+   difference between a significant and an insignificant result is not itself significant (Gelman and Stern,
+   2006).
+
+3. Within each sex the comparison is an experiment; between the sexes it is not. The race of the name was
+   assigned at random within each sex, so each row of the table is a randomized comparison. The sex was not:
+   male names were used almost only for sales jobs, and female names for both sales and administrative jobs
+   (Bertrand and Mullainathan, 2003), so the callback rates of male and female names compare different jobs.
+
+Bertrand, M. and Mullainathan, S. (2003). Are Emily and Greg more employable than Lakisha and Jamal? A field
+experiment on labor market discrimination. NBER Working Paper 9873.
+[doi:10.3386/w9873](https://doi.org/10.3386/w9873)
+
+Gelman, A. and Stern, H. (2006). The difference between "significant" and "not significant" is not itself
+statistically significant. _The American Statistician_, 60(4), 328-331.
+[doi:10.1198/000313006X152649](https://doi.org/10.1198/000313006X152649)
