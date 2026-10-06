@@ -1,0 +1,1986 @@
+{
+  "resumes": {
+    "white": 2435,
+    "black": 2435
+  },
+  "callbacks": {
+    "white": 235,
+    "black": 157
+  },
+  "null": {
+    "expected": 196,
+    "sd": 9.49369325091195,
+    "distribution": [
+      {
+        "k": 0,
+        "probability": 3.59012246129929e-126,
+        "log10_probability": -125.444890737115
+      },
+      {
+        "k": 1,
+        "probability": 1.67653800966699e-123,
+        "log10_probability": -122.775586596007
+      },
+      {
+        "k": 2,
+        "probability": 3.90110309186315e-121,
+        "log10_probability": -120.408812572724
+      },
+      {
+        "k": 3,
+        "probability": 6.03069353335978e-119,
+        "log10_probability": -118.219632740863
+      },
+      {
+        "k": 4,
+        "probability": 6.96791103547619e-117,
+        "log10_probability": -116.156897402927
+      },
+      {
+        "k": 5,
+        "probability": 6.41828983415051e-115,
+        "log10_probability": -114.192580675129
+      },
+      {
+        "k": 6,
+        "probability": 4.90956884897787e-113,
+        "log10_probability": -112.308956645297
+      },
+      {
+        "k": 7,
+        "probability": 3.20779254034062e-111,
+        "log10_probability": -110.49379372689
+      },
+      {
+        "k": 8,
+        "probability": 1.8275111597145e-109,
+        "log10_probability": -108.738139962339
+      },
+      {
+        "k": 9,
+        "probability": 9.22234091670369e-108,
+        "log10_probability": -107.035158827518
+      },
+      {
+        "k": 10,
+        "probability": 4.17389763345458e-106,
+        "log10_probability": -105.37945820639
+      },
+      {
+        "k": 11,
+        "probability": 1.71129064032508e-104,
+        "log10_probability": -103.766676224959
+      },
+      {
+        "k": 12,
+        "probability": 6.40897081560611e-103,
+        "log10_probability": -102.193211706049
+      },
+      {
+        "k": 13,
+        "probability": 2.20779549115573e-101,
+        "log10_probability": -100.656041157925
+      },
+      {
+        "k": 14,
+        "probability": 7.03736154441478e-100,
+        "log10_probability": -99.1525901365226
+      },
+      {
+        "k": 15,
+        "probability": 2.08621864886051e-98,
+        "log10_probability": -97.6806401767257
+      },
+      {
+        "k": 16,
+        "probability": 5.77750340608759e-97,
+        "log10_probability": -96.2382597898134
+      },
+      {
+        "k": 17,
+        "probability": 1.50054070759175e-95,
+        "log10_probability": -94.8237522182713
+      },
+      {
+        "k": 18,
+        "probability": 3.6676243641404e-94,
+        "log10_probability": -93.4356151509014
+      },
+      {
+        "k": 19,
+        "probability": 8.46234719730384e-93,
+        "log10_probability": -92.0725091601936
+      },
+      {
+        "k": 20,
+        "probability": 1.84827835654392e-91,
+        "log10_probability": -90.7332326220729
+      },
+      {
+        "k": 21,
+        "probability": 3.83087926806928e-90,
+        "log10_probability": -89.4167015347926
+      },
+      {
+        "k": 22,
+        "probability": 7.55208559807863e-89,
+        "log10_probability": -88.1219330962308
+      },
+      {
+        "k": 23,
+        "probability": 1.41895230077459e-87,
+        "log10_probability": -86.8480322034562
+      },
+      {
+        "k": 24,
+        "probability": 2.54577342032275e-86,
+        "log10_probability": -85.594180252168
+      },
+      {
+        "k": 25,
+        "probability": 4.36892142289105e-85,
+        "log10_probability": -84.3596257662109
+      },
+      {
+        "k": 26,
+        "probability": 7.18329168848627e-84,
+        "log10_probability": -83.1436764980205
+      },
+      {
+        "k": 27,
+        "probability": 1.13320185757529e-82,
+        "log10_probability": -81.9456927222437
+      },
+      {
+        "k": 28,
+        "probability": 1.71758601203711e-81,
+        "log10_probability": -80.7650815054371
+      },
+      {
+        "k": 29,
+        "probability": 2.50442609052443e-80,
+        "log10_probability": -79.6012917804852
+      },
+      {
+        "k": 30,
+        "probability": 3.51714206478541e-79,
+        "log10_probability": -78.4538100892587
+      },
+      {
+        "k": 31,
+        "probability": 4.76258912654795e-78,
+        "log10_probability": -77.322156883903
+      },
+      {
+        "k": 32,
+        "probability": 6.22467529810245e-77,
+        "log10_probability": -76.2058832980347
+      },
+      {
+        "k": 33,
+        "probability": 7.86016539219118e-76,
+        "log10_probability": -75.1045683155178
+      },
+      {
+        "k": 34,
+        "probability": 9.59806579153157e-75,
+        "log10_probability": -74.0178162774499
+      },
+      {
+        "k": 35,
+        "probability": 1.13434541944685e-73,
+        "log10_probability": -72.9452546783205
+      },
+      {
+        "k": 36,
+        "probability": 1.29857724785158e-72,
+        "log10_probability": -71.8865322105954
+      },
+      {
+        "k": 37,
+        "probability": 1.44106302892958e-71,
+        "log10_probability": -70.8413170236845
+      },
+      {
+        "k": 38,
+        "probability": 1.55133228697931e-70,
+        "log10_probability": -69.809295168695
+      },
+      {
+        "k": 39,
+        "probability": 1.62117834937913e-69,
+        "log10_probability": -68.7901692048366
+      },
+      {
+        "k": 40,
+        "probability": 1.64567113989989e-68,
+        "log10_probability": -67.7836569470072
+      },
+      {
+        "k": 41,
+        "probability": 1.62371447706239e-67,
+        "log10_probability": -66.7894903371257
+      },
+      {
+        "k": 42,
+        "probability": 1.55806501403296e-66,
+        "log10_probability": -65.8074144242972
+      },
+      {
+        "k": 43,
+        "probability": 1.45483439151747e-65,
+        "log10_probability": -64.8371864410035
+      },
+      {
+        "k": 44,
+        "probability": 1.32258939399085e-64,
+        "log10_probability": -63.8785749642796
+      },
+      {
+        "k": 45,
+        "probability": 1.17122638556742e-63,
+        "log10_probability": -62.9313591523229
+      },
+      {
+        "k": 46,
+        "probability": 1.01081563712886e-62,
+        "log10_probability": -61.9953280482457
+      },
+      {
+        "k": 47,
+        "probability": 8.50589576256672e-62,
+        "log10_probability": -61.0702799437498
+      },
+      {
+        "k": 48,
+        "probability": 6.98197362002645e-61,
+        "log10_probability": -60.1560217964125
+      },
+      {
+        "k": 49,
+        "probability": 5.59282595959847e-60,
+        "log10_probability": -59.252368695058
+      },
+      {
+        "k": 50,
+        "probability": 4.37377695144135e-59,
+        "log10_probability": -58.3591433683556
+      },
+      {
+        "k": 51,
+        "probability": 3.34059839127871e-58,
+        "log10_probability": -57.4761757323641
+      },
+      {
+        "k": 52,
+        "probability": 2.49285792050644e-57,
+        "log10_probability": -56.6033024732405
+      },
+      {
+        "k": 53,
+        "probability": 1.81816518827662e-56,
+        "log10_probability": -55.7403666617642
+      },
+      {
+        "k": 54,
+        "probability": 1.29653009873272e-55,
+        "log10_probability": -54.8872173967027
+      },
+      {
+        "k": 55,
+        "probability": 9.04254181296396e-55,
+        "log10_probability": -54.043709474372
+      },
+      {
+        "k": 56,
+        "probability": 6.17016698981355e-54,
+        "log10_probability": -53.2097030820327
+      },
+      {
+        "k": 57,
+        "probability": 4.12037256667114e-53,
+        "log10_probability": -52.385063513012
+      },
+      {
+        "k": 58,
+        "probability": 2.69363718244772e-52,
+        "log10_probability": -51.5696609016614
+      },
+      {
+        "k": 59,
+        "probability": 1.72436827284303e-51,
+        "log10_probability": -50.763369976456
+      },
+      {
+        "k": 60,
+        "probability": 1.08126008275452e-50,
+        "log10_probability": -49.9660698297105
+      },
+      {
+        "k": 61,
+        "probability": 6.64287832116763e-50,
+        "log10_probability": -49.177643702538
+      },
+      {
+        "k": 62,
+        "probability": 3.99964288368981e-49,
+        "log10_probability": -48.3979787838137
+      },
+      {
+        "k": 63,
+        "probability": 2.36066291758135e-48,
+        "log10_probability": -47.6269660220215
+      },
+      {
+        "k": 64,
+        "probability": 1.36615523621074e-47,
+        "log10_probability": -46.8644999489713
+      },
+      {
+        "k": 65,
+        "probability": 7.75392302830477e-47,
+        "log10_probability": -46.1104785144648
+      },
+      {
+        "k": 66,
+        "probability": 4.31714930794848e-46,
+        "log10_probability": -45.3648029310758
+      },
+      {
+        "k": 67,
+        "probability": 2.3584271823107e-45,
+        "log10_probability": -44.6273775282836
+      },
+      {
+        "k": 68,
+        "probability": 1.26441717021925e-44,
+        "log10_probability": -43.8981096152677
+      },
+      {
+        "k": 69,
+        "probability": 6.65412030068676e-44,
+        "log10_probability": -43.1769093517311
+      },
+      {
+        "k": 70,
+        "probability": 3.43803563515001e-43,
+        "log10_probability": -42.4636896261746
+      },
+      {
+        "k": 71,
+        "probability": 1.74435172440991e-42,
+        "log10_probability": -41.7583659410954
+      },
+      {
+        "k": 72,
+        "probability": 8.69247990516231e-42,
+        "log10_probability": -41.0608563046237
+      },
+      {
+        "k": 73,
+        "probability": 4.25518916868708e-41,
+        "log10_probability": -40.371081128155
+      },
+      {
+        "k": 74,
+        "probability": 2.04661838172584e-40,
+        "log10_probability": -39.6889631295707
+      },
+      {
+        "k": 75,
+        "probability": 9.67325771333314e-40,
+        "log10_probability": -39.0144272416707
+      },
+      {
+        "k": 76,
+        "probability": 4.49365239344459e-39,
+        "log10_probability": -38.3474005254744
+      },
+      {
+        "k": 77,
+        "probability": 2.05204987428259e-38,
+        "log10_probability": -37.6878120880717
+      },
+      {
+        "k": 78,
+        "probability": 9.21312567318815e-38,
+        "log10_probability": -37.03559300473
+      },
+      {
+        "k": 79,
+        "probability": 4.06746434846226e-37,
+        "log10_probability": -36.3906762449883
+      },
+      {
+        "k": 80,
+        "probability": 1.76605163657431e-36,
+        "log10_probability": -35.7529966024847
+      },
+      {
+        "k": 81,
+        "probability": 7.5423967153129e-36,
+        "log10_probability": -35.1224906282894
+      },
+      {
+        "k": 82,
+        "probability": 3.16886277239617e-35,
+        "log10_probability": -34.4990965675252
+      },
+      {
+        "k": 83,
+        "probability": 1.30992279866538e-34,
+        "log10_probability": -33.8827542990783
+      },
+      {
+        "k": 84,
+        "probability": 5.32837426142593e-34,
+        "log10_probability": -33.2734052782139
+      },
+      {
+        "k": 85,
+        "probability": 2.13308183861818e-33,
+        "log10_probability": -32.6709924819259
+      },
+      {
+        "k": 86,
+        "probability": 8.40503726212224e-33,
+        "log10_probability": -32.0754603568589
+      },
+      {
+        "k": 87,
+        "probability": 3.26020741125156e-32,
+        "log10_probability": -31.486754769657
+      },
+      {
+        "k": 88,
+        "probability": 1.24502204230501e-31,
+        "log10_probability": -30.904822959599
+      },
+      {
+        "k": 89,
+        "probability": 4.68151594177572e-31,
+        "log10_probability": -30.3296134933911
+      },
+      {
+        "k": 90,
+        "probability": 1.73349972861385e-30,
+        "log10_probability": -29.7610762219981
+      },
+      {
+        "k": 91,
+        "probability": 6.32175645389175e-30,
+        "log10_probability": -29.1991622393994
+      },
+      {
+        "k": 92,
+        "probability": 2.27078573236165e-29,
+        "log10_probability": -28.643823843166
+      },
+      {
+        "k": 93,
+        "probability": 8.03499300912656e-29,
+        "log10_probability": -28.0950144967599
+      },
+      {
+        "k": 94,
+        "probability": 2.80098773115277e-28,
+        "log10_probability": -27.5526887934629
+      },
+      {
+        "k": 95,
+        "probability": 9.62049854281567e-28,
+        "log10_probability": -27.0168024218516
+      },
+      {
+        "k": 96,
+        "probability": 3.2560260233005e-27,
+        "log10_probability": -26.4873121327353
+      },
+      {
+        "k": 97,
+        "probability": 1.0859861648887e-26,
+        "log10_probability": -25.9641757074827
+      },
+      {
+        "k": 98,
+        "probability": 3.56983441737776e-26,
+        "log10_probability": -25.4473519276656
+      },
+      {
+        "k": 99,
+        "probability": 1.15664332014026e-25,
+        "log10_probability": -24.9368005459547
+      },
+      {
+        "k": 100,
+        "probability": 3.69417735503198e-25,
+        "log10_probability": -24.432482258202
+      },
+      {
+        "k": 101,
+        "probability": 1.16316499381559e-24,
+        "log10_probability": -23.9343586766548
+      },
+      {
+        "k": 102,
+        "probability": 3.61083543493567e-24,
+        "log10_probability": -23.4423923042422
+      },
+      {
+        "k": 103,
+        "probability": 1.10523210045983e-23,
+        "log10_probability": -22.9565465098846
+      },
+      {
+        "k": 104,
+        "probability": 3.33591130576074e-23,
+        "log10_probability": -22.4767855047761
+      },
+      {
+        "k": 105,
+        "probability": 9.92946113804122e-23,
+        "log10_probability": -22.0030743195938
+      },
+      {
+        "k": 106,
+        "probability": 2.91488360431765e-22,
+        "log10_probability": -21.53537878259
+      },
+      {
+        "k": 107,
+        "probability": 8.43984559675885e-22,
+        "log10_probability": -21.0736654985271
+      },
+      {
+        "k": 108,
+        "probability": 2.41045024559533e-21,
+        "log10_probability": -20.6179018284151
+      },
+      {
+        "k": 109,
+        "probability": 6.7911626176889e-21,
+        "log10_probability": -20.1680558700163
+      },
+      {
+        "k": 110,
+        "probability": 1.88757214980993e-20,
+        "log10_probability": -19.7240964390813
+      },
+      {
+        "k": 111,
+        "probability": 5.17615113730503e-20,
+        "log10_probability": -19.2859930512846
+      },
+      {
+        "k": 112,
+        "probability": 1.40050316676761e-19,
+        "log10_probability": -18.8537159048282
+      },
+      {
+        "k": 113,
+        "probability": 3.73907465394915e-19,
+        "log10_probability": -18.4272358636838
+      },
+      {
+        "k": 114,
+        "probability": 9.85089201890684e-19,
+        "log10_probability": -18.0065244414467
+      },
+      {
+        "k": 115,
+        "probability": 2.5612160472641e-18,
+        "log10_probability": -17.5915537857732
+      },
+      {
+        "k": 116,
+        "probability": 6.57208749506391e-18,
+        "log10_probability": -17.182296663379
+      },
+      {
+        "k": 117,
+        "probability": 1.66446073468296e-17,
+        "log10_probability": -16.7787264455729
+      },
+      {
+        "k": 118,
+        "probability": 4.16085810603862e-17,
+        "log10_probability": -16.3808170943044
+      },
+      {
+        "k": 119,
+        "probability": 1.02673141717657e-16,
+        "log10_probability": -15.9885431487039
+      },
+      {
+        "k": 120,
+        "probability": 2.50103798611268e-16,
+        "log10_probability": -15.6018797120944
+      },
+      {
+        "k": 121,
+        "probability": 6.01447273603878e-16,
+        "log10_probability": -15.2208024394573
+      },
+      {
+        "k": 122,
+        "probability": 1.42794827014482e-15,
+        "log10_probability": -14.8452875253313
+      },
+      {
+        "k": 123,
+        "probability": 3.34725121496362e-15,
+        "log10_probability": -14.4753116921303
+      },
+      {
+        "k": 124,
+        "probability": 7.74725446812085e-15,
+        "log10_probability": -14.1108521788615
+      },
+      {
+        "k": 125,
+        "probability": 1.77057068646559e-14,
+        "log10_probability": -13.751886730228
+      },
+      {
+        "k": 126,
+        "probability": 3.99582457826134e-14,
+        "log10_probability": -13.3983935861031
+      },
+      {
+        "k": 127,
+        "probability": 8.905299470303e-14,
+        "log10_probability": -13.0503514713593
+      },
+      {
+        "k": 128,
+        "probability": 1.96001959855285e-13,
+        "log10_probability": -12.7077395860411
+      },
+      {
+        "k": 129,
+        "probability": 4.26051799670018e-13,
+        "log10_probability": -12.3705375958662
+      },
+      {
+        "k": 130,
+        "probability": 9.1469093900763e-13,
+        "log10_probability": -12.0387256230451
+      },
+      {
+        "k": 131,
+        "probability": 1.93961602061874e-12,
+        "log10_probability": -11.7122842374058
+      },
+      {
+        "k": 132,
+        "probability": 4.06261391955071e-12,
+        "log10_probability": -11.3911944478128
+      },
+      {
+        "k": 133,
+        "probability": 8.40547587747587e-12,
+        "log10_probability": -11.075437693871
+      },
+      {
+        "k": 134,
+        "probability": 1.71792485095774e-11,
+        "log10_probability": -10.7649958379019
+      },
+      {
+        "k": 135,
+        "probability": 3.46855705598016e-11,
+        "log10_probability": -10.4598511571848
+      },
+      {
+        "k": 136,
+        "probability": 6.91852737288418e-11,
+        "log10_probability": -10.1599863364523
+      },
+      {
+        "k": 137,
+        "probability": 1.36337566937205e-10,
+        "log10_probability": -9.86538446063222
+      },
+      {
+        "k": 138,
+        "probability": 2.6544282588606e-10,
+        "log10_probability": -9.57602900782593
+      },
+      {
+        "k": 139,
+        "probability": 5.10618043802814e-10,
+        "log10_probability": -9.2919038425174
+      },
+      {
+        "k": 140,
+        "probability": 9.70525143081378e-10,
+        "log10_probability": -9.01299320900302
+      },
+      {
+        "k": 141,
+        "probability": 1.82271293238288e-09,
+        "log10_probability": -8.73928172503626
+      },
+      {
+        "k": 142,
+        "probability": 3.38256089917941e-09,
+        "log10_probability": -8.47075437567949
+      },
+      {
+        "k": 143,
+        "probability": 6.20302444498894e-09,
+        "log10_probability": -8.20739650735625
+      },
+      {
+        "k": 144,
+        "probability": 1.12410318388669e-08,
+        "log10_probability": -7.94919382209806
+      },
+      {
+        "k": 145,
+        "probability": 2.0131105647815e-08,
+        "log10_probability": -7.69613237197878
+      },
+      {
+        "k": 146,
+        "probability": 3.56288205897891e-08,
+        "log10_probability": -7.44819855373162
+      },
+      {
+        "k": 147,
+        "probability": 6.23190603584216e-08,
+        "log10_probability": -7.20537910354199
+      },
+      {
+        "k": 148,
+        "probability": 1.07730557669942e-07,
+        "log10_probability": -6.96766109201213
+      },
+      {
+        "k": 149,
+        "probability": 1.84063671543378e-07,
+        "log10_probability": -6.73503191929128
+      },
+      {
+        "k": 150,
+        "probability": 3.10828397674447e-07,
+        "log10_probability": -6.50747931036689
+      },
+      {
+        "k": 151,
+        "probability": 5.18810419331586e-07,
+        "log10_probability": -6.28499131051245
+      },
+      {
+        "k": 152,
+        "probability": 8.55940781856364e-07,
+        "log10_probability": -6.06755628088668
+      },
+      {
+        "k": 153,
+        "probability": 1.39584471229547e-06,
+        "log10_probability": -5.8551628942805
+      },
+      {
+        "k": 154,
+        "probability": 2.25008989352818e-06,
+        "log10_probability": -5.64780013100713
+      },
+      {
+        "k": 155,
+        "probability": 3.58544219442536e-06,
+        "log10_probability": -5.44545727493174
+      },
+      {
+        "k": 156,
+        "probability": 5.64775814233644e-06,
+        "log10_probability": -5.24812390963644
+      },
+      {
+        "k": 157,
+        "probability": 8.79447837378929e-06,
+        "log10_probability": -5.0557899147174
+      },
+      {
+        "k": 158,
+        "probability": 1.35380008737132e-05,
+        "log10_probability": -4.86844546221034
+      },
+      {
+        "k": 159,
+        "probability": 2.06024555993408e-05,
+        "log10_probability": -4.68608101314124
+      },
+      {
+        "k": 160,
+        "probability": 3.09965019972064e-05,
+        "log10_probability": -4.50868731419888
+      },
+      {
+        "k": 161,
+        "probability": 4.61046368379495e-05,
+        "log10_probability": -4.33625539452645
+      },
+      {
+        "k": 162,
+        "probability": 6.77990232724554e-05,
+        "log10_probability": -4.16877656262908
+      },
+      {
+        "k": 163,
+        "probability": 9.85729142956661e-05,
+        "log10_probability": -4.00624240339464
+      },
+      {
+        "k": 164,
+        "probability": 0.000141695228135156,
+        "log10_probability": -3.84864477522513
+      },
+      {
+        "k": 165,
+        "probability": 0.000201383642911853,
+        "log10_probability": -3.69597580727601
+      },
+      {
+        "k": 166,
+        "probability": 0.000282990660758149,
+        "log10_probability": -3.54822789680125
+      },
+      {
+        "k": 167,
+        "probability": 0.000393193467073493,
+        "log10_probability": -3.40539370660161
+      },
+      {
+        "k": 168,
+        "probability": 0.000540174200016162,
+        "log10_probability": -3.26746616257395
+      },
+      {
+        "k": 169,
+        "probability": 0.000733772698037086,
+        "log10_probability": -3.13443845135961
+      },
+      {
+        "k": 170,
+        "probability": 0.000985589304448856,
+        "log10_probability": -3.0063040180896
+      },
+      {
+        "k": 171,
+        "probability": 0.00130901142108966,
+        "log10_probability": -2.88305656422497
+      },
+      {
+        "k": 172,
+        "probability": 0.00171913489021388,
+        "log10_probability": -2.76469004549026
+      },
+      {
+        "k": 173,
+        "probability": 0.00223255069917646,
+        "log10_probability": -2.65119866989851
+      },
+      {
+        "k": 174,
+        "probability": 0.00286696970706152,
+        "log10_probability": -2.54257689586605
+      },
+      {
+        "k": 175,
+        "probability": 0.00364066375028007,
+        "log10_probability": -2.43881943041552
+      },
+      {
+        "k": 176,
+        "probability": 0.00457171104001688,
+        "log10_probability": -2.33992122746575
+      },
+      {
+        "k": 177,
+        "probability": 0.00567704731437369,
+        "log10_probability": -2.2458774862069
+      },
+      {
+        "k": 178,
+        "probability": 0.00697134138309243,
+        "log10_probability": -2.15668364955971
+      },
+      {
+        "k": 179,
+        "probability": 0.00846573358681061,
+        "log10_probability": -2.0723354027175
+      },
+      {
+        "k": 180,
+        "probability": 0.0101664967986278,
+        "log10_probability": -1.99282867176975
+      },
+      {
+        "k": 181,
+        "probability": 0.0120736999174053,
+        "log10_probability": -1.91815962240623
+      },
+      {
+        "k": 182,
+        "probability": 0.0141799709557191,
+        "log10_probability": -1.84832465870047
+      },
+      {
+        "k": 183,
+        "probability": 0.0164694682767477,
+        "log10_probability": -1.78332042197184
+      },
+      {
+        "k": 184,
+        "probability": 0.0189171718994169,
+        "log10_probability": -1.72314378972505
+      },
+      {
+        "k": 185,
+        "probability": 0.0214886001763361,
+        "log10_probability": -1.66779187466648
+      },
+      {
+        "k": 186,
+        "probability": 0.0241400394895453,
+        "log10_probability": -1.61726202379635
+      },
+      {
+        "k": 187,
+        "probability": 0.0268193459515824,
+        "log10_probability": -1.57155181757622
+      },
+      {
+        "k": 188,
+        "probability": 0.0294673397778099,
+        "log10_probability": -1.53065906917096
+      },
+      {
+        "k": 189,
+        "probability": 0.0320197676558162,
+        "log10_probability": -1.49458182376472
+      },
+      {
+        "k": 190,
+        "probability": 0.0344097598827574,
+        "log10_probability": -1.46331835795034
+      },
+      {
+        "k": 191,
+        "probability": 0.0365706619011087,
+        "log10_probability": -1.43686717919169
+      },
+      {
+        "k": 192,
+        "probability": 0.0384390791072979,
+        "log10_probability": -1.41522702535858
+      },
+      {
+        "k": 193,
+        "probability": 0.0399579441627208,
+        "log10_probability": -1.39839686433379
+      },
+      {
+        "k": 194,
+        "probability": 0.0410794013792201,
+        "log10_probability": -1.38637589369199
+      },
+      {
+        "k": 195,
+        "probability": 0.0417673055639989,
+        "log10_probability": -1.37916354045024
+      },
+      {
+        "k": 196,
+        "probability": 0.0419991536839548,
+        "log10_probability": -1.37675946088999
+      },
+      {
+        "k": 197,
+        "probability": 0.041767305563999,
+        "log10_probability": -1.37916354045024
+      },
+      {
+        "k": 198,
+        "probability": 0.0410794013792201,
+        "log10_probability": -1.38637589369199
+      },
+      {
+        "k": 199,
+        "probability": 0.0399579441627208,
+        "log10_probability": -1.39839686433379
+      },
+      {
+        "k": 200,
+        "probability": 0.0384390791072979,
+        "log10_probability": -1.41522702535858
+      },
+      {
+        "k": 201,
+        "probability": 0.0365706619011087,
+        "log10_probability": -1.43686717919169
+      },
+      {
+        "k": 202,
+        "probability": 0.0344097598827574,
+        "log10_probability": -1.46331835795034
+      },
+      {
+        "k": 203,
+        "probability": 0.0320197676558161,
+        "log10_probability": -1.49458182376472
+      },
+      {
+        "k": 204,
+        "probability": 0.0294673397778099,
+        "log10_probability": -1.53065906917096
+      },
+      {
+        "k": 205,
+        "probability": 0.0268193459515824,
+        "log10_probability": -1.57155181757622
+      },
+      {
+        "k": 206,
+        "probability": 0.0241400394895453,
+        "log10_probability": -1.61726202379635
+      },
+      {
+        "k": 207,
+        "probability": 0.0214886001763361,
+        "log10_probability": -1.66779187466648
+      },
+      {
+        "k": 208,
+        "probability": 0.018917171899417,
+        "log10_probability": -1.72314378972505
+      },
+      {
+        "k": 209,
+        "probability": 0.0164694682767477,
+        "log10_probability": -1.78332042197184
+      },
+      {
+        "k": 210,
+        "probability": 0.0141799709557191,
+        "log10_probability": -1.84832465870047
+      },
+      {
+        "k": 211,
+        "probability": 0.0120736999174053,
+        "log10_probability": -1.91815962240623
+      },
+      {
+        "k": 212,
+        "probability": 0.0101664967986278,
+        "log10_probability": -1.99282867176975
+      },
+      {
+        "k": 213,
+        "probability": 0.0084657335868106,
+        "log10_probability": -2.0723354027175
+      },
+      {
+        "k": 214,
+        "probability": 0.00697134138309243,
+        "log10_probability": -2.15668364955971
+      },
+      {
+        "k": 215,
+        "probability": 0.00567704731437368,
+        "log10_probability": -2.2458774862069
+      },
+      {
+        "k": 216,
+        "probability": 0.00457171104001688,
+        "log10_probability": -2.33992122746575
+      },
+      {
+        "k": 217,
+        "probability": 0.00364066375028007,
+        "log10_probability": -2.43881943041552
+      },
+      {
+        "k": 218,
+        "probability": 0.00286696970706152,
+        "log10_probability": -2.54257689586605
+      },
+      {
+        "k": 219,
+        "probability": 0.00223255069917647,
+        "log10_probability": -2.65119866989851
+      },
+      {
+        "k": 220,
+        "probability": 0.00171913489021388,
+        "log10_probability": -2.76469004549026
+      },
+      {
+        "k": 221,
+        "probability": 0.00130901142108966,
+        "log10_probability": -2.88305656422497
+      },
+      {
+        "k": 222,
+        "probability": 0.000985589304448856,
+        "log10_probability": -3.0063040180896
+      },
+      {
+        "k": 223,
+        "probability": 0.000733772698037086,
+        "log10_probability": -3.13443845135961
+      },
+      {
+        "k": 224,
+        "probability": 0.000540174200016163,
+        "log10_probability": -3.26746616257395
+      },
+      {
+        "k": 225,
+        "probability": 0.000393193467073494,
+        "log10_probability": -3.40539370660161
+      },
+      {
+        "k": 226,
+        "probability": 0.000282990660758149,
+        "log10_probability": -3.54822789680125
+      },
+      {
+        "k": 227,
+        "probability": 0.000201383642911853,
+        "log10_probability": -3.69597580727601
+      },
+      {
+        "k": 228,
+        "probability": 0.000141695228135156,
+        "log10_probability": -3.84864477522513
+      },
+      {
+        "k": 229,
+        "probability": 9.85729142956659e-05,
+        "log10_probability": -4.00624240339464
+      },
+      {
+        "k": 230,
+        "probability": 6.77990232724554e-05,
+        "log10_probability": -4.16877656262908
+      },
+      {
+        "k": 231,
+        "probability": 4.61046368379495e-05,
+        "log10_probability": -4.33625539452645
+      },
+      {
+        "k": 232,
+        "probability": 3.09965019972065e-05,
+        "log10_probability": -4.50868731419888
+      },
+      {
+        "k": 233,
+        "probability": 2.06024555993408e-05,
+        "log10_probability": -4.68608101314124
+      },
+      {
+        "k": 234,
+        "probability": 1.35380008737131e-05,
+        "log10_probability": -4.86844546221034
+      },
+      {
+        "k": 235,
+        "probability": 8.79447837378931e-06,
+        "log10_probability": -5.05578991471739
+      },
+      {
+        "k": 236,
+        "probability": 5.64775814233644e-06,
+        "log10_probability": -5.24812390963644
+      },
+      {
+        "k": 237,
+        "probability": 3.58544219442536e-06,
+        "log10_probability": -5.44545727493174
+      },
+      {
+        "k": 238,
+        "probability": 2.25008989352818e-06,
+        "log10_probability": -5.64780013100713
+      },
+      {
+        "k": 239,
+        "probability": 1.39584471229547e-06,
+        "log10_probability": -5.8551628942805
+      },
+      {
+        "k": 240,
+        "probability": 8.55940781856364e-07,
+        "log10_probability": -6.06755628088668
+      },
+      {
+        "k": 241,
+        "probability": 5.18810419331586e-07,
+        "log10_probability": -6.28499131051245
+      },
+      {
+        "k": 242,
+        "probability": 3.10828397674447e-07,
+        "log10_probability": -6.50747931036689
+      },
+      {
+        "k": 243,
+        "probability": 1.84063671543378e-07,
+        "log10_probability": -6.73503191929128
+      },
+      {
+        "k": 244,
+        "probability": 1.07730557669942e-07,
+        "log10_probability": -6.96766109201213
+      },
+      {
+        "k": 245,
+        "probability": 6.23190603584216e-08,
+        "log10_probability": -7.20537910354199
+      },
+      {
+        "k": 246,
+        "probability": 3.56288205897891e-08,
+        "log10_probability": -7.44819855373162
+      },
+      {
+        "k": 247,
+        "probability": 2.01311056478149e-08,
+        "log10_probability": -7.69613237197878
+      },
+      {
+        "k": 248,
+        "probability": 1.12410318388669e-08,
+        "log10_probability": -7.94919382209806
+      },
+      {
+        "k": 249,
+        "probability": 6.20302444498894e-09,
+        "log10_probability": -8.20739650735625
+      },
+      {
+        "k": 250,
+        "probability": 3.38256089917941e-09,
+        "log10_probability": -8.47075437567949
+      },
+      {
+        "k": 251,
+        "probability": 1.82271293238287e-09,
+        "log10_probability": -8.73928172503626
+      },
+      {
+        "k": 252,
+        "probability": 9.70525143081379e-10,
+        "log10_probability": -9.01299320900302
+      },
+      {
+        "k": 253,
+        "probability": 5.10618043802814e-10,
+        "log10_probability": -9.2919038425174
+      },
+      {
+        "k": 254,
+        "probability": 2.6544282588606e-10,
+        "log10_probability": -9.57602900782593
+      },
+      {
+        "k": 255,
+        "probability": 1.36337566937205e-10,
+        "log10_probability": -9.86538446063222
+      },
+      {
+        "k": 256,
+        "probability": 6.91852737288418e-11,
+        "log10_probability": -10.1599863364523
+      },
+      {
+        "k": 257,
+        "probability": 3.46855705598016e-11,
+        "log10_probability": -10.4598511571848
+      },
+      {
+        "k": 258,
+        "probability": 1.71792485095774e-11,
+        "log10_probability": -10.7649958379019
+      },
+      {
+        "k": 259,
+        "probability": 8.40547587747587e-12,
+        "log10_probability": -11.075437693871
+      },
+      {
+        "k": 260,
+        "probability": 4.06261391955071e-12,
+        "log10_probability": -11.3911944478128
+      },
+      {
+        "k": 261,
+        "probability": 1.93961602061874e-12,
+        "log10_probability": -11.7122842374058
+      },
+      {
+        "k": 262,
+        "probability": 9.1469093900763e-13,
+        "log10_probability": -12.0387256230451
+      },
+      {
+        "k": 263,
+        "probability": 4.26051799670019e-13,
+        "log10_probability": -12.3705375958662
+      },
+      {
+        "k": 264,
+        "probability": 1.96001959855285e-13,
+        "log10_probability": -12.7077395860411
+      },
+      {
+        "k": 265,
+        "probability": 8.905299470303e-14,
+        "log10_probability": -13.0503514713593
+      },
+      {
+        "k": 266,
+        "probability": 3.99582457826134e-14,
+        "log10_probability": -13.3983935861031
+      },
+      {
+        "k": 267,
+        "probability": 1.77057068646559e-14,
+        "log10_probability": -13.751886730228
+      },
+      {
+        "k": 268,
+        "probability": 7.74725446812085e-15,
+        "log10_probability": -14.1108521788615
+      },
+      {
+        "k": 269,
+        "probability": 3.34725121496362e-15,
+        "log10_probability": -14.4753116921303
+      },
+      {
+        "k": 270,
+        "probability": 1.42794827014482e-15,
+        "log10_probability": -14.8452875253313
+      },
+      {
+        "k": 271,
+        "probability": 6.01447273603879e-16,
+        "log10_probability": -15.2208024394573
+      },
+      {
+        "k": 272,
+        "probability": 2.5010379861127e-16,
+        "log10_probability": -15.6018797120944
+      },
+      {
+        "k": 273,
+        "probability": 1.02673141717657e-16,
+        "log10_probability": -15.9885431487039
+      },
+      {
+        "k": 274,
+        "probability": 4.16085810603859e-17,
+        "log10_probability": -16.3808170943044
+      },
+      {
+        "k": 275,
+        "probability": 1.66446073468296e-17,
+        "log10_probability": -16.7787264455729
+      },
+      {
+        "k": 276,
+        "probability": 6.57208749506391e-18,
+        "log10_probability": -17.182296663379
+      },
+      {
+        "k": 277,
+        "probability": 2.5612160472641e-18,
+        "log10_probability": -17.5915537857732
+      },
+      {
+        "k": 278,
+        "probability": 9.85089201890686e-19,
+        "log10_probability": -18.0065244414467
+      },
+      {
+        "k": 279,
+        "probability": 3.73907465394915e-19,
+        "log10_probability": -18.4272358636838
+      },
+      {
+        "k": 280,
+        "probability": 1.40050316676762e-19,
+        "log10_probability": -18.8537159048282
+      },
+      {
+        "k": 281,
+        "probability": 5.17615113730503e-20,
+        "log10_probability": -19.2859930512846
+      },
+      {
+        "k": 282,
+        "probability": 1.88757214980993e-20,
+        "log10_probability": -19.7240964390813
+      },
+      {
+        "k": 283,
+        "probability": 6.7911626176889e-21,
+        "log10_probability": -20.1680558700163
+      },
+      {
+        "k": 284,
+        "probability": 2.41045024559533e-21,
+        "log10_probability": -20.6179018284151
+      },
+      {
+        "k": 285,
+        "probability": 8.43984559675885e-22,
+        "log10_probability": -21.0736654985271
+      },
+      {
+        "k": 286,
+        "probability": 2.91488360431765e-22,
+        "log10_probability": -21.53537878259
+      },
+      {
+        "k": 287,
+        "probability": 9.92946113804122e-23,
+        "log10_probability": -22.0030743195938
+      },
+      {
+        "k": 288,
+        "probability": 3.33591130576074e-23,
+        "log10_probability": -22.4767855047761
+      },
+      {
+        "k": 289,
+        "probability": 1.10523210045983e-23,
+        "log10_probability": -22.9565465098846
+      },
+      {
+        "k": 290,
+        "probability": 3.61083543493567e-24,
+        "log10_probability": -23.4423923042422
+      },
+      {
+        "k": 291,
+        "probability": 1.16316499381559e-24,
+        "log10_probability": -23.9343586766548
+      },
+      {
+        "k": 292,
+        "probability": 3.69417735503198e-25,
+        "log10_probability": -24.432482258202
+      },
+      {
+        "k": 293,
+        "probability": 1.15664332014025e-25,
+        "log10_probability": -24.9368005459547
+      },
+      {
+        "k": 294,
+        "probability": 3.56983441737776e-26,
+        "log10_probability": -25.4473519276656
+      },
+      {
+        "k": 295,
+        "probability": 1.0859861648887e-26,
+        "log10_probability": -25.9641757074827
+      },
+      {
+        "k": 296,
+        "probability": 3.2560260233005e-27,
+        "log10_probability": -26.4873121327353
+      },
+      {
+        "k": 297,
+        "probability": 9.62049854281567e-28,
+        "log10_probability": -27.0168024218516
+      },
+      {
+        "k": 298,
+        "probability": 2.80098773115275e-28,
+        "log10_probability": -27.5526887934629
+      },
+      {
+        "k": 299,
+        "probability": 8.03499300912656e-29,
+        "log10_probability": -28.0950144967599
+      },
+      {
+        "k": 300,
+        "probability": 2.27078573236163e-29,
+        "log10_probability": -28.643823843166
+      },
+      {
+        "k": 301,
+        "probability": 6.32175645389175e-30,
+        "log10_probability": -29.1991622393994
+      },
+      {
+        "k": 302,
+        "probability": 1.73349972861385e-30,
+        "log10_probability": -29.7610762219981
+      },
+      {
+        "k": 303,
+        "probability": 4.68151594177572e-31,
+        "log10_probability": -30.3296134933911
+      },
+      {
+        "k": 304,
+        "probability": 1.24502204230501e-31,
+        "log10_probability": -30.904822959599
+      },
+      {
+        "k": 305,
+        "probability": 3.26020741125156e-32,
+        "log10_probability": -31.486754769657
+      },
+      {
+        "k": 306,
+        "probability": 8.40503726212238e-33,
+        "log10_probability": -32.0754603568589
+      },
+      {
+        "k": 307,
+        "probability": 2.13308183861818e-33,
+        "log10_probability": -32.6709924819259
+      },
+      {
+        "k": 308,
+        "probability": 5.32837426142593e-34,
+        "log10_probability": -33.2734052782139
+      },
+      {
+        "k": 309,
+        "probability": 1.30992279866538e-34,
+        "log10_probability": -33.8827542990783
+      },
+      {
+        "k": 310,
+        "probability": 3.16886277239617e-35,
+        "log10_probability": -34.4990965675252
+      },
+      {
+        "k": 311,
+        "probability": 7.54239671531289e-36,
+        "log10_probability": -35.1224906282894
+      },
+      {
+        "k": 312,
+        "probability": 1.76605163657428e-36,
+        "log10_probability": -35.7529966024847
+      },
+      {
+        "k": 313,
+        "probability": 4.06746434846226e-37,
+        "log10_probability": -36.3906762449883
+      },
+      {
+        "k": 314,
+        "probability": 9.21312567318802e-38,
+        "log10_probability": -37.03559300473
+      },
+      {
+        "k": 315,
+        "probability": 2.05204987428259e-38,
+        "log10_probability": -37.6878120880717
+      },
+      {
+        "k": 316,
+        "probability": 4.49365239344459e-39,
+        "log10_probability": -38.3474005254744
+      },
+      {
+        "k": 317,
+        "probability": 9.67325771333312e-40,
+        "log10_probability": -39.0144272416707
+      },
+      {
+        "k": 318,
+        "probability": 2.04661838172582e-40,
+        "log10_probability": -39.6889631295707
+      },
+      {
+        "k": 319,
+        "probability": 4.25518916868708e-41,
+        "log10_probability": -40.371081128155
+      },
+      {
+        "k": 320,
+        "probability": 8.69247990516231e-42,
+        "log10_probability": -41.0608563046237
+      },
+      {
+        "k": 321,
+        "probability": 1.74435172440991e-42,
+        "log10_probability": -41.7583659410954
+      },
+      {
+        "k": 322,
+        "probability": 3.43803563515001e-43,
+        "log10_probability": -42.4636896261746
+      },
+      {
+        "k": 323,
+        "probability": 6.65412030068676e-44,
+        "log10_probability": -43.1769093517311
+      },
+      {
+        "k": 324,
+        "probability": 1.26441717021925e-44,
+        "log10_probability": -43.8981096152677
+      },
+      {
+        "k": 325,
+        "probability": 2.3584271823107e-45,
+        "log10_probability": -44.6273775282836
+      },
+      {
+        "k": 326,
+        "probability": 4.31714930794849e-46,
+        "log10_probability": -45.3648029310758
+      },
+      {
+        "k": 327,
+        "probability": 7.75392302830477e-47,
+        "log10_probability": -46.1104785144648
+      },
+      {
+        "k": 328,
+        "probability": 1.36615523621074e-47,
+        "log10_probability": -46.8644999489713
+      },
+      {
+        "k": 329,
+        "probability": 2.36066291758135e-48,
+        "log10_probability": -47.6269660220215
+      },
+      {
+        "k": 330,
+        "probability": 3.9996428836898e-49,
+        "log10_probability": -48.3979787838137
+      },
+      {
+        "k": 331,
+        "probability": 6.64287832116763e-50,
+        "log10_probability": -49.177643702538
+      },
+      {
+        "k": 332,
+        "probability": 1.08126008275452e-50,
+        "log10_probability": -49.9660698297105
+      },
+      {
+        "k": 333,
+        "probability": 1.72436827284303e-51,
+        "log10_probability": -50.763369976456
+      },
+      {
+        "k": 334,
+        "probability": 2.69363718244769e-52,
+        "log10_probability": -51.5696609016614
+      },
+      {
+        "k": 335,
+        "probability": 4.1203725666712e-53,
+        "log10_probability": -52.385063513012
+      },
+      {
+        "k": 336,
+        "probability": 6.17016698981355e-54,
+        "log10_probability": -53.2097030820327
+      },
+      {
+        "k": 337,
+        "probability": 9.04254181296396e-55,
+        "log10_probability": -54.043709474372
+      },
+      {
+        "k": 338,
+        "probability": 1.29653009873272e-55,
+        "log10_probability": -54.8872173967027
+      },
+      {
+        "k": 339,
+        "probability": 1.81816518827664e-56,
+        "log10_probability": -55.7403666617642
+      },
+      {
+        "k": 340,
+        "probability": 2.49285792050644e-57,
+        "log10_probability": -56.6033024732405
+      },
+      {
+        "k": 341,
+        "probability": 3.34059839127871e-58,
+        "log10_probability": -57.4761757323641
+      },
+      {
+        "k": 342,
+        "probability": 4.37377695144135e-59,
+        "log10_probability": -58.3591433683556
+      },
+      {
+        "k": 343,
+        "probability": 5.59282595959847e-60,
+        "log10_probability": -59.252368695058
+      },
+      {
+        "k": 344,
+        "probability": 6.98197362002645e-61,
+        "log10_probability": -60.1560217964125
+      },
+      {
+        "k": 345,
+        "probability": 8.50589576256672e-62,
+        "log10_probability": -61.0702799437498
+      },
+      {
+        "k": 346,
+        "probability": 1.01081563712886e-62,
+        "log10_probability": -61.9953280482457
+      },
+      {
+        "k": 347,
+        "probability": 1.17122638556742e-63,
+        "log10_probability": -62.9313591523229
+      },
+      {
+        "k": 348,
+        "probability": 1.32258939399085e-64,
+        "log10_probability": -63.8785749642796
+      },
+      {
+        "k": 349,
+        "probability": 1.45483439151751e-65,
+        "log10_probability": -64.8371864410035
+      },
+      {
+        "k": 350,
+        "probability": 1.55806501403296e-66,
+        "log10_probability": -65.8074144242972
+      },
+      {
+        "k": 351,
+        "probability": 1.62371447706238e-67,
+        "log10_probability": -66.7894903371257
+      },
+      {
+        "k": 352,
+        "probability": 1.64567113989989e-68,
+        "log10_probability": -67.7836569470072
+      },
+      {
+        "k": 353,
+        "probability": 1.62117834937913e-69,
+        "log10_probability": -68.7901692048366
+      },
+      {
+        "k": 354,
+        "probability": 1.55133228697931e-70,
+        "log10_probability": -69.809295168695
+      },
+      {
+        "k": 355,
+        "probability": 1.44106302892958e-71,
+        "log10_probability": -70.8413170236845
+      },
+      {
+        "k": 356,
+        "probability": 1.29857724785158e-72,
+        "log10_probability": -71.8865322105954
+      },
+      {
+        "k": 357,
+        "probability": 1.13434541944685e-73,
+        "log10_probability": -72.9452546783205
+      },
+      {
+        "k": 358,
+        "probability": 9.59806579153157e-75,
+        "log10_probability": -74.0178162774499
+      },
+      {
+        "k": 359,
+        "probability": 7.86016539219118e-76,
+        "log10_probability": -75.1045683155178
+      },
+      {
+        "k": 360,
+        "probability": 6.22467529810248e-77,
+        "log10_probability": -76.2058832980347
+      },
+      {
+        "k": 361,
+        "probability": 4.76258912654809e-78,
+        "log10_probability": -77.322156883903
+      },
+      {
+        "k": 362,
+        "probability": 3.51714206478541e-79,
+        "log10_probability": -78.4538100892587
+      },
+      {
+        "k": 363,
+        "probability": 2.50442609052443e-80,
+        "log10_probability": -79.6012917804852
+      },
+      {
+        "k": 364,
+        "probability": 1.71758601203711e-81,
+        "log10_probability": -80.7650815054371
+      },
+      {
+        "k": 365,
+        "probability": 1.13320185757529e-82,
+        "log10_probability": -81.9456927222437
+      },
+      {
+        "k": 366,
+        "probability": 7.18329168848627e-84,
+        "log10_probability": -83.1436764980205
+      },
+      {
+        "k": 367,
+        "probability": 4.36892142289105e-85,
+        "log10_probability": -84.3596257662109
+      },
+      {
+        "k": 368,
+        "probability": 2.54577342032275e-86,
+        "log10_probability": -85.594180252168
+      },
+      {
+        "k": 369,
+        "probability": 1.41895230077459e-87,
+        "log10_probability": -86.8480322034562
+      },
+      {
+        "k": 370,
+        "probability": 7.55208559807863e-89,
+        "log10_probability": -88.1219330962308
+      },
+      {
+        "k": 371,
+        "probability": 3.83087926806928e-90,
+        "log10_probability": -89.4167015347926
+      },
+      {
+        "k": 372,
+        "probability": 1.84827835654392e-91,
+        "log10_probability": -90.7332326220729
+      },
+      {
+        "k": 373,
+        "probability": 8.46234719730384e-93,
+        "log10_probability": -92.0725091601936
+      },
+      {
+        "k": 374,
+        "probability": 3.6676243641404e-94,
+        "log10_probability": -93.4356151509014
+      },
+      {
+        "k": 375,
+        "probability": 1.50054070759175e-95,
+        "log10_probability": -94.8237522182713
+      },
+      {
+        "k": 376,
+        "probability": 5.77750340608759e-97,
+        "log10_probability": -96.2382597898134
+      },
+      {
+        "k": 377,
+        "probability": 2.08621864886051e-98,
+        "log10_probability": -97.6806401767257
+      },
+      {
+        "k": 378,
+        "probability": 7.03736154441478e-100,
+        "log10_probability": -99.1525901365226
+      },
+      {
+        "k": 379,
+        "probability": 2.20779549115573e-101,
+        "log10_probability": -100.656041157925
+      },
+      {
+        "k": 380,
+        "probability": 6.40897081560611e-103,
+        "log10_probability": -102.193211706049
+      },
+      {
+        "k": 381,
+        "probability": 1.71129064032508e-104,
+        "log10_probability": -103.766676224959
+      },
+      {
+        "k": 382,
+        "probability": 4.17389763345458e-106,
+        "log10_probability": -105.37945820639
+      },
+      {
+        "k": 383,
+        "probability": 9.22234091670369e-108,
+        "log10_probability": -107.035158827518
+      },
+      {
+        "k": 384,
+        "probability": 1.8275111597145e-109,
+        "log10_probability": -108.738139962339
+      },
+      {
+        "k": 385,
+        "probability": 3.20779254034062e-111,
+        "log10_probability": -110.49379372689
+      },
+      {
+        "k": 386,
+        "probability": 4.90956884897801e-113,
+        "log10_probability": -112.308956645297
+      },
+      {
+        "k": 387,
+        "probability": 6.41828983415051e-115,
+        "log10_probability": -114.192580675129
+      },
+      {
+        "k": 388,
+        "probability": 6.96791103547639e-117,
+        "log10_probability": -116.156897402927
+      },
+      {
+        "k": 389,
+        "probability": 6.03069353335978e-119,
+        "log10_probability": -118.219632740863
+      },
+      {
+        "k": 390,
+        "probability": 3.90110309186315e-121,
+        "log10_probability": -120.408812572724
+      },
+      {
+        "k": 391,
+        "probability": 1.67653800966699e-123,
+        "log10_probability": -122.775586596007
+      },
+      {
+        "k": 392,
+        "probability": 3.59012246129929e-126,
+        "log10_probability": -125.444890737115
+      }
+    ]
+  },
+  "p_value": {
+    "upper": 2.37937355395475e-05,
+    "lower": 2.37937355395475e-05,
+    "two_sided": 4.75874710790951e-05
+  }
+}

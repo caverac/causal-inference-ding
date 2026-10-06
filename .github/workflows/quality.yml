@@ -76,22 +76,23 @@ jobs:
       - name: Regenerate NAMESPACE and the help pages (roxygen2)
         run: Rscript packages/causalding/scripts/document.R
 
-      - name: Regenerate the data drawn by the docs
-        run: Rscript packages/causalding/scripts/export-docs-data.R
-
       - name: Fail when a committed file differs from its regenerated copy
         run: |
           stale=$(git status --porcelain -- \
             packages/causalding/DESCRIPTION \
             packages/causalding/NAMESPACE \
-            packages/causalding/man \
-            packages/docs/src/data/generated)
+            packages/causalding/man)
           if [ -n "$stale" ]; then
             echo "$stale"
             git diff
-            echo "::error::Generated files are stale. Run 'yarn r:document' and 'yarn r:export', then commit the result."
+            echo "::error::Generated files are stale. Run 'yarn r:document', then commit the result."
             exit 1
           fi
+
+      # The JSON holds floating-point results whose last digits depend on the
+      # BLAS library, so it is compared numerically rather than byte for byte.
+      - name: Fail when the data drawn by the docs differ from what the package computes
+        run: Rscript packages/causalding/scripts/check-docs-data.R
 
   # ===========================================================================
   # Documentation site (packages/docs)

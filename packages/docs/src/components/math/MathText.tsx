@@ -1,4 +1,4 @@
-import { tokenizeMath } from '@site/src/components/yuleSimpson/formula'
+import { tokenizeMath } from '@site/src/components/math/formula'
 import type { ReactNode } from 'react'
 
 interface MathTextProps {

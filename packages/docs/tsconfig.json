@@ -23,5 +23,8 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["*.ts", "*.mts", "src/**/*", "scripts/**/*"]
+  "include": ["*.ts", "*.mts", "src/**/*", "scripts/**/*"],
+  "mdx": {
+    "plugins": ["remark-math"]
+  }
 }

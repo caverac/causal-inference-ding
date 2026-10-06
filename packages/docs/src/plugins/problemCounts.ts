@@ -38,16 +38,21 @@ export function readProblemCounts(docsDir: string): ProblemCounts {
  * Publishes the number of solved problems on each solution page as global
  * plugin data, so the progress figures are computed from the pages themselves
  * on every build and every reload of the development server.
+ *
+ * The pages are counted in `allContentLoaded`, which Docusaurus runs for every
+ * plugin after any plugin reloads, and the plugin watches no files of its own.
+ * The docs plugin already watches the pages, and in the development server two
+ * plugins reloading on the same change race: the slower reload writes back a
+ * snapshot that holds the other plugin's previous content, which left the
+ * progress figures stale.
  */
-export default function problemCountsPlugin(context: LoadContext): Plugin<ProblemCounts> {
+export default function problemCountsPlugin(context: LoadContext): Plugin {
   const docsDir = path.join(context.siteDir, 'docs')
 
   return {
     name: PROBLEM_COUNTS_PLUGIN,
-    loadContent: () => readProblemCounts(docsDir),
-    contentLoaded: ({ content, actions }) => {
-      actions.setGlobalData(content)
-    },
-    getPathsToWatch: () => [path.join(docsDir, 'parts', '**', '*.mdx')]
+    allContentLoaded: ({ actions }) => {
+      actions.setGlobalData(readProblemCounts(docsDir))
+    }
   }
 }

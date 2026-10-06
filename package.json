@@ -26,6 +26,7 @@
     "r:coverage": "Rscript packages/causalding/scripts/coverage.R",
     "r:document": "Rscript packages/causalding/scripts/document.R",
     "r:export": "Rscript packages/causalding/scripts/export-docs-data.R",
+    "r:export:check": "Rscript packages/causalding/scripts/check-docs-data.R",
     "postinstall": "husky"
   },
   "devDependencies": {

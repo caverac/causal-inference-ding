@@ -1,5 +1,5 @@
 import { CHART_FONT_FAMILY, CHART_FONT_SIZE, styleAxis } from '@site/src/components/chartStyle'
-import { appendMathText } from '@site/src/components/yuleSimpson/formula'
+import { appendMathText } from '@site/src/components/math/formula'
 import {
   departmentRate,
   departments,
@@ -251,7 +251,7 @@ export function createChart(
         .selectAll<SVGLineElement, PathSegment>('line')
         .data(initial, byDepartment)
         .join('line')
-        .attr('class', 'yule-simpson__hit')
+        .attr('class', 'explorer__hit')
         .attr('stroke', 'transparent')
         .attr('stroke-width', 16)
         .attr('stroke-linecap', 'round')
@@ -355,7 +355,7 @@ export function createChart(
   }
   const dragArea = lower
     .append('rect')
-    .attr('class', 'yule-simpson__drag')
+    .attr('class', 'explorer__drag')
     .attr('width', plotWidth)
     .attr('height', LOWER_HEIGHT)
     .attr('fill', 'transparent')

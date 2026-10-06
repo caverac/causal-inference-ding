@@ -4,6 +4,466 @@ sidebar_label: '1. Correlation, Association, and the Yule-Simpson Paradox'
 title: 'Chapter 1: Correlation, Association, and the Yule-Simpson Paradox'
 ---
 
+import CorrelationMap from '@site/src/components/correlationMap/CorrelationMap'
+import Figure from '@site/src/components/Figure'
+import Reference from '@site/src/components/Reference'
+import References from '@site/src/components/References'
+import SimpsonGeometryExplorer from '@site/src/components/simpsonGeometry/SimpsonGeometryExplorer'
+import SpecificationCurve from '@site/src/components/specificationCurve/SpecificationCurve'
+
 # Chapter 1: Correlation, Association, and the Yule-Simpson Paradox
 
-_Solutions coming soon._
+{/* PROBLEM 1.1 */}
+
+## Problem 1.1: Independence in two-by-two tables
+
+Write $p_z = \mathrm{pr}(Y = 1 \mid Z = z) = p_{z1}/(p_{z1} + p_{z0})$, so that $\mathrm{rd} = p_1 - p_0$ and
+$\mathrm{rr} = p_1/p_0$. Both statements rest on two facts.
+
+First, the three measures have the sign of $\Delta = p_{11} p_{00} - p_{10} p_{01}$:
+
+$$
+\begin{aligned}
+\mathrm{rd} &= \frac{p_{11}}{p_{11} + p_{10}} - \frac{p_{01}}{p_{01} + p_{00}} \\
+&= \frac{p_{11}(p_{01} + p_{00}) - p_{01}(p_{11} + p_{10})}{(p_{11} + p_{10})(p_{01} + p_{00})} \\
+&= \frac{\Delta}{(p_{11} + p_{10})(p_{01} + p_{00})}, \\
+\mathrm{rr} - 1 &= \frac{p_1 - p_0}{p_0} = \frac{\mathrm{rd}}{p_0}, \\
+\mathrm{or} - 1 &= \frac{p_{11} p_{00} - p_{10} p_{01}}{p_{10} p_{01}} = \frac{\Delta}{p_{10} p_{01}}.
+\end{aligned}
+$$
+
+The denominators are positive whenever the measures are defined, so $\mathrm{rd}$, $\mathrm{rr} - 1$ and
+$\mathrm{or} - 1$ all have the sign of $\Delta$.
+
+Second, independence is equivalent to $p_1 = p_0$. If $Z \perp\!\!\!\perp Y$, then $p_z = \mathrm{pr}(Y = 1)$
+for both $z$. Conversely, if $p_1 = p_0$, then
+
+$$
+\mathrm{pr}(Y = 1) = \mathrm{pr}(Z = 1)\, p_1 + \mathrm{pr}(Z = 0)\, p_0 = p_1,
+$$
+
+so $\mathrm{pr}(Y = y \mid Z = z) = \mathrm{pr}(Y = y)$ for every $z$ and $y$.
+
+### a. Statement (1)
+
+Assume that rd, rr and or are defined, that is, no denominator vanishes. By the two facts,
+
+$$
+Z \perp\!\!\!\perp Y \Leftrightarrow \mathrm{rd} = 0 \Leftrightarrow \Delta = 0 \Leftrightarrow \mathrm{rr} = 1 \Leftrightarrow \mathrm{or} = 1. \qquad \blacksquare
+$$
+
+### b. Statement (2)
+
+Every $p_{zy} > 0$, so the measures are defined. By the first fact,
+
+$$
+\mathrm{rd} > 0 \Leftrightarrow \Delta > 0 \Leftrightarrow \mathrm{rr} > 1 \Leftrightarrow \mathrm{or} > 1. \qquad \blacksquare
+$$
+
+For the table of [Example 1.1](./example-1-1.mdx), $235 \times 2278 - 2200 \times 157 = 189{,}930 > 0$, and
+indeed $\mathrm{rd} = 0.032$, $\mathrm{rr} = 1.50$ and $\mathrm{or} = 1.55$.
+
+{/* PROBLEM 1.2 */}
+
+## Problem 1.2: More examples of the Yule-Simpson Paradox
+
+### a. A numeric example
+
+I use the geometry of Section 1.3.3. In the subgroup $X = x$, the treated arm is the vector
+$A_x = (n_{10|x}, n_{11|x})$ of failures and successes, and the control arm is $B_x = (n_{00|x}, n_{01|x})$.
+The aggregated arms are $A = A_1 + A_0$ and $B = B_1 + B_0$. The slope of a vector is the odds of success,
+which increases with the success rate. Thus $\mathrm{rd}_x > 0$ exactly when $A_x$ is steeper than $B_x$, and
+$\mathrm{rd} > 0$ exactly when $A$ is steeper than $B$.
+
+By the law of total probability,
+
+$$
+\mathrm{pr}(Y = 1 \mid Z = z) = \sum_x \mathrm{pr}(X = x \mid Z = z)\, \mathrm{pr}(Y = 1 \mid Z = z, X = x),
+$$
+
+so the direction of $A$ lies between those of $A_1$ and $A_0$, closer to the subgroup with more treated units,
+and likewise for $B$. A reversal needs the two arms to divide differently between the subgroups. If
+$\mathrm{pr}(X = x \mid Z = 1) = \mathrm{pr}(X = x \mid Z = 0) = w_x$, then
+
+$$
+\begin{aligned}
+\mathrm{rd} &= \sum_x w_x \{\mathrm{pr}(Y = 1 \mid Z = 1, X = x) - \mathrm{pr}(Y = 1 \mid Z = 0, X = x)\} \\
+&= \sum_x w_x\, \mathrm{rd}_x,
+\end{aligned}
+$$
+
+which has the sign that the $\mathrm{rd}_x$ share.
+
+I take a postcard ($Z = 1$) mailed to 110 customers and withheld from 110 others ($Z = 0$), with $Y = 1$ if
+the customer buys and $X$ the segment of a purchase propensity model, $X = 1$ for high and $X = 0$ for low. I
+put 100 of the mailed customers in the high segment and 100 of the held-out customers in the low one. In the
+high segment 50 of the 100 mailed customers buy and 6 of the 10 held out; in the low segment 1 of the 10
+mailed customers buys and 20 of the 100 held out. Then
+
+$$
+\begin{aligned}
+\mathrm{rd}_1 &= \frac{50}{100} - \frac{6}{10} = -0.100, \\
+\mathrm{rd}_0 &= \frac{1}{10} - \frac{20}{100} = -0.100, \\
+\mathrm{rd} &= \frac{51}{110} - \frac{26}{110} = 0.227.
+\end{aligned}
+$$
+
+The postcard lowers buying in each segment and raises it overall.
+
+```r
+> pkgload::load_all("packages/causalding")
+> postcard <- yule_simpson_examples()$postcard
+> unlist(postcard$risk_difference)
+         1          0 aggregated
+-0.1000000 -0.1000000  0.2272727
+> postcard$sign_change_at
+[1] 0.3409091
+```
+
+<Figure id="figure-1">
+
+<SimpsonGeometryExplorer name="postcard" />
+
+<figcaption>
+
+_Figure 1: The postcard example. The tables give the counts as in Section 1.3.3 of the book, and each row is
+one vector of the plane below; pointing at a row or a vector pairs them. In the plane, customers who did not
+buy run across and buyers up, with the mailed customers solid ($A_1$, $A_0$, $A$) and those held out dashed
+($B_1$, $B_0$, $B$). The slider, or dragging the tip of $A$, moves mailed customers between the segments at
+fixed segment rates; "Same mix" gives them the mix of those held out, and "Observed" returns to the data. The
+circle marks where $A$ crosses the dotted ray of $B$ and $\mathrm{rd}$ changes sign._
+
+</figcaption>
+
+</Figure>
+
+$A$ is nearly $A_1$ because 100 of the 110 mailed customers are in the high segment, and $B$ is nearly $B_0$
+because 100 of the 110 held-out customers are in the low one. The high segment buys at rates of 0.5 and 0.6,
+the low one at 0.1 and 0.2, so the mix outweighs the effect of the postcard. The reversal holds while
+$\mathrm{pr}(X = 1 \mid Z = 1) > 0.341$. With the held-out mix, $10/110 = 0.091$, the aggregated difference
+returns to $-0.100$, as the formula above requires. The counts are constructed, so the figure illustrates the
+mechanism only.
+
+### b. A real-life example
+
+[Crook et al. (2009)](#ref-crook-2009) report that occurrences of Simpson's paradox in online A/B tests "are
+not uncommon, and we have seen them happen multiple times in real life". Such tests often start with a small
+share of visitors in the treatment and raise it later. Their simple example has one million visitors on each
+of two days, with the treatment ($Z = 1$) receiving 1% of the visitors on Friday ($X = 1$) and 50% on Saturday
+($X = 0$), and $Y = 1$ a conversion:
+
+$$
+\begin{aligned}
+\mathrm{rd}_1 &= \frac{230}{10000} - \frac{20000}{990000} = 0.0028, \\
+\mathrm{rd}_0 &= \frac{6000}{500000} - \frac{5000}{500000} = 0.0020, \\
+\mathrm{rd} &= \frac{6230}{510000} - \frac{25000}{1490000} = -0.0046.
+\end{aligned}
+$$
+
+The treatment converts better on each day and worse overall.
+
+:::warning[Discrepancy in Crook et al. (2009)]
+
+Their Table 1 prints 1.20% for the overall conversion rate of the treatment, whereas $6230/510000 = 1.22\%$.
+The reversal is unaffected.
+
+:::
+
+```r
+> pkgload::load_all("packages/causalding")
+> ramp_up <- yule_simpson_examples()$ramp_up
+> unlist(ramp_up$risk_difference)
+           1            0   aggregated
+ 0.002797980  0.002000000 -0.004562837
+> ramp_up$sign_change_at
+[1] 0.4344112
+```
+
+<Figure id="figure-2">
+
+<SimpsonGeometryExplorer name="ramp_up" />
+
+<figcaption>
+
+_Figure 2: The ramp-up of Crook et al. (2009), drawn as in [Figure 1](#figure-1) with visitors without a
+conversion across and conversions up. The vertical axis is stretched because conversion rates are near 1%;
+stretching an axis keeps sums of vectors and the order of slopes._
+
+</figcaption>
+
+</Figure>
+
+$A_1$ is a stub at the origin, since the treatment received only 10,000 of its 510,000 visitors on Friday, so
+$A$ follows the flatter Saturday direction. The control received 990,000 of its 1,490,000 visitors on Friday,
+so $B$ leans toward $B_1$. Saturday has the lower conversion rates, and it carries 98% of the visitors of the
+treatment but 34% of those of the control. The reversal holds while $\mathrm{pr}(X = 1 \mid Z = 1) < 0.434$,
+so a treatment share held fixed across both days removes it. The numbers are the simple example of the paper,
+which illustrates a pattern the authors report from practice.
+
+{/* PROBLEM 1.3 */}
+
+## Problem 1.3: Correlation and partial correlation
+
+### a. The partial correlation
+
+Assume $|\rho_{XY}| < 1$ and $|\rho_{XZ}| < 1$. Appendix A.1.2 with $Y_1 = (Y, Z)$ and $Y_2 = X$ gives
+$\Sigma_{22} = 1$ and $\Sigma_{12} = (\rho_{XY}, \rho_{XZ})^\top$, so the covariance matrix of $(Y, Z)$ given
+$X = x$ is
+
+$$
+\begin{aligned}
+\Sigma_{11} - \Sigma_{12} \Sigma_{22}^{-1} \Sigma_{21}
+&= \begin{pmatrix} 1 & \rho_{YZ} \\ \rho_{YZ} & 1 \end{pmatrix}
+- \begin{pmatrix} \rho_{XY} \\ \rho_{XZ} \end{pmatrix} \begin{pmatrix} \rho_{XY} & \rho_{XZ} \end{pmatrix} \\
+&= \begin{pmatrix} 1 - \rho_{XY}^2 & \rho_{YZ} - \rho_{XY} \rho_{XZ} \\ \rho_{YZ} - \rho_{XY} \rho_{XZ} & 1 - \rho_{XZ}^2 \end{pmatrix}.
+\end{aligned}
+$$
+
+It does not depend on $x$; only the conditional mean $(\rho_{XY} x, \rho_{XZ} x)$ does. Dividing the
+off-diagonal entry by the square roots of the diagonal ones, with $\rho_{YX} = \rho_{XY}$ and
+$\rho_{ZX} = \rho_{XZ}$, we have
+
+$$
+\rho_{YZ|X} = \frac{\rho_{YZ} - \rho_{YX} \rho_{ZX}}{\sqrt{1 - \rho_{YX}^2} \sqrt{1 - \rho_{ZX}^2}}. \qquad \blacksquare
+$$
+
+The assumption keeps the conditional variances positive. If $X$ is uncorrelated with both variables,
+$\rho_{YX} = \rho_{ZX} = 0$ and $\rho_{YZ|X} = \rho_{YZ}$, as expected. The same formula also follows from
+correlating the residuals of the least squares regressions of $Y$ and $Z$ on $X$.
+
+### b. A numerical example
+
+The denominator is positive, so $\rho_{YZ} > 0 > \rho_{YZ|X}$ exactly when
+$0 < \rho_{YZ} < \rho_{YX} \rho_{ZX}$. I take $\rho_{XY} = \rho_{XZ} = 0.6$ and $\rho_{YZ} = 0.2 < 0.36$:
+
+$$
+\rho_{YZ|X} = \frac{0.2 - 0.36}{1 - 0.36} = -0.25.
+$$
+
+The covariance matrix is positive definite, since its leading principal minors are $1$, $1 - 0.36 = 0.64$ and
+$1 + 2 (0.6)(0.6)(0.2) - 0.36 - 0.36 - 0.04 = 0.384$. The covariance of $Y$ and $Z$ splits into $0.36$ carried
+by $X$ and the conditional covariance $-0.16$, which is why the sign flips once $X$ is fixed. I check the
+value by simulation, with the columns of `draws` ordered as $(X, Y, Z)$:
+
+```r
+> pkgload::load_all("packages/causalding")
+> partial_correlation(0.2, 0.6, 0.6)
+[1] -0.25
+> sigma <- matrix(c(1, 0.6, 0.6, 0.6, 1, 0.2, 0.6, 0.2, 1), 3)
+> set.seed(1)
+> draws <- matrix(rnorm(3e6), ncol = 3) %*% chol(sigma)
+> cor(resid(lm(draws[, 2] ~ draws[, 1])), resid(lm(draws[, 3] ~ draws[, 1])))
+[1] -0.2503809
+```
+
+{/* PROBLEM 1.4 */}
+
+## Problem 1.4: Specification searches
+
+### a. The 1024 regressions
+
+Of the 1024 coefficients of `treat`, 260 are positively significant, 80 are negatively significant and 684 are
+not significant. Each regression keeps `treat` and adds a subset $\{X_1, \dots, X_k\}$ of `age`, `educ`,
+`black`, `hispan`, `married`, `nodegree`, `re74`, `re75`, `u74` and `u75`,
+
+$$
+\texttt{re78} = \alpha + \beta \, \texttt{treat} + \gamma_1 X_1 + \dots + \gamma_k X_k + \varepsilon,
+$$
+
+fitted by least squares. Each covariate is in or out, so there are $2^{10} = 1024$ regressions, from
+`lm(re78 ~ treat)` to `lm(re78 ~ .)`. I call $\beta$ significant when the two-sided p-value of
+`summary(lm(...))` is below 0.05, as in Section 1.2.1.
+
+```r
+> pkgload::load_all("packages/causalding")
+> specifications <- lalonde_specifications()
+> unlist(specifications$counts)
+positive negative     none
+     260       80      684
+> sapply(specifications$earnings, unlist)
+                 without      with
+specifications    64.000   960.000
+positive           0.000   809.000
+negative          64.000    16.000
+lowest         -8525.889 -2682.259
+highest        -2881.711  2954.374
+```
+
+<Figure id="figure-3">
+
+<SpecificationCurve />
+
+<figcaption>
+
+_Figure 3: The 1024 regressions as a specification curve ([Simonsohn et al., 2020](#ref-simonsohn-2020)). Top:
+the coefficient of `treat` with its 95% confidence interval, in increasing order; rings mark the two
+regressions of Section 1.2.1. Bottom: the regressions significant at 5%, then the covariates each regression
+includes. A toggle brings forward the regressions with its covariate and counts them with and without it;
+pointing at a regression reads its coefficient._
+
+</figcaption>
+
+</Figure>
+
+The two regressions of Section 1.2.1 sit far apart, at $-8{,}506$ without covariates, negatively significant,
+and at $1{,}068$ with all ten, with $p = 0.054$. The p-values use the homoskedastic standard errors of
+`summary(lm(...))`. The heteroskedasticity-robust errors used later in the book could move coefficients near
+0.05, such as the one with all ten covariates, across the threshold. The search covers additive linear models
+only, so a wider search would spread the estimates at least as much.
+
+### b. Other findings
+
+The earnings history decides the sign. All 64 regressions without `re74`, `re75`, `u74` and `u75` are
+negatively significant, from $-8{,}526$ to $-2{,}882$, while 809 of the 960 with at least one of them are
+positive, from $-2{,}682$ to $2{,}954$. With `re75` in the regression, none of the 512 coefficients is
+negatively significant, against 80 of the 512 without it.
+
+The omitted variable formula explains why. Write $Y$ for `re78`, $Z$ for `treat` and $X$ for one covariate.
+Adding $X$ alone to the regression of $Y$ on $Z$ changes the coefficient of $Z$ by
+$\Delta\beta = -\gamma\delta$, where $\gamma$ is the coefficient of $X$ in the regression of $Y$ on $Z$ and
+$X$, and $\delta$ that of $Z$ in the regression of $X$ on $Z$. In sample correlations,
+
+$$
+\begin{aligned}
+\delta &= \rho_{ZX} \frac{\mathrm{sd}(X)}{\mathrm{sd}(Z)}, \\
+\gamma &= \rho_{YX|Z} \frac{\mathrm{sd}(Y) \sqrt{1 - \rho_{YZ}^2}}{\mathrm{sd}(X) \sqrt{1 - \rho_{ZX}^2}}, \\
+\Delta\beta &= -K \frac{\rho_{ZX} \rho_{YX|Z}}{\sqrt{1 - \rho_{ZX}^2}}, \qquad K = \frac{\mathrm{sd}(Y)}{\mathrm{sd}(Z)} \sqrt{1 - \rho_{YZ}^2},
+\end{aligned}
+$$
+
+with $\rho_{YX|Z}$ the partial correlation of Problem 1.3. $K$ is the same for every covariate, so the plane
+of $\rho_{ZX}$ and $\rho_{YX|Z}$ maps $\Delta\beta$ (Figure 4b), and $\Delta\beta > 0$ when the two
+correlations have opposite signs. The treated units earned less before the program, with $\rho_{ZX} = -0.13$
+for `re74` and $-0.14$ for `re75`, and earlier earnings predict `re78`, with $\rho_{YX|Z} = 0.64$ and $0.67$.
+Thus `re75` alone moves the coefficient from $-8{,}506$ to $-72$.
+
+```r
+> pkgload::load_all("packages/causalding")
+> correlations <- lalonde_correlations()
+> print(correlations$covariates[c("name", "rho_zx", "rho_yx_z", "shift")], digits = 3)
+       name   rho_zx rho_yx_z  shift
+1      re74 -0.13182   0.6365 7672.5
+2      re75 -0.13842   0.6657 8434.8
+3       u74  0.18833  -0.3692 6418.5
+4       u75  0.16359  -0.3885 5840.1
+5       age -0.07138   0.1540  998.8
+6      educ -0.06234   0.1345  761.8
+7     black  0.29773  -0.0825 2333.7
+8    hispan -0.00518  -0.0413  -19.4
+9   married -0.12192   0.2503 2787.4
+10 nodegree  0.09561  -0.1519 1322.3
+```
+
+<Figure id="figure-4">
+
+<CorrelationMap />
+
+<figcaption>
+
+_Figure 4: The correlations behind Figure 3. (a) Sample correlations of the twelve variables, grouped as
+outcome and treatment, earnings history and demographics; the area of a circle is proportional to the absolute
+correlation, filled when positive and open when negative. (b) Each covariate at $(\rho_{ZX},
+\rho*{YX|Z})$,
+filled for the earnings history, over contours of $\Delta\beta$ in 1978 US dollars; the
+quadrants with $\Delta\beta > 0$ are tinted. Pointing at a circle or a covariate brings it forward in both
+panels.*
+
+</figcaption>
+
+</Figure>
+
+Every covariate except `hispan` ($-19$) lies in the quadrants where $\Delta\beta > 0$. The formula holds
+exactly for one covariate added to the regression on `treat` alone. With several covariates in the regression
+their shifts do not add, so the map explains the sign pattern of Figure 3 but not each estimate.
+
+Section 10.4.2 of the book calls reporting a favorable estimate "after searching over a wide set of candidate
+models, without confessing this model searching process" "a major source of p-hacking in causal inference",
+and cites [Leamer (1978)](#ref-leamer-1978) for the criticism. For comparison, the experiment of Section
+4.5.3, with the same 185 treated units and randomized controls, estimates $1{,}794$.
+
+{/* PROBLEM 1.5 */}
+
+## Problem 1.5: More on racial discrimination
+
+The racial gap is the same for female and male names, about 3 percentage points, but only the female gap is
+significant at 5%, because male names are less than a quarter of the resumes. I split the resumes of
+[Example 1.1](./example-1-1.mdx) by the sex of the name and repeat its analysis in each part, with $Z = 1$ for
+a White-sounding name and $Y = 1$ for a callback. The risk differences are in percentage points, with standard
+errors in parentheses, and the p-values are those of `fisher.test`.
+
+| Names  |           $Z = 1$ |           $Z = 0$ | $\widehat{\mathrm{rd}}$ |  p-value |
+| :----- | ----------------: | ----------------: | ----------------------: | -------: |
+| female | 184/1,860 = 9.89% | 125/1,886 = 6.63% |             3.26 (0.90) |  0.00029 |
+| male   |    51/575 = 8.87% |    32/549 = 5.83% |             3.04 (1.55) |    0.053 |
+| all    | 235/2,435 = 9.65% | 157/2,435 = 6.45% |             3.20 (0.78) | 0.000048 |
+
+```r
+> pkgload::load_all("packages/causalding")
+> by_sex <- resume_by_sex()
+> print(by_sex$groups[c("sex", "risk_difference", "std_error", "p_value")], digits = 2)
+     sex risk_difference std_error p_value
+1 female           0.033    0.0090 2.9e-04
+2   male           0.030    0.0155 5.3e-02
+3    all           0.032    0.0078 4.8e-05
+> print(unlist(by_sex$difference), digits = 2)
+ estimate std_error   p_value
+   0.0022    0.0179    0.9006
+```
+
+White-sounding names are called back about 1.5 times as often as Black-sounding ones, among female and male
+names alike. A standard error scales as $1/\sqrt{n}$, and the 3,746 resumes with female names outnumber the
+1,124 with male names by a factor of $\sim 3.3$, which accounts for most of the ratio $1.55/0.90 \approx 1.7$
+of the standard errors. The two gaps differ by 0.22 points with a standard error of 1.79 and $p = 0.90$, so
+the data show no difference between the sexes. The difference between a significant and an insignificant
+result is not itself significant ([Gelman and Stern, 2006](#ref-gelman-2006)). The last row reproduces the
+p-value of Example 1.1.
+
+Race was randomized within each sex, so each row is a randomized comparison. Sex was not randomized, since
+male names went almost only to sales jobs and female names to both sales and administrative jobs
+([Bertrand and Mullainathan, 2003](#ref-bertrand-2003)), so comparing the sexes compares different jobs. The
+p-values also treat the resumes as independent, whereas the names were randomized within pairs of resumes sent
+to the same ad. A test that follows the pairs could move the male p-value, at 0.053, to either side of 0.05; I
+have not computed it.
+
+## References
+
+<References>
+
+<Reference id="ref-bertrand-2003">
+
+Bertrand, M. and Mullainathan, S. (2003). Are Emily and Greg more employable than Lakisha and Jamal? A field
+experiment on labor market discrimination. NBER Working Paper 9873.
+[doi:10.3386/w9873](https://doi.org/10.3386/w9873)
+
+</Reference>
+
+<Reference id="ref-crook-2009">
+
+Crook, T., Frasca, B., Kohavi, R., and Longbotham, R. (2009). Seven pitfalls to avoid when running controlled
+experiments on the web. _Proceedings of the 15th ACM SIGKDD International Conference on Knowledge Discovery
+and Data Mining_, 1105-1114. [doi:10.1145/1557019.1557139](https://doi.org/10.1145/1557019.1557139)
+
+</Reference>
+
+<Reference id="ref-gelman-2006">
+
+Gelman, A. and Stern, H. (2006). The difference between "significant" and "not significant" is not itself
+statistically significant. _The American Statistician_, 60(4), 328-331.
+[doi:10.1198/000313006X152649](https://doi.org/10.1198/000313006X152649)
+
+</Reference>
+
+<Reference id="ref-leamer-1978">
+
+Leamer, E. E. (1978). _Specification Searches: Ad Hoc Inference with Nonexperimental Data_. Wiley.
+
+</Reference>
+
+<Reference id="ref-simonsohn-2020">
+
+Simonsohn, U., Simmons, J. P., and Nelson, L. D. (2020). Specification curve analysis. _Nature Human
+Behaviour_, 4(11), 1208-1214. [doi:10.1038/s41562-020-0912-z](https://doi.org/10.1038/s41562-020-0912-z)
+
+</Reference>
+
+</References>

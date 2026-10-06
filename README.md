@@ -80,8 +80,9 @@ packages/docs/                 Docusaurus site
 Every number drawn on the site is computed in R. A function in `packages/causalding/R/` returns the data a
 figure needs, the registry in `R/docs-data.R` names it, and `yarn r:export` writes it to
 `packages/docs/src/data/generated/<name>.json`. A component under `packages/docs/src/components/` imports that
-file, so `tsc` types the data from the JSON itself, and the component is used from MDX. CI regenerates the
-JSON and fails when it differs from the committed copy.
+file, so `tsc` types the data from the JSON itself, and the component is used from MDX. CI recomputes the JSON
+and fails when it differs from the committed copy: text exactly, numbers to a relative tolerance of $10^{-8}$,
+since the last digits of a least squares fit depend on the BLAS library.
 
 ## Getting Started
 
@@ -114,21 +115,22 @@ compilers of the conda-forge build on `PATH`.
 
 ## Development
 
-| Command           | What it does                                                 |
-| ----------------- | ------------------------------------------------------------ |
-| `yarn docs:start` | Serves the site locally, reloading on change                 |
-| `yarn docs:build` | Builds the site for production                               |
-| `yarn lint`       | ESLint on the TypeScript, with the strict type-checked rules |
-| `yarn format`     | Prettier check (`yarn format:fix` to rewrite)                |
-| `yarn typecheck`  | `tsc` on the docs workspace                                  |
-| `yarn test`       | Vitest on the math behind the interactive figures            |
-| `yarn r:format`   | Formats the R code with air (`yarn r:format:check` to check) |
-| `yarn r:lint`     | lintr with every linter it ships                             |
-| `yarn r:check`    | `R CMD check --as-cran`, failing on any NOTE                 |
-| `yarn r:test`     | The testthat suite, failing on any warning                   |
-| `yarn r:coverage` | Line coverage with covr, failing below 100%                  |
-| `yarn r:document` | Regenerates `NAMESPACE` and `man/` from the roxygen comments |
-| `yarn r:export`   | Regenerates the JSON drawn by the site                       |
+| Command               | What it does                                                         |
+| --------------------- | -------------------------------------------------------------------- |
+| `yarn docs:start`     | Serves the site locally, reloading on change                         |
+| `yarn docs:build`     | Builds the site for production                                       |
+| `yarn lint`           | ESLint on the TypeScript, with the strict type-checked rules         |
+| `yarn format`         | Prettier check (`yarn format:fix` to rewrite)                        |
+| `yarn typecheck`      | `tsc` on the docs workspace                                          |
+| `yarn test`           | Vitest on the math behind the interactive figures                    |
+| `yarn r:format`       | Formats the R code with air (`yarn r:format:check` to check)         |
+| `yarn r:lint`         | lintr with every linter it ships                                     |
+| `yarn r:check`        | `R CMD check --as-cran`, failing on any NOTE                         |
+| `yarn r:test`         | The testthat suite, failing on any warning                           |
+| `yarn r:coverage`     | Line coverage with covr, failing below 100%                          |
+| `yarn r:document`     | Regenerates `NAMESPACE` and `man/` from the roxygen comments         |
+| `yarn r:export`       | Regenerates the JSON drawn by the site                               |
+| `yarn r:export:check` | Fails when the committed JSON differs from what the package computes |
 
 ## Quality Gates
 

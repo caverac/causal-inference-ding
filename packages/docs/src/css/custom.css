@@ -49,6 +49,8 @@
    of the proof it sits inside. */
 .doc-figure {
   margin: 2rem 0;
+  /* Keeps a figure reached through its anchor clear of the sticky navbar. */
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
 }
 
 .doc-figure .d3-container {
@@ -66,6 +68,29 @@
 
 .doc-figure figcaption p:last-child {
   margin-bottom: 0;
+}
+
+/* The reference list at the end of a page. Entries hang from the margin so
+   that their authors are easy to scan, and the entry a citation leads to is
+   highlighted and kept clear of the sticky navbar. */
+.doc-references {
+  list-style: none;
+  padding-left: 0;
+}
+
+.doc-reference {
+  padding: 0.35rem 0.4rem 0.35rem 1.9rem;
+  text-indent: -1.5rem;
+  border-radius: 4px;
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 0.5rem);
+}
+
+.doc-reference p {
+  margin-bottom: 0;
+}
+
+.doc-reference:target {
+  background: var(--ifm-color-emphasis-200);
 }
 
 /* Project version badge, shown in the navbar on every page. */
@@ -111,14 +136,14 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Interactive Yule-Simpson figure. Font family and size are set inline from
+/* Interactive figures. Font family and size are set inline from
    src/components/chartStyle.ts, so the controls, the chart and the readout
    share one typeface at one size. */
-.yule-simpson {
+.explorer {
   margin: 1.5rem 0 0;
 }
 
-.yule-simpson__controls {
+.explorer__controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -126,14 +151,22 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
-.yule-simpson__toggle {
+.explorer__toggle,
+.explorer__buttons {
   display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.explorer__toggle {
+  gap: 0;
   border: 1px solid var(--ifm-color-emphasis-400);
   border-radius: 4px;
   overflow: hidden;
 }
 
-.yule-simpson__toggle button {
+.explorer__toggle button,
+.explorer__buttons button {
   padding: 0.3rem 0.85rem;
   border: 0;
   background: transparent;
@@ -142,33 +175,42 @@ a:hover {
   cursor: pointer;
 }
 
-.yule-simpson__toggle button + button {
+.explorer__buttons button {
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: 4px;
+}
+
+.explorer__buttons button:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.explorer__toggle button + button {
   border-left: 1px solid var(--ifm-color-emphasis-400);
 }
 
-.yule-simpson__toggle button[aria-pressed='true'] {
+.explorer__toggle button[aria-pressed='true'] {
   background: var(--ifm-color-emphasis-800);
   color: var(--ifm-color-emphasis-0);
 }
 
-.yule-simpson__slider {
+.explorer__slider {
   display: inline-flex;
   flex: 1 1 14rem;
   align-items: center;
   gap: 0.6rem;
 }
 
-.yule-simpson__slider input {
+.explorer__slider input {
   flex: 1;
   accent-color: var(--ifm-color-emphasis-800);
 }
 
-.yule-simpson__slider output {
+.explorer__slider output {
   min-width: 2.5em;
   font-variant-numeric: tabular-nums;
 }
 
-.yule-simpson__frame svg {
+.explorer__frame svg {
   display: block;
   border: 1px solid #e2e8f0;
   border-radius: 4px;
@@ -176,28 +218,89 @@ a:hover {
   touch-action: pan-y;
 }
 
-[data-theme='dark'] .yule-simpson__frame svg {
+[data-theme='dark'] .explorer__frame svg {
   border-color: #4a5568;
   background: #2d3748;
 }
 
-.yule-simpson__hit {
+.explorer__hit {
   cursor: pointer;
   outline: none;
 }
 
-.yule-simpson__drag {
+.explorer__drag {
   cursor: ew-resize;
   touch-action: none;
 }
 
-.yule-simpson__readout {
+.explorer__readout {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1.75rem;
   min-height: 1.6em;
   margin: 0.6rem 0 0;
   font-variant-numeric: tabular-nums;
+}
+
+/* Count tables of an explorer, laid out as in the book: plain rows and
+   columns, without the borders and stripes of the tables in the text. */
+.explorer__tables {
+  margin-bottom: 0.75rem;
+}
+
+.explorer__subtables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.explorer__tables table {
+  --ifm-table-border-width: 0;
+  --ifm-table-background: transparent;
+  --ifm-table-stripe-background: transparent;
+  --ifm-table-head-background: transparent;
+  --ifm-table-head-font-weight: normal;
+  --ifm-table-cell-padding: 0.15rem 0.6rem;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.explorer__tables thead tr {
+  border-bottom: 1px solid var(--ifm-color-emphasis-400);
+}
+
+.explorer__tables td {
+  text-align: right;
+}
+
+.explorer__tables th {
+  text-align: left;
+}
+
+.explorer__tables tbody tr {
+  outline: none;
+}
+
+.explorer__tables tbody tr:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ifm-color-emphasis-600);
+}
+
+.explorer__tables tbody tr.explorer__row--focused {
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* Text drawn over lines, such as the labels of contours, gets a rim of the
+   background of the chart so that it stays legible where a line crosses it. */
+.explorer__halo {
+  paint-order: stroke;
+  stroke: #fafafa;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+[data-theme='dark'] .explorer__halo {
+  stroke: #2d3748;
 }
 
 /* Subscripts keep the size of the formula around them. */

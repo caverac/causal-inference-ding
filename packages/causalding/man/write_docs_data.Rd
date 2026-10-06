@@ -19,7 +19,9 @@ each result to \verb{<name>.json} in \code{dir}. Numbers are written with 15
 significant digits, so the files change only when a result does.
 }
 \examples{
+\donttest{
 dir <- tempfile()
 dir.create(dir)
 write_docs_data(dir)
+}
 }
