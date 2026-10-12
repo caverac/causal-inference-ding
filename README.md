@@ -75,6 +75,12 @@ packages/docs/                 Docusaurus site
   src/plugins/problemCounts.ts counts the solved problems on each page, for the progress chart
 ```
 
+R loads only the files directly under `R/`, and testthat only those directly under `tests/testthat/`, so the
+package cannot have a folder per chapter. A file name starts with the chapter that introduces its code
+instead, as in `R/ch01-fisher-exact.R` and `tests/testthat/test-ch01-fisher-exact.R`, and later chapters reuse
+that code from there. Loaders of the book's datasets start with `data-`, and files that belong to no chapter,
+such as `R/docs-data.R`, carry no prefix.
+
 ### From R to the page
 
 Every number drawn on the site is computed in R. A function in `packages/causalding/R/` returns the data a
@@ -167,7 +173,8 @@ Contributions are welcome. If you find an error in a solution or want to add a m
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feat/chapter-1-problems`)
 3. Write the solution on the page of its chapter, under `packages/docs/docs/parts/`
-4. Put any computation in the R package, with tests, and export what the page draws
+4. Put any computation in the R package, in a file named after its chapter, with tests, and export what the
+   page draws
 5. Make sure every gate above passes, then open a pull request
 
 A solution opens with a level-two heading carrying the book's number for the problem. The progress chart
